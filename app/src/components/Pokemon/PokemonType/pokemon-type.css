@@ -1,0 +1,17 @@
+.pokemon-type{
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    text-align: center;
+    ;
+}
+
+.grass{
+    background-color: #B7E899;
+    color:#3F5E20;
+}
+.poison{
+    background-color: #8f3e7f;
+    color:#681E65;
+}
