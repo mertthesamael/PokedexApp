@@ -6,14 +6,15 @@ const CardsWrapper = () =>{
 
     const [pokemon, setPokemon] = useState([])
 
-    const fetchPokemonData =  async (pokemon) => {
-      const data = await axios("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=50").then(response=>response.data)
-      setPokemon(data.results)
-    }
 
-    useEffect(()=>
-    fetchPokemonData(),
-    [])
+
+    useEffect(()=>{
+        const fetchPokemonData =  async (pokemon) => {
+            const data = await axios("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=50").then(response=>response.data)
+            setPokemon(data.results)
+          }
+    fetchPokemonData()
+    },[])
 
     function pad(num, size) {
         num = num.toString();

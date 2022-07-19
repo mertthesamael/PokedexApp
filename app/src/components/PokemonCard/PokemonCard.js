@@ -12,25 +12,26 @@ const PokemonCard = (props) => {
 
     const [icon, setIcon] = useState([])
 
-    const fetchPokemonIcon =  async (pokemon) => {
-    const data = await axios(props.url).then(response=>response.data)
-    setIcon(data.sprites.other.home.front_default)
-    }
+   
 
 
 useEffect(()=>{
-  fetchPokemonIcon()
+    const fetchPokemonIcon =  async (pokemon) => {
+        const data = await axios(props.url).then(response=>response.data)
+        setIcon(data.sprites.other.home.front_default)
+        }
+fetchPokemonIcon()
 }, []);
   
 const [type, setType] = useState([])
 
-const fetchPokemonType =  async (pokemon) => {
-const data = await axios(props.url).then(response=>response.data)
-setType(data.types)
-}
 
-console.log(type)
+
 useEffect(()=>{
+    const fetchPokemonType =  async (pokemon) => {
+        const data = await axios(props.url).then(response=>response.data)
+        setType(data.types)
+        }
 fetchPokemonType()
 }, []);
 
