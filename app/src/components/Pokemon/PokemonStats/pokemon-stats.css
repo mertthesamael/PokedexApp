@@ -1,0 +1,29 @@
+.pokemon-stats-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    color: white;
+}
+
+.stat-bar{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+.pokemon-stat-bar{
+    display: flex;
+    background-color: rgb(255, 112, 46);
+    border-radius: 50px;
+    height: 10%;
+}
+
+.pokemon-stat-info{
+    display: flex;
+    flex-direction:row;
+    width: 100%;
+    justify-content: space-between;
+    
+}

@@ -7,20 +7,34 @@
     background-color: #1F1F2A;
     border-radius: 8px;
     padding: 0.4rem;
+    margin-bottom: 0.5rem;
 }
 
 .pokemon-card-body{
+    position: relative;
     border-radius: 8px;
     width: 100%;
     height: 7rem;
     background-color: #383652;
+    display: flex;
+    flex-direction: column;
 }
-
+.pokemon-number-section{
+    font-weight: 700;
+    font-size: 1.5rem;
+    position: absolute;
+    bottom:110px;
+    left: 0.2rem;
+    height: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+}
 .pokemon-type-div{
     display: flex;
     width: 100%;
     height: 1rem;
-
 }
 
 .pokemon-card-body{
@@ -28,14 +42,71 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-
 }
 
 .cards-wrapper{
+    position: relative;
     width: 100%;
     height: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
+    overflow:auto;
+    display: none;
+}
+
+.pokeball-top{
+    position: relative;
+    width: 100%;
+    height: 15050%;
+    background: linear-gradient(180deg, rgba(139,17,17,1) 0%, rgba(129,22,22,1) 14%, rgba(138,21,21,1) 29%, rgba(149,19,19,1) 40%, rgba(157,15,15,1) 48%, rgba(203,19,19,1) 100%);
+    transition: all 2s ease-in-out;
+    border-bottom: 10px solid black;
+}
+.pokeball-bottom{
+    position: relative;
+    width: 100%;
+    height: 15050%;
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(246,240,240,1) 36%, rgba(196,192,192,1) 66%, rgba(187,181,181,1) 79%, rgba(180,174,174,1) 85%, rgba(167,161,161,1) 100%);
+    transition: all 2s ease-in-out;
+    animation-direction: reverse;
+    border-top: 10px solid black;
+}
+.pokeball-bottom-magic{
+    height: 0%;
+     border-top: 0px solid rgba(0, 0, 0, 0);
+    
+}
+.pokeball-top-magic{
+    height: 0%;
+    border-bottom: 0px solid rgba(0, 0, 0, 0);
+}
+
+.body-wrap{
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 20px solid black;
+    transition: all 4s ease-in-out;
+    z-index: -1;
+}
+.wrap-magic{
+    border: 5px solid rgba(0, 0, 0, 0);
+}
+.magic{
+    display:inline-flex;
+}
+.wrap{
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
 }
