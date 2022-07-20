@@ -8,10 +8,6 @@ import PokemonPage from './components/Pages/PokemonPage/PokemonPage';
 
 function App() {
 
-
-
-
-
   return (
     <div className="App">
       <Menu />

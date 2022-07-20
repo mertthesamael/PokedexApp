@@ -3,20 +3,44 @@
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    flex-direction: column;
+   
+    flex-direction: row;
 }
 
 .pokemon-page-header{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+  flex-direction: row;
     width: 100%;
+    height: 100%;
 }
-
+@media screen and (max-width: 1005px) {
+    .pokemon-page-header{
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 100%;
+        flex-direction: column-reverse;
+        overflow: auto;
+    }
+    
+}
 .pokemon-page-stats{
 display: flex;
 flex-direction: column;
 justify-content: space-evenly;
-width: 25%;
+width: 100%;
 }
-
+.pokemon-page-icon{
+    display: flex;
+    width: 200%;
+    height: 100%;
+    
+}
+@media screen and (max-width: 1005px) {
+    .pokemon-page-icon{
+        display: flex;
+        width: 100%;
+        height: 100%;
+    }
+}

@@ -52,7 +52,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    overflow:auto;
+    overflow-y:scroll;
     display: none;
 }
 
@@ -63,6 +63,7 @@
     background: linear-gradient(180deg, rgba(139,17,17,1) 0%, rgba(129,22,22,1) 14%, rgba(138,21,21,1) 29%, rgba(149,19,19,1) 40%, rgba(157,15,15,1) 48%, rgba(203,19,19,1) 100%);
     transition: all 2s ease-in-out;
     border-bottom: 10px solid black;
+    z-index: 5;
 }
 .pokeball-bottom{
     position: relative;
@@ -72,6 +73,7 @@
     transition: all 2s ease-in-out;
     animation-direction: reverse;
     border-top: 10px solid black;
+    z-index: 5;
 }
 .pokeball-bottom-magic{
     height: 0%;
@@ -81,6 +83,10 @@
 .pokeball-top-magic{
     height: 0%;
     border-bottom: 0px solid rgba(0, 0, 0, 0);
+}
+
+.offsetButtonMagic{
+    display: block;
 }
 
 .body-wrap{

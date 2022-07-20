@@ -10,3 +10,22 @@
     width: 7rem;
     height: 7rem;
 }
+.pokemon-load-button{
+    pointer-events:all;
+position: fixed;
+width: 5rem;
+height: 5rem;
+border-radius: 50px;
+}
+.pokemon-load-button-wrapper{
+    pointer-events: none;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-end;
+    position: absolute;
+    z-index: 1;
+    width:90%;
+    height: 90%;
+    transition: all 4s ease-out;
+}
+

@@ -31,7 +31,7 @@ const [icon, setIcon] = useState([])
 useEffect(()=>{
     const fetchPokemonIcon =  async (pokemon) => {
         const data = await axios("https://pokeapi.co/api/v2/pokemon/"+pokeName).then(response=>response.data)
-        setIcon(data.sprites.other['official-artwork'].front_default)
+        setIcon(data.sprites.other.home.front_default)
         }
 fetchPokemonIcon()
 }, []);
@@ -47,7 +47,9 @@ fetchPokemonIcon()
             <PokemonName name={pokeName} />
             {pokemonInfo.map(x=><PokemonStats key={x.stat.name} statName={x.stat.name} statValue={x.base_stat} />)}
             </div>
+            <div className="pokemon-page-icon">
             <PokemonIcon src={icon} />
+            </div>
             </div>
         </div>
     )
