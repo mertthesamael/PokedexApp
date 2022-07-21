@@ -1,29 +1,27 @@
 .pokemon-stats-wrapper{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-evenly;
     width: 100%;
-    color: white;
+    background-color: orange;
 }
 
-.stat-bar{
-    height: 100%;
-    width: 50%;
+.stat-bar-wrapper{
     display: flex;
+    width: 100%;
+    background-color: burlywood;
     align-items: center;
 }
+
 .pokemon-stat-bar{
-    display: flex;
-    background-color: rgb(255, 112, 46);
-    border-radius: 50px;
-    height: 10%;
+display: flex;
+height: 2rem;
+background-color: red;
+width: 100%;
 }
 
 .pokemon-stat-info{
-    display: flex;
-    flex-direction:row;
-    width: 100%;
-    justify-content: space-between;
-    
+ display: flex;
+ width:100%;
+ background-color: purple;
 }

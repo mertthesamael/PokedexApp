@@ -13,8 +13,8 @@ function App() {
       <Menu />
         <Content>
       <Routes>
-        <Route path="/" element={<CardsWrapper></CardsWrapper>}/>
-        <Route path=":name" element={<PokemonPage></PokemonPage>}/>
+        <Route path="/" element={<CardsWrapper ></CardsWrapper>}/>
+        <Route path=":name" element={<PokemonPage ></PokemonPage>}/>
       </Routes>
         </Content>
     </div>

@@ -12,18 +12,39 @@
 
 .pokemon-card-body{
     position: relative;
+    display: flex;
     border-radius: 8px;
     width: 100%;
-    height: 7rem;
+    height: 100%;
     background-color: #383652;
-    display: flex;
     flex-direction: column;
+}
+
+.icon-wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}
+.pokemon-card-footer{
+    display: flex;
+    height: 30%;
+    flex-direction: column;
+}
+.pokemon-name-div{
+    display: flex;
+    justify-content: flex-start;
+}
+.pokemon-name{
+    width: 100%;
+    height: 100%;
+    margin: 0;
 }
 .pokemon-number-section{
     font-weight: 700;
     font-size: 1.5rem;
     position: absolute;
-    bottom:110px;
+    bottom:100px;
     left: 0.2rem;
     height: 1rem;
     display: flex;
@@ -33,6 +54,7 @@
 }
 .pokemon-type-div{
     display: flex;
+ 
     width: 100%;
     height: 1rem;
 }

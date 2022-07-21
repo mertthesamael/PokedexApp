@@ -4,7 +4,7 @@ import {useEffect, useState} from "react"
 import PokemonCard from "./PokemonCard"
 import PokeballButton from "../Buttons/PokeballButton"
 import PokemonLoadButton from "../Buttons/PokemonLoadButton"
-const CardsWrapper = () =>{
+const CardsWrapper = (props) =>{
 
     
     const [pokemon, setPokemon] = useState([])
@@ -53,6 +53,10 @@ function offsetSum(){
 
 function offsetHandler(){
     return setOffset(offsetSum())
+}
+
+function sendData(props){
+    return props.onAction(pokemon)
 }
 return (
     <div className="wrap">

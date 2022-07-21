@@ -1,6 +1,8 @@
 .pokemon-name{
 color: aliceblue;
 text-decoration: none;
+width: 20%;
+display: flex;
 }
 .pokemon-name:hover{
     text-decoration: underline;

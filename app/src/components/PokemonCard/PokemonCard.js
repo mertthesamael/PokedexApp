@@ -5,6 +5,7 @@ import {useEffect, useState} from "react"
 import axios from "axios";
 import PokemonIcon from "../Pokemon/PokemonIcon/PokemonIcon";
 import PokemonNumber from "../Pokemon/PokemonNumber/PokemonNumber";
+import {NavLink} from "react-router-dom"
 
 
 const PokemonCard = (props) => {
@@ -19,7 +20,7 @@ const PokemonCard = (props) => {
 useEffect(()=>{
     const fetchPokemonIcon =  async (pokemon) => {
         const data = await axios(props.url).then(response=>response.data)
-        setIcon(data.sprites.other.home.front_default)
+        setIcon(data.sprites.versions['generation-v']['black-white'].animated.front_default)
         }
 fetchPokemonIcon()
 }, []);
@@ -47,11 +48,12 @@ fetchPokemonType()
                 <div className="pokemon-number-section">
             <PokemonNumber number={props.number}></PokemonNumber>
                 </div>
+                <div className="icon-wrap"></div>
                 <PokemonIcon src={icon}></PokemonIcon>
             </div>
             <div className="pokemon-card-footer">
                 <div className="pokemon-type-div">{type.map(x=> <PokemonType key={x.slot}type={x.type.name}/> )}</div>
-                <div className="pokemon-name-div"><PokemonName name={props.name}></PokemonName></div>
+                <div className="pokemon-name-div"><NavLink to={"/"+props.name} className="pokemon-name"><PokemonName name={props.name} /></NavLink></div>
             </div>
         </div>
    
