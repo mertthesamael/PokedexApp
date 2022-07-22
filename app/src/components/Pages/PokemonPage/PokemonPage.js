@@ -29,7 +29,7 @@ const PokemonPage = (props) => {
            setPokemonInfo(data)
            setPokemonStats(data.stats)
            setPokemonPhysicalStats({weight:data.weight, height:data.height})
-           setIcon(data.sprites.other.home.front_default)
+           setIcon(data.sprites.other.dream_world.front_default)
         }
         fetchPokemonInfo()
     },[])
@@ -39,7 +39,7 @@ const PokemonPage = (props) => {
     const [pokemonSecondEvolution, setPokemonSecondEvolution] = useState([])
     const [pokemonFirstEvolution, setPokemonFirstEvolution] = useState([])
    const [pokemonFirstForm, setPokemonFirstForm] = useState([])
-   const [pokemonFirstEvolutionIcon, setPokemonFirstEvolutionIcon] = useState()
+
   
  
     useEffect(()=>{
@@ -50,22 +50,15 @@ const PokemonPage = (props) => {
             setPokemonSecondEvolution(response.data.chain.evolves_to[0].evolves_to[0].species.name)})
             setPokemonSpecies(data)
             setPokemonCategory(data.genera[7].genus)
+
         } 
     fetchPokemonSpecies()
    
     },[])
     
- useEffect(()=>{
-    const fetchFirstEvoIcon = async () => {
-        const data = await axios("https://pokeapi.co/api/v2/pokemon/"+pokemonFirstEvolution).then((response) => response.data)
-        setPokemonFirstEvolutionIcon(data.sprites.other.home.front_default)
-    }
-    fetchFirstEvoIcon()
- },[])
-console.log(pokemonFirstEvolutionIcon)
-   
 
-    
+
+    console.log(icon)
 
 
     return (

@@ -1,4 +1,6 @@
 import Icon from "../../Icons/Icon";
+import "../../Icons/icons/style.css"
+import "../../Icons/icons/style.css"
 import "./pokemon-type.css"
 import {electric, nature, fire, flying, ground, water} from "../../store/context"
 const PokemonType = (props) =>{
@@ -19,12 +21,8 @@ if(typeClass === "electric"){
     typeIcon = water()
 }
     return (
-        <div className={"pokemon-type " + typeClass}>
-            <div className="icon-div">
-            <Icon type={typeIcon}>
-            </Icon>
-            </div>
-            {(props.type).toUpperCase()}
+        <div className={"type-icon " + typeClass}>
+            {typeIcon}
             </div>
     )
 
