@@ -35,16 +35,31 @@ const PokemonPage = (props) => {
 
    const [pokemonSpecies, setPokemonSpecies] = useState([])
    const [pokemonCategory, setPokemonCategory] = useState([])
-   useEffect(()=>{
-    const fetchPokemonSpecies =  async (pokemon) => {
-        const data = await axios("https://pokeapi.co/api/v2/pokemon-species/"+pokeName).then(response=>response.data)
-        setPokemonSpecies(data)
-        setPokemonCategory(data.genera[7].genus)
-    }
-    fetchPokemonSpecies()
-    },[])
 
+   const [pokemonFirstEvolution, setPokemonFirstEvolution] = useState([])
+   const [pokemonSecondEvolution, setPokemonSecondEvolution] = useState([])
+   const [pokemonFirstForm, setPokemonFirstForm] = useState([]) //response.data.chain.species.name
   
+ 
+    useEffect(()=>{
+        const fetchPokemonSpecies =  async (pokemon) => {
+            const data = await axios("https://pokeapi.co/api/v2/pokemon-species/"+pokeName).then( (response) => 
+             axios(response.data.evolution_chain.url)).then((response) => {setPokemonFirstEvolution(response.data.chain.evolves_to[0].species.name)
+            setPokemonFirstForm(response.data.chain.species.name)
+            setPokemonSecondEvolution(response.data.chain.evolves_to[0].evolves_to[0].species.name)})
+            setPokemonSpecies(data)
+            setPokemonCategory(data.genera[7].genus)
+        } 
+    fetchPokemonSpecies()
+   
+    },[])
+    
+ 
+
+   
+
+    
+
 
     return (
         <div className="pokemon-page">
@@ -77,9 +92,11 @@ const PokemonPage = (props) => {
                     <div className="pokemon-page-stats-card">
                     {pokemonStats.map(x=><PokemonStats key={x.stat.name} statName={x.stat.name} statValue={x.base_stat} />)}
                     </div>
-          
+                   
                 </div>
-        </div>
+        </div> <h1>{pokemonFirstForm}</h1>
+                    <h1>{pokemonFirstEvolution}</h1>
+                    <h1>{pokemonSecondEvolution}</h1>
         </div>
     )
 

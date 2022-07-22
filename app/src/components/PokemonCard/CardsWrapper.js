@@ -25,7 +25,7 @@ function pad(num, size) {
 }
 
 //pokeball animation
-const [pressed, setPressed] = useState(false)
+const [pressed, setPressed] = useState(true)
 function trigger(){
     setPressed(true)
 }
@@ -42,9 +42,7 @@ if(pressed === true){
     let offsetButtonMagic="offset-button-magic"
    
 }
-function showMoreButton(x){
-    return
-}
+
 //pokeapi offset
 const [offset, setOffset] = useState(50)
 function offsetSum(){
@@ -55,9 +53,7 @@ function offsetHandler(){
     return setOffset(offsetSum())
 }
 
-function sendData(props){
-    return props.onAction(pokemon)
-}
+
 return (
     <div className="wrap">
 
@@ -66,8 +62,11 @@ return (
                 <div className={"pokeball-top "+ pokeballTopMagic}/>
                 <div className={"cards-wrapper " + magic}>
                     <PokemonLoadButton onClick={offsetHandler}/>
-
-                    {pokemon.slice(0, offset).map((data)=><PokemonCard key={data.name} name={data.name} url={data.url} number={pad((pokemon.indexOf(data)+1),3)}/>)}
+                    {pokemon.filter((x)=>{
+                    if(props.input===""){
+                        return x
+                    }return x.name.includes(props.input)
+                    }).slice(0, offset).map((data)=><PokemonCard key={data.name} name={data.name} url={data.url} number={pad((pokemon.indexOf(data)+1),3)}/>)}
 
                 </div>
                 <div className={"pokeball-bottom "+ pokeballBottomMagic} />

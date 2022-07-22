@@ -1,9 +1,13 @@
 import "./menu.css"
 
-const Menu = () =>{
+const Menu = (props) =>{
 
     return(
-        <div className="side-menu"></div>
+        <div className="side-menu">
+        <div className="side-menu-content">
+        {props.children}
+        </div>
+        </div>
     )
 
 }

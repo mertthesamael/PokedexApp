@@ -8,8 +8,19 @@
     border-radius: 8px;
     padding: 0.4rem;
     margin-bottom: 0.5rem;
+ 
 }
-
+.pokemon-card-lightmode{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width:7rem;
+    height:9rem ;
+    background-color: #1f1f2b2f;
+    border-radius: 8px;
+    padding: 0.4rem;
+    margin-bottom: 0.5rem;
+}
 .pokemon-card-body{
     position: relative;
     display: flex;
@@ -18,8 +29,12 @@
     height: 100%;
     background-color: #383652;
     flex-direction: column;
+    overflow: hidden;
 }
-
+.pokemon-card-body-lightmode{
+    background-color: #ffffff;
+   
+}
 .icon-wrap{
     display: flex;
     justify-content: center;
