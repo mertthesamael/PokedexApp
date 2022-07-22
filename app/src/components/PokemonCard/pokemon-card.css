@@ -2,25 +2,14 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    width:7rem;
-    height:9rem ;
-    background-color: #1F1F2A;
-    border-radius: 8px;
+    width:8rem;
+    height:12rem ;
+    border: 2px solid black;
     padding: 0.4rem;
     margin-bottom: 0.5rem;
  
 }
-.pokemon-card-lightmode{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width:7rem;
-    height:9rem ;
-    background-color: #1f1f2b2f;
-    border-radius: 8px;
-    padding: 0.4rem;
-    margin-bottom: 0.5rem;
-}
+
 .pokemon-card-body{
     position: relative;
     display: flex;
@@ -39,7 +28,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
+   max-width: 100%;
+   max-height: 100%;
 }
 .pokemon-card-footer{
     display: flex;
@@ -83,48 +73,13 @@
 
 .cards-wrapper{
     position: relative;
-    width: 100%;
     height: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    overflow-y:scroll;
-    display: none;
 }
 
-.pokeball-top{
-    position: relative;
-    width: 100%;
-    height: 15050%;
-    background: linear-gradient(180deg, rgba(139,17,17,1) 0%, rgba(129,22,22,1) 14%, rgba(138,21,21,1) 29%, rgba(149,19,19,1) 40%, rgba(157,15,15,1) 48%, rgba(203,19,19,1) 100%);
-    transition: all 2s ease-in-out;
-    border-bottom: 10px solid black;
-    z-index: 5;
-}
-.pokeball-bottom{
-    position: relative;
-    width: 100%;
-    height: 15050%;
-    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(246,240,240,1) 36%, rgba(196,192,192,1) 66%, rgba(187,181,181,1) 79%, rgba(180,174,174,1) 85%, rgba(167,161,161,1) 100%);
-    transition: all 2s ease-in-out;
-    animation-direction: reverse;
-    border-top: 10px solid black;
-    z-index: 5;
-}
-.pokeball-bottom-magic{
-    height: 0%;
-     border-top: 0px solid rgba(0, 0, 0, 0);
-    
-}
-.pokeball-top-magic{
-    height: 0%;
-    border-bottom: 0px solid rgba(0, 0, 0, 0);
-}
-
-.offsetButtonMagic{
-    display: block;
-}
 
 .body-wrap{
     position:absolute;
@@ -133,16 +88,12 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 20px solid black;
     transition: all 4s ease-in-out;
-    z-index: -1;
 }
 .wrap-magic{
     border: 5px solid rgba(0, 0, 0, 0);
 }
-.magic{
-    display:inline-flex;
-}
+
 .wrap{
     position: relative;
     display: flex;
@@ -151,5 +102,5 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 2;
+ 
 }

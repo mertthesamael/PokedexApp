@@ -1,9 +1,9 @@
-import "./menu.css"
+import "./header.css"
 
-const Menu = (props) =>{
+const Header = (props) =>{
 
     return(
-        <div className="side-menu">
+        <div className="header">
         <div className="side-menu-content">
         {props.children}
         </div>
@@ -12,4 +12,4 @@ const Menu = (props) =>{
 
 }
 
-export default Menu;
+export default Header;

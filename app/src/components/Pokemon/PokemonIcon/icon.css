@@ -1,4 +1,6 @@
 .icon{
 display: flex;
 transform: scale(1);
+max-width: 100%;
+max-height: 100%;
 }

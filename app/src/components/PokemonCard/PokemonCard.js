@@ -20,7 +20,7 @@ const PokemonCard = (props) => {
 useEffect(()=>{
     const fetchPokemonIcon =  async (pokemon) => {
         const data = await axios(props.url).then(response=>response.data)
-        setIcon(data.sprites.versions['generation-v']['black-white'].animated.front_default)
+        setIcon(data.sprites.other['official-artwork'].front_default)
         }
 fetchPokemonIcon()
 }, []);

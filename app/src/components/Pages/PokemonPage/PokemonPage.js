@@ -8,6 +8,7 @@ import PokemonStats from "../../Pokemon/PokemonStats/PokemonStats";
 import PokemonCatagory from "../../Pokemon/PokemonCatagory/PokemonCatagory";
 import PokemonWeight from "../../Pokemon/PokemonWeight/PokemonWeight";
 import PokemonHeight from "../../Pokemon/PokemonHeight/PokemonHeight";
+import Icon from "../../Icons/Icon";
 const PokemonPage = (props) => {
     
    const location = useLocation()
@@ -19,26 +20,26 @@ const PokemonPage = (props) => {
    const [pokemonPhysicalStats, setPokemonPhysicalStats] = useState([]) 
    const {height: pokemonHeight, weight: pokemonWeight} = pokemonPhysicalStats;
    const [icon, setIcon] = useState([])
-
-  
-
+   
+   
+   
    useEffect(()=>{
-    const fetchPokemonInfo =  async (pokemon) => {
-        const data = await axios("https://pokeapi.co/api/v2/pokemon/"+pokeName).then(response=>response.data)
-        setPokemonInfo(data)
-        setPokemonStats(data.stats)
-        setPokemonPhysicalStats({weight:data.weight, height:data.height})
-        setIcon(data.sprites.other.home.front_default)
-     }
-     fetchPokemonInfo()
- },[])
-
-   const [pokemonSpecies, setPokemonSpecies] = useState([])
-   const [pokemonCategory, setPokemonCategory] = useState([])
-
-   const [pokemonFirstEvolution, setPokemonFirstEvolution] = useState([])
-   const [pokemonSecondEvolution, setPokemonSecondEvolution] = useState([])
-   const [pokemonFirstForm, setPokemonFirstForm] = useState([]) //response.data.chain.species.name
+       const fetchPokemonInfo =  async (pokemon) => {
+           const data = await axios("https://pokeapi.co/api/v2/pokemon/"+pokeName).then(response=>response.data)
+           setPokemonInfo(data)
+           setPokemonStats(data.stats)
+           setPokemonPhysicalStats({weight:data.weight, height:data.height})
+           setIcon(data.sprites.other.home.front_default)
+        }
+        fetchPokemonInfo()
+    },[])
+    
+    const [pokemonSpecies, setPokemonSpecies] = useState([])
+    const [pokemonCategory, setPokemonCategory] = useState([])
+    const [pokemonSecondEvolution, setPokemonSecondEvolution] = useState([])
+    const [pokemonFirstEvolution, setPokemonFirstEvolution] = useState([])
+   const [pokemonFirstForm, setPokemonFirstForm] = useState([])
+   const [pokemonFirstEvolutionIcon, setPokemonFirstEvolutionIcon] = useState()
   
  
     useEffect(()=>{
@@ -54,8 +55,14 @@ const PokemonPage = (props) => {
    
     },[])
     
- 
-
+ useEffect(()=>{
+    const fetchFirstEvoIcon = async () => {
+        const data = await axios("https://pokeapi.co/api/v2/pokemon/"+pokemonFirstEvolution).then((response) => response.data)
+        setPokemonFirstEvolutionIcon(data.sprites.other.home.front_default)
+    }
+    fetchFirstEvoIcon()
+ },[])
+console.log(pokemonFirstEvolutionIcon)
    
 
     
@@ -67,7 +74,7 @@ const PokemonPage = (props) => {
                 <div className="pokemon-icon-wrapper">
                 <PokemonIcon src={icon} />
                 </div>
-                <div className="pokemon-page-card">
+            <div className="pokemon-page-card">
                 
                 <div className="card-left">   
 
@@ -94,9 +101,15 @@ const PokemonPage = (props) => {
                     </div>
                    
                 </div>
-        </div> <h1>{pokemonFirstForm}</h1>
-                    <h1>{pokemonFirstEvolution}</h1>
-                    <h1>{pokemonSecondEvolution}</h1>
+        </div>
+        
+        <div className="pokemon-evolution-section">
+               <PokemonIcon pokeName={pokemonFirstEvolution}></PokemonIcon>
+               <h1>{pokemonFirstForm}</h1>
+               <h1>{pokemonFirstEvolution}</h1>
+               <h1>{pokemonSecondEvolution}</h1>
+        </div>
+
         </div>
     )
 
