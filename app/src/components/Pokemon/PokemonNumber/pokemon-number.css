@@ -1,5 +1,6 @@
 .pokemon-number{
     line-height: 0.8rem;
-    margin-bottom: 1.3rem;
+    margin: 0;
     color: #9094C7;
+    height: 1rem;
 }

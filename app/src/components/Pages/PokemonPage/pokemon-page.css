@@ -20,8 +20,12 @@
 .stat-item{
     display: flex;
     align-items: center;
+    
 }
 .stat-item h1{
-    margin: 0;
+    margin-top: 0;
+    margin-bottom:0 ;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 

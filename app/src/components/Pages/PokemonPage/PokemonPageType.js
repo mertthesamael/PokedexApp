@@ -47,7 +47,7 @@ else if (typeClass ==="rock"){
 }
 
     return(
-        <div className={"typeicon " + typeClass}><h2>{props.type}</h2><div>{typeIcon}</div></div>
+        <div className={"typeicon " + typeClass}><h2>{props.type.toUpperCase()}</h2><div>{typeIcon}</div></div>
     )
 
 }

@@ -4,7 +4,7 @@ const PokemonIcon = (props) => {
  
     return (
     
-        <img src={props.src} className="icon"></img>
+        <img src={props.src} className="iconn"></img>
       
     )
 

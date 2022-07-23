@@ -13,3 +13,6 @@
     align-items: center;
     justify-content: flex-start;
 }
+.type-icon{
+    display: flex;
+}
