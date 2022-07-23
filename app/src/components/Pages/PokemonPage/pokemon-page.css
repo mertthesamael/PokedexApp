@@ -1,69 +1,27 @@
 .pokemon-page{
+    display: flex;
     width: 100%;
     height: 100%;
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    align-items: center;
-}
-.pokemon-page-card{
-    display: flex;
-    border-radius: 20px;
-    background-color: rgb(0, 128, 0);
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 100%;
-}
-.pokemon-page-card-left{
-    display: flex;
-    flex-direction:column;
-}
-.pokemon-category-wrapper{
-  display: flex;
-    background-color: red;
-    align-items: center;
-}
-.pokemon-name-wrapper{
-    align-items: center;
-    display: flex;
-    background-color: rgb(16, 131, 184);
-}
-.pokemon-physical-stats-wrapper{
-    display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    background-color: rgb(16, 131, 184);
-}
-.pokemon-physical-stats-values{
-    display: flex;
-}
-.pokemon-weight{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 4rem;
-    width: 100%;
-}
-.pokemon-height{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 4rem;
-    width: 100%;
-}
-.card-right{
-    display: flex;
-}
-.pokemon-page-icon{
-    display: flex;
-    width: 200%;
-    height: 100%;
 }
 
-@media screen and (max-width: 1005px) {
-    .pokemon-page-icon{
-        display: flex;
-        width: 100%;
-        height: 100%;
-    }
+.pokemon-page-header{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
+
+.pokemon-physical-stats{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.stat-item{
+    display: flex;
+    align-items: center;
+}
+.stat-item h1{
+    margin: 0;
+}
+

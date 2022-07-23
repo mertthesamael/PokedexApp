@@ -6,7 +6,6 @@ import PokeballButton from "../Buttons/PokeballButton"
 import PokemonLoadButton from "../Buttons/PokemonLoadButton"
 const CardsWrapper = (props) =>{
 
-    
     const [pokemon, setPokemon] = useState([])
     //fetch pokemons from API
     useEffect(()=>{

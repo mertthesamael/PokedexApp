@@ -8,7 +8,8 @@ import PokemonStats from "../../Pokemon/PokemonStats/PokemonStats";
 import PokemonCatagory from "../../Pokemon/PokemonCatagory/PokemonCatagory";
 import PokemonWeight from "../../Pokemon/PokemonWeight/PokemonWeight";
 import PokemonHeight from "../../Pokemon/PokemonHeight/PokemonHeight";
-import Icon from "../../Icons/Icon";
+import PokemonType from "../../Pokemon/PokemonType/PokemonType"
+import PokemonPageType from "./PokemonPageType";
 const PokemonPage = (props) => {
     
    const location = useLocation()
@@ -20,6 +21,7 @@ const PokemonPage = (props) => {
    const [pokemonPhysicalStats, setPokemonPhysicalStats] = useState([]) 
    const {height: pokemonHeight, weight: pokemonWeight} = pokemonPhysicalStats;
    const [icon, setIcon] = useState([])
+   const [pokemonTypes, setPokemonTypes] = useState([])
    
    
    
@@ -27,81 +29,122 @@ const PokemonPage = (props) => {
        const fetchPokemonInfo =  async (pokemon) => {
            const data = await axios("https://pokeapi.co/api/v2/pokemon/"+pokeName).then(response=>response.data)
            setPokemonInfo(data)
+           setPokemonTypes(data.types)
            setPokemonStats(data.stats)
            setPokemonPhysicalStats({weight:data.weight, height:data.height})
            setIcon(data.sprites.other.dream_world.front_default)
+           
         }
         fetchPokemonInfo()
     },[])
-    
+    useEffect(()=>{
+        const fetchPokemonInfo =  async (pokemon) => {
+            const data = await axios("https://pokeapi.co/api/v2/pokemon/"+pokeName).then(response=>response.data)
+            setPokemonInfo(data)
+            setPokemonStats(data.stats)
+            setPokemonPhysicalStats({weight:data.weight, height:data.height})
+            setIcon(data.sprites.other.dream_world.front_default)
+         }
+         fetchPokemonInfo()
+     },[])
     const [pokemonSpecies, setPokemonSpecies] = useState([])
     const [pokemonCategory, setPokemonCategory] = useState([])
     const [pokemonSecondEvolution, setPokemonSecondEvolution] = useState([])
     const [pokemonFirstEvolution, setPokemonFirstEvolution] = useState([])
    const [pokemonFirstForm, setPokemonFirstForm] = useState([])
-
-  
+   const [pokemonFirstFormIcon, setPokemonFirstFormIcon] = useState([])
+   const [pokemonFirstEvoIcon, setPokemonFirstEvoIcon] = useState([])
+  const [pokemonSecondEvoIcon, setPokemonSecondFormIcon] = useState([])
  
     useEffect(()=>{
         const fetchPokemonSpecies =  async (pokemon) => {
-            const data = await axios("https://pokeapi.co/api/v2/pokemon-species/"+pokeName).then( (response) => 
-             axios(response.data.evolution_chain.url)).then((response) => {setPokemonFirstEvolution(response.data.chain.evolves_to[0].species.name)
-            setPokemonFirstForm(response.data.chain.species.name)
-            setPokemonSecondEvolution(response.data.chain.evolves_to[0].evolves_to[0].species.name)})
+            const data = await axios("https://pokeapi.co/api/v2/pokemon-species/"+pokeName).then( (response) => response.data)
             setPokemonSpecies(data)
             setPokemonCategory(data.genera[7].genus)
 
+            const data2 = await axios(data.evolution_chain.url).then((response) => axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.evolves_to[0].species.name))
+
+            setPokemonFirstEvoIcon(data2.data.sprites.other['official-artwork'].front_default)
+            const data3 = await axios(data.evolution_chain.url).then((response) => axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.evolves_to[0].evolves_to[0].species.name))
+            setPokemonSecondFormIcon(data3.data.sprites.other['official-artwork'].front_default)
+
+            const data4 = await axios(data.evolution_chain.url).then((response) => axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.species.name))
+            setPokemonFirstFormIcon(data4.data.sprites.other['official-artwork'].front_default)
+            
         } 
     fetchPokemonSpecies()
    
     },[])
+    useEffect(()=>{
+    const fetchPokemonEvoChain =  async (pokemon) => {
+        const data = await axios("https://pokeapi.co/api/v2/pokemon-species/"+pokeName).then( (response) => 
+         axios(response.data.evolution_chain.url)).then((response) => {setPokemonFirstEvolution(response.data.chain.evolves_to[0].species.name)
+        setPokemonFirstForm(response.data.chain.species.name)
+        setPokemonSecondEvolution(response.data.chain.evolves_to[0].evolves_to[0].species.name)})
+
+    } 
+fetchPokemonEvoChain()
+
+},[])
     
-
-
-    console.log(icon)
-
+console.log(pokemonTypes)
 
     return (
-        <div className="pokemon-page">
-
-                <div className="pokemon-icon-wrapper">
-                <PokemonIcon src={icon} />
-                </div>
-            <div className="pokemon-page-card">
+            <div className="pokemon-page">
                 
-                <div className="card-left">   
+                <div className="pokemon-page-header">
 
-                    <div className="pokemon-name-wrapper">
-                        <h1>Name : </h1><PokemonName name={pokeName} />
-                     </div>
 
-                    <div className="pokemon-category-wrapper">
-                        <h1>Category : </h1><PokemonCatagory title={pokemonCategory}></PokemonCatagory>
+                        <div className="pokemon-physical-stats">
+
+                            <div className="stat-item">
+                                <h1>Name : </h1><PokemonName name={pokeName} />
+                            </div>
+
+                            <div className="stat-item">
+                                <h1>Category :</h1>
+                                <PokemonCatagory title={pokemonCategory} />
+                            </div>
+
+                            <div className="stat-item">
+                                <h1>Height :</h1>
+                                <PokemonHeight value={pokemonHeight}/>
+                            </div>
+
+                            <div className="stat-item">
+                                <h1> Weight :</h1> 
+                                <PokemonWeight value={pokemonWeight}/>
+                            </div>
+                            <div className="stat-item">
+                                <h1> Types :</h1> 
+                                
+                                {pokemonTypes.map(x => <PokemonPageType key={x.slot} type={x.type.name}/>)}
+                            </div>
+
+                        </div> 
+
+                 
+
+                    <div className="pokemon-icon-wrapper">
+                        <PokemonIcon src={icon} />
                     </div>
 
-                    <div className="pokemon-physical-stats-wrapper">
-                        <h1 className="pokemon-height">Height : <PokemonHeight value={pokemonHeight}/></h1>
-                        <h1 className="pokemon-weight">Weight : <PokemonWeight value={pokemonWeight}/></h1>                       
-                    </div>
-
-                </div>
-                
-
-                <div className="card-right">
-
-                    <div className="pokemon-page-stats-card">
+                    <div className="pokemon-stats">
                     {pokemonStats.map(x=><PokemonStats key={x.stat.name} statName={x.stat.name} statValue={x.base_stat} />)}
                     </div>
-                   
+
                 </div>
-        </div>
-        
-        <div className="pokemon-evolution-section">
-               <PokemonIcon pokeName={pokemonFirstEvolution}></PokemonIcon>
-               <h1>{pokemonFirstForm}</h1>
-               <h1>{pokemonFirstEvolution}</h1>
-               <h1>{pokemonSecondEvolution}</h1>
-        </div>
+
+
+                       
+                    <div className="pokemon-evolution-section">
+                        <PokemonIcon src={pokemonFirstFormIcon}></PokemonIcon>
+                        <h1>{pokemonFirstForm}</h1>
+                        <PokemonIcon src={pokemonFirstEvoIcon}></PokemonIcon>
+                        <h1>{pokemonFirstEvolution}</h1>
+                        <PokemonIcon src={pokemonSecondEvoIcon}></PokemonIcon>
+                        <h1>{pokemonSecondEvolution}</h1>
+                    </div>
 
         </div>
     )
