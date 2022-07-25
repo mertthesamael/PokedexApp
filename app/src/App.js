@@ -9,11 +9,19 @@ import Header from './components/Layouts/Header/Menu';
 function App() {
 const [text, setText] = useState("")
 
+
+const [color, setColor] = useState([""])
+
+const getColor = (color) => {
+
+return setColor(color)
+}
+
   return (
 
     <div className="App">
 
-     <Header></Header>
+     <Header color={color}></Header>
 
         <Content>
 
@@ -21,7 +29,7 @@ const [text, setText] = useState("")
 
         <Route path="/" element={<CardsWrapper input={text}></CardsWrapper>}/>
 
-        <Route path=":name" element={<PokemonPage ></PokemonPage>}/>
+        <Route path=":name" element={<PokemonPage onSwitchPokemon={getColor}></PokemonPage>}/>
 
       </Routes>
 
