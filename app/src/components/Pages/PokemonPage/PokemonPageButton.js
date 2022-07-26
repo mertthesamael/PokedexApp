@@ -20,7 +20,6 @@ else if (props.type==="fire"){
     color="blue"
 }
 
-console.log(props.title)
 return (
         <div className={"pokemon-page-button "+color}>
 

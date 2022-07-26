@@ -2,7 +2,7 @@ import PokemonIcon from "../../Pokemon/PokemonIcon/PokemonIcon";
 import PokemonName from "../../Pokemon/PokemonName/PokemonName"
 import "./pokemon-page.css"
 import {useLocation} from 'react-router-dom'
-import {useState, useEffect} from "react"
+import {useState, useEffect, useReducer} from "react"
 import axios from "axios";
 import PokemonStats from "../../Pokemon/PokemonStats/PokemonStats";
 import PokemonCatagory from "../../Pokemon/PokemonCatagory/PokemonCatagory";
@@ -12,86 +12,68 @@ import { NavLink } from "react-router-dom";
 import PokemonPageType from "./PokemonPageType";
 import PokemonPageButton from "./PokemonPageButton";
 import PokemonAbilities from "../../Pokemon/PokemonAbilities/PokemonAbilities";
+import reducer from "../../reducer";
 const PokemonPage = (props) => {
     const location = useLocation()
     const pokeName=location.pathname.slice(1)
     const [pokemonName, setPokemonName] = useState(location.pathname.slice(1))
-
-   
-   
-   const [pokemonInfo, setPokemonInfo] = useState([])
-   const [pokemonStats, setPokemonStats] = useState([])
-   const [pokemonPhysicalStats, setPokemonPhysicalStats] = useState([]) 
-   const {height: pokemonHeight, weight: pokemonWeight} = pokemonPhysicalStats;
-   const [icon, setIcon] = useState([])
-   const [pokemonTypes, setPokemonTypes] = useState([])
-   const [pokemonMainType, setPokemonMainType] = useState()
-   const [pokemonAbilities, setPokemonAbilities] = useState([])
-   
-   props.onSwitchPokemon(pokemonMainType)
-   useEffect(()=>{
-       const fetchPokemonInfo =  async (pokemon) => {
-           const data = await axios("https://pokeapi.co/api/v2/pokemon/"+pokemonName).then(response=>response.data)
-           setPokemonInfo(data)
-           setPokemonTypes(data.types)
-           setPokemonAbilities(data.abilities)
-           setPokemonMainType(data.types[0].type.name)
-           setPokemonStats(data.stats)
-           setPokemonPhysicalStats({weight:data.weight, height:data.height})
-           setIcon(data.sprites.other['official-artwork'].front_default)
-           
+    const [pokemon, dispatch] = useReducer(reducer, {
+        name:"",
+        stats:"",
+        physicalStats:"",
+        icon:"",
+        types:"",
+        mainType:"",
+        abilities:"",
+        category: "",
+        firstEvoIcon: "",
+        secondEvoIcon: "",
+        baseFormIcon: ""
+    })
+    
+    const [pokemonStats, setPokemonStats] = useState([])
+    const {height: pokemonHeight, weight: pokemonWeight} = pokemon.physicalStats;
+    const [pokemonTypes, setPokemonTypes] = useState([])
+    const [pokemonAbilities, setPokemonAbilities] = useState([])
+    useEffect(()=>{
+        const fetchPokemonInfo =  async (pokemon) => {
+            const data = await axios("https://pokeapi.co/api/v2/pokemon/"+pokemonName).then(response=>response.data)   
+            const data2 = await axios("https://pokeapi.co/api/v2/pokemon-species/"+pokemonName).then( (response) => response.data)
+            const data3 = await axios(data2.evolution_chain.url).then((response) => axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.evolves_to[0].species.name))
+            const data4 = await axios(data2.evolution_chain.url).then((response) => axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.evolves_to[0].evolves_to[0].species.name))
+            const data5 = await axios(data2.evolution_chain.url).then((response) => axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.species.name))
+            const data6 = await axios(data2.evolution_chain.url).then((response) => response.data)
+            dispatch({
+                type: "UPDATE",
+                info: data,
+                name: pokeName,
+                pokemonTypes: data.types,
+                pokemonAbilities: data.abilities,
+                mainType: data.types[0].type.name,
+                stats: data.stats,
+                physicalStats: {weight:data.weight, height:data.height},
+                icon : data.sprites.other['official-artwork'].front_default,
+                category:data2.genera[7].genus,
+                firstEvoIcon:data3.data.sprites.other['official-artwork'].front_default,
+                secondEvoIcon:data4.data.sprites.other['official-artwork'].front_default,
+                baseFormIcon:data5.data.sprites.other['official-artwork'].front_default,
+                firstEvolutionName: data6.chain.evolves_to[0].species.name,
+                secondEvolutionName: data6.chain.evolves_to[0].evolves_to[0].species.name,
+                firstEvolutionLevel: data6.chain.evolves_to[0].evolution_details[0].min_level,
+                secondEvolutionLevel : data6.chain.evolves_to[0].evolves_to[0].evolution_details[0].min_level,
+                baseFormName: data6.chain.species.name
+            })
+            
+            setPokemonTypes(data.types)
+            setPokemonAbilities(data.abilities)
+            setPokemonStats(data.stats)
+            
         }
         fetchPokemonInfo()
     },[pokemonName])
-
-    console.log(pokemonAbilities)
- 
-    const [pokemonSpecies, setPokemonSpecies] = useState([])
-    const [pokemonCategory, setPokemonCategory] = useState([])
-    const [pokemonSecondEvolution, setPokemonSecondEvolution] = useState([])
-    const [pokemonFirstEvolution, setPokemonFirstEvolution] = useState([])
-   const [pokemonFirstForm, setPokemonFirstForm] = useState([])
-   const [pokemonFirstFormIcon, setPokemonFirstFormIcon] = useState([])
-   const [pokemonFirstEvoIcon, setPokemonFirstEvoIcon] = useState([])
-  const [pokemonSecondEvoIcon, setPokemonSecondFormIcon] = useState([])
- 
-    useEffect(()=>{
-        const fetchPokemonSpecies =  async (pokemon) => {
-            const data = await axios("https://pokeapi.co/api/v2/pokemon-species/"+pokemonName).then( (response) => response.data)
-            setPokemonSpecies(data)
-            setPokemonCategory(data.genera[7].genus)
-
-            const data2 = await axios(data.evolution_chain.url).then((response) => axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.evolves_to[0].species.name))
-
-            setPokemonFirstEvoIcon(data2.data.sprites.other['official-artwork'].front_default)
-            const data3 = await axios(data.evolution_chain.url).then((response) => axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.evolves_to[0].evolves_to[0].species.name))
-            setPokemonSecondFormIcon(data3.data.sprites.other['official-artwork'].front_default)
-
-            const data4 = await axios(data.evolution_chain.url).then((response) => axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.species.name))
-            setPokemonFirstFormIcon(data4.data.sprites.other['official-artwork'].front_default)
-            
-        } 
-    fetchPokemonSpecies()
+    
+    props.onSwitchPokemon(pokemon.mainType)
    
-    },[pokemonName])
-
-        const [pokemonFirstEvolutionLevel, setPokemonFirstEvolutionLevel] = useState([])
-        const [pokemonSecondEvolutionLevel, setPokemonSecondEvolutionLevel] = useState([])
-    useEffect(()=>{
-    const fetchPokemonEvoChain =  async (pokemon) => {
-        const data = await axios("https://pokeapi.co/api/v2/pokemon-species/"+pokemonName).then( (response) => 
-         axios(response.data.evolution_chain.url)).then((response) => {setPokemonFirstEvolution(response.data.chain.evolves_to[0].species.name)
-        setPokemonFirstEvolutionLevel(response.data.chain.evolves_to[0].evolution_details[0].min_level)
-        setPokemonSecondEvolutionLevel(response.data.chain.evolves_to[0].evolves_to[0].evolution_details[0].min_level)
-        setPokemonFirstForm(response.data.chain.species.name)
-        setPokemonSecondEvolution(response.data.chain.evolves_to[0].evolves_to[0].species.name)})
-
-    } 
-fetchPokemonEvoChain()
-
-},[pokemonName])
- 
-
 
 
     return (
@@ -100,7 +82,7 @@ fetchPokemonEvoChain()
                 <h1>{pokeName.toUpperCase()}</h1>
                 <div className="evolution-chain-wrapper">
 
-                <PokemonPageButton path={pokemonName}title={<PokemonCatagory title={pokemonCategory} />} type={pokemonMainType}>
+                <PokemonPageButton path={pokemonName}title={<PokemonCatagory title={pokemon.category} />} type={pokemon.mainType}>
 
                 </PokemonPageButton>
                 </div>
@@ -117,7 +99,7 @@ fetchPokemonEvoChain()
 
                             <div className="stat-item">
                                 <h1>Category :</h1>
-                                <PokemonCatagory title={pokemonCategory} />
+                                <PokemonCatagory title={pokemon.category} />
                             </div>
 
                             <div className="stat-item">
@@ -131,7 +113,7 @@ fetchPokemonEvoChain()
                             </div>
                             <div className="stat-item">
                                 <h1> Abilities :</h1> 
-                               {pokemonAbilities.map (x=> <PokemonAbilities type={pokemonMainType} path="/sads" title={x.ability.name}/>)} 
+                               {pokemonAbilities.map (x=> <PokemonAbilities type={pokemon.mainType} path="/sads" title={x.ability.name}/>)} 
                             </div>
                             <div className="stat-item">
                                 <h1> Types :</h1> 
@@ -142,21 +124,20 @@ fetchPokemonEvoChain()
                         </div> 
 
                  
-
                     <div className="pokemon-icon-wrapper">
-                        <PokemonIcon src={icon} />
+                        <PokemonIcon src={pokemon.icon} />
                     </div>
                  
 
                     <div className="pokemon-stats">
-                    {pokemonStats.map(x=><PokemonStats key={x.stat.name} type={pokemonMainType} statName={x.stat.name} statValue={x.base_stat} />)}
+                    {pokemonStats.map(x=><PokemonStats key={x.stat.name} type={pokemon.mainType} statName={x.stat.name} statValue={x.base_stat} />)}
                     </div>
 
                   
                 </div>
                         <div className="evolution-chain-wrapper">
 
-                       <PokemonPageButton path={pokemonName}title={"EVOLUTION CHAIN"} type={pokemonMainType}></PokemonPageButton>
+                       <PokemonPageButton path={pokemonName}title={"EVOLUTION CHAIN"} type={pokemon.mainType}></PokemonPageButton>
                         </div>
                        
                     <div className="pokemon-evolution-section">
@@ -166,12 +147,12 @@ fetchPokemonEvoChain()
                       
                             <div className="pokemon-evolution-icon-wrapper">
 
-                                <PokemonIcon src={pokemonFirstFormIcon}></PokemonIcon>
+                                <PokemonIcon src={pokemon.baseFormIcon}></PokemonIcon>
 
-                                <PokemonPageButton path={pokemonName}type={pokemonMainType}>
+                                <PokemonPageButton path={pokemonName}type={pokemon.mainType}>
 
-                                <NavLink to={"/"+pokemonFirstForm} className="pokemon-evolution-name" onClick={() =>
-                                setPokemonName(pokemonFirstForm)}><h2>{pokemonFirstForm}</h2></NavLink>
+                                <NavLink to={"/"+pokemon.baseFormName} className="pokemon-evolution-name" onClick={() =>
+                                setPokemonName(pokemon.baseFormName)}><h2>{pokemon.baseFormName}</h2></NavLink>
                                 </PokemonPageButton>
 
 
@@ -181,7 +162,7 @@ fetchPokemonEvoChain()
 
                         <div className="pokemon-evolution-name-wrapper">
 
-                            <h1> {`Level + ${pokemonFirstEvolutionLevel}`}</h1>
+                            <h1> {`Level + ${pokemon.firstEvolutionLevel}`}</h1>
 
                             <img src={require("../../Icons/icons/icons8-arrow-48.png")}></img>
                         
@@ -189,32 +170,31 @@ fetchPokemonEvoChain()
 
                         <div className="pokemon-evolution-icon-wrapper">
 
-                            <PokemonIcon src={pokemonFirstEvoIcon}></PokemonIcon>
+                            <PokemonIcon src={pokemon.firstEvoIcon}></PokemonIcon>
 
-                            <PokemonPageButton path={pokemonName}type={pokemonMainType}>
+                            <PokemonPageButton path={pokemonName}type={pokemon.mainType}>
 
-                            <NavLink to={"/"+pokemonFirstEvolution} className="pokemon-evolution-name" onClick={() =>
+                            <NavLink to={"/"+pokemon.firstEvolutionName} className="pokemon-evolution-name" onClick={() =>
 
-                            setPokemonName(pokemonFirstEvolution)}><h2>{pokemonFirstEvolution}</h2></NavLink>
+                            setPokemonName(pokemon.firstEvolutionName)}><h2>{pokemon.firstEvolutionName}</h2></NavLink>
                             </PokemonPageButton>
 
                         </div>      
                         
-                        {pokemonSecondEvolution.length > 0 &&
+                       
                         <div className="pokemon-evolution-name-wrapper">
-                            <h1> {`Level + ${pokemonSecondEvolutionLevel}`}</h1>
+                            <h1> {`Level + ${pokemon.secondEvolutionLevel}`}</h1>
                             <img src={require("../../Icons/icons/icons8-arrow-48.png")}></img>
                         
                         </div>
-                    }
+                    
                         
-
                         <div className="pokemon-evolution-icon-wrapper">
                        
-                        <PokemonIcon src={pokemonSecondEvoIcon}></PokemonIcon>
-                        <PokemonPageButton path={pokemonName}type={pokemonMainType}>
-                        <NavLink to={"/"+pokemonSecondEvolution} className="pokemon-evolution-name" onClick={() =>
-                        setPokemonName(pokemonSecondEvolution)}><h2>{pokemonSecondEvolution}</h2></NavLink>
+                        <PokemonIcon src={pokemon.secondEvoIcon}></PokemonIcon>
+                        <PokemonPageButton path={pokemonName}type={pokemon.mainType}>
+                        <NavLink to={"/"+pokemon.secondEvolutionName} className="pokemon-evolution-name" onClick={() =>
+                        setPokemonName(pokemon.secondEvolutionName)}><h2>{pokemon.secondEvolutionName}</h2></NavLink>
                         </PokemonPageButton>
 
                         </div>
