@@ -1,16 +1,15 @@
 .typeicon {
    transition: 200ms all;
-   
-   width: 8rem;
-   height: 40px;
+   width: max-content;
+   height: max-content;
    display: flex;
    justify-content: space-evenly;
-   pad: 1rem;
+   padding:  0.5rem;
    align-items: center;
    border-radius: 3px;
-   margin: auto;
+    margin-left:1rem;
    color: white;
-   margin-right: 1rem;
+  
 }
 
 .typeicon h2{

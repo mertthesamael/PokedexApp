@@ -11,11 +11,12 @@ import PokemonHeight from "../../Pokemon/PokemonHeight/PokemonHeight";
 import { NavLink } from "react-router-dom";
 import PokemonPageType from "./PokemonPageType";
 import PokemonPageButton from "./PokemonPageButton";
+import PokemonAbilities from "../../Pokemon/PokemonAbilities/PokemonAbilities";
 const PokemonPage = (props) => {
     const location = useLocation()
     const pokeName=location.pathname.slice(1)
     const [pokemonName, setPokemonName] = useState(location.pathname.slice(1))
-    console.log(pokemonName)
+
    
    
    const [pokemonInfo, setPokemonInfo] = useState([])
@@ -25,6 +26,7 @@ const PokemonPage = (props) => {
    const [icon, setIcon] = useState([])
    const [pokemonTypes, setPokemonTypes] = useState([])
    const [pokemonMainType, setPokemonMainType] = useState()
+   const [pokemonAbilities, setPokemonAbilities] = useState([])
    
    props.onSwitchPokemon(pokemonMainType)
    useEffect(()=>{
@@ -32,6 +34,7 @@ const PokemonPage = (props) => {
            const data = await axios("https://pokeapi.co/api/v2/pokemon/"+pokemonName).then(response=>response.data)
            setPokemonInfo(data)
            setPokemonTypes(data.types)
+           setPokemonAbilities(data.abilities)
            setPokemonMainType(data.types[0].type.name)
            setPokemonStats(data.stats)
            setPokemonPhysicalStats({weight:data.weight, height:data.height})
@@ -40,6 +43,8 @@ const PokemonPage = (props) => {
         }
         fetchPokemonInfo()
     },[pokemonName])
+
+    console.log(pokemonAbilities)
  
     const [pokemonSpecies, setPokemonSpecies] = useState([])
     const [pokemonCategory, setPokemonCategory] = useState([])
@@ -85,8 +90,9 @@ const PokemonPage = (props) => {
 fetchPokemonEvoChain()
 
 },[pokemonName])
-    
-console.log(pokemonMainType)
+ 
+
+
 
     return (
             <div className="pokemon-page">
@@ -122,6 +128,10 @@ console.log(pokemonMainType)
                             <div className="stat-item">
                                 <h1> Weight :</h1> 
                                 <PokemonWeight value={pokemonWeight}/>
+                            </div>
+                            <div className="stat-item">
+                                <h1> Abilities :</h1> 
+                               {pokemonAbilities.map (x=> <PokemonAbilities type={pokemonMainType} path="/sads" title={x.ability.name}/>)} 
                             </div>
                             <div className="stat-item">
                                 <h1> Types :</h1> 
@@ -190,12 +200,14 @@ console.log(pokemonMainType)
 
                         </div>      
                         
-
+                        {pokemonSecondEvolution.length > 0 &&
                         <div className="pokemon-evolution-name-wrapper">
                             <h1> {`Level + ${pokemonSecondEvolutionLevel}`}</h1>
                             <img src={require("../../Icons/icons/icons8-arrow-48.png")}></img>
                         
                         </div>
+                    }
+                        
 
                         <div className="pokemon-evolution-icon-wrapper">
                        
@@ -206,7 +218,6 @@ console.log(pokemonMainType)
                         </PokemonPageButton>
 
                         </div>
-
                     </div>
 
         </div>

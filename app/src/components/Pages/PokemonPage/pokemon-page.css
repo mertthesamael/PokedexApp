@@ -64,6 +64,7 @@ pokemon-icon-wrapper img{
 .stat-item{
     display: flex;
     align-items: center;
+
     
 }
 .stat-item h1{
@@ -94,8 +95,9 @@ pokemon-icon-wrapper img{
     
 }
 .pokemon-evolution-icon-wrapper{
+    justify-content: center;
+    align-items: center;
     display: flex;
- 
     height: 20rem;
     flex-direction: column;
 }
@@ -107,11 +109,18 @@ pokemon-icon-wrapper img{
     align-items: center;
     height: auto;
 }
-
+.pokemon-evolution-name-wrapper h1{
+    width:auto;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+}
 .pokemon-evolution-name{
     display: flex;
     align-items: center;
     text-decoration: none;
+    justify-content: center;
     height: 2rem;
+   
     color: white;
 }

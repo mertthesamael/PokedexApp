@@ -3,10 +3,11 @@
  
     justify-content: center;
     align-items: center;
-    width: auto;
     padding: 8px;
    border-radius: 5px;
+    width: fit-content;
 }
+
 .pokemon-page-button-text{
     color: white;
     text-decoration: none;
