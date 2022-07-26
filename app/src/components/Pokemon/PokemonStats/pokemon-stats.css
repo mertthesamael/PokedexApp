@@ -2,26 +2,67 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+ 
     width: 100%;
+    height: 100%;
     background-color: orange;
+ 
 }
 
 .stat-bar-wrapper{
     display: flex;
     width: 100%;
-    background-color: burlywood;
     align-items: center;
 }
 
+@keyframes shift{
+    to{background-position: 80px 100%;}
+}
+.stat-bar-full{
+    background-color: rgba(61, 58, 58, 0.089);
+    width: 100%;
+}
 .pokemon-stat-bar{
+    
+height: 1.5rem;
+
+background-image: linear-gradient(-45deg,hsla(0,0%,100%,.15) 25%,transparent 0,transparent 50%,hsla(0,0%,100%,.15) 0,hsla(0,0%,100%,.15) 75%,transparent 0,transparent);
+background-position: 10%;
+
+
+border-radius: 3px;
+background-size: 35px 100%;
+animation: shift infinite 2s linear ;
+animation: name duration timing-function delay iteration-count direction fill-mode;
 display: flex;
-height: 2rem;
-background-color: red;
-width: 100%;
+justify-content: flex-end;
+align-items: center;
+color: white;
+}
+.stat-bar-bg{
+   border-radius: 3px;
+   display: flex;
+
 }
 
 .pokemon-stat-info{
  display: flex;
  width:100%;
- background-color: purple;
+ justify-content: center;
+
+ align-items: flex-start;
+ -webkit-animation: progress-bar-stripes 1s linear infinite;
+ animation: progress-bar-stripes 1s linear infinite;
+
+}
+
+.stats-and-progressbar{
+    display: flex;
+    flex-direction: row;
+    width: 30rem;
+    height: 100%;
+}
+.stat-numb{
+   
+    margin: 0.5rem;
 }

@@ -6,7 +6,6 @@ import PokeballButton from "../Buttons/PokeballButton"
 import PokemonLoadButton from "../Buttons/PokemonLoadButton"
 const CardsWrapper = (props) =>{
 
-    
     const [pokemon, setPokemon] = useState([])
     //fetch pokemons from API
     useEffect(()=>{
@@ -57,10 +56,9 @@ function offsetHandler(){
 return (
     <div className="wrap">
 
-            <PokeballButton onClick={trigger} check={pressed} />
-            <div className={"body-wrap "+wrapMagic}>
-                <div className={"pokeball-top "+ pokeballTopMagic}/>
-                <div className={"cards-wrapper " + magic}>
+            <div className={"body-wrap"}>
+           
+                <div className={"cards-wrapper"}>
                     <PokemonLoadButton onClick={offsetHandler}/>
                     {pokemon.filter((x)=>{
                     if(props.input===""){
@@ -69,8 +67,7 @@ return (
                     }).slice(0, offset).map((data)=><PokemonCard key={data.name} name={data.name} url={data.url} number={pad((pokemon.indexOf(data)+1),3)}/>)}
 
                 </div>
-                <div className={"pokeball-bottom "+ pokeballBottomMagic} />
-            </div>
+               </div>
     </div>
            
      

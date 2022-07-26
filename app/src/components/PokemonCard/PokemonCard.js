@@ -15,12 +15,10 @@ const PokemonCard = (props) => {
     const [icon, setIcon] = useState([])
 
    
-
-
 useEffect(()=>{
     const fetchPokemonIcon =  async (pokemon) => {
         const data = await axios(props.url).then(response=>response.data)
-        setIcon(data.sprites.versions['generation-v']['black-white'].animated.front_default)
+        setIcon(data.sprites.other['official-artwork'].front_default)
         }
 fetchPokemonIcon()
 }, []);
@@ -41,20 +39,29 @@ fetchPokemonType()
 
     return (
    
-
         <div className="pokemon-card">
             
             <div className="pokemon-card-body">
-                <div className="pokemon-number-section">
-            <PokemonNumber number={props.number}></PokemonNumber>
+
+            <div className="pokemon-card-header">
+
+                <div className="pokemon-name-number">
+
+                    <PokemonNumber number={props.number} />
+                    <NavLink to={"/"+props.name} className="pokemon-name"><PokemonName name={props.name}/></NavLink>
                 </div>
-                <div className="icon-wrap"></div>
-                <PokemonIcon src={icon}></PokemonIcon>
-            </div>
-            <div className="pokemon-card-footer">
+
                 <div className="pokemon-type-div">{type.map(x=> <PokemonType key={x.slot}type={x.type.name}/> )}</div>
-                <div className="pokemon-name-div"><NavLink to={"/"+props.name} className="pokemon-name"><PokemonName name={props.name} /></NavLink></div>
+
+                </div>
+             
+                <div className="icon-wrap"></div>
+
+                <PokemonIcon src={icon}></PokemonIcon>
+
             </div>
+         
+      
         </div>
    
     )

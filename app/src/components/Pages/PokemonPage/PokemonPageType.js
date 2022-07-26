@@ -1,12 +1,12 @@
-import Icon from "../../Icons/Icon";
-import "../../Icons/icons/style.css"
-import "../../Icons/icons/style.css"
-import "./pokemon-type.css"
+import "./pokemon-page-type.css"
 import {electric, nature, fire, flying, ground, water, bug, poison, normal, fairy, psychic, fighting, dark, steel, dragon, ice, ghost} from "../../store/context"
-const PokemonType = (props) =>{
+
+const PokemonPageType = (props) => {
+
+
 
     let typeClass = props.type;
-let typeIcon =""
+    let typeIcon =""
 if(typeClass === "electric"){
     typeIcon = electric()
 }else if(typeClass === "grass"){
@@ -45,12 +45,11 @@ else if (typeClass ==="rock"){
 }else if (typeClass ==="ghost"){
     typeIcon = ghost()
 }
-    return (
-        <div className={"type-icon " + typeClass}>
-            {typeIcon}
-            </div>
+
+    return(
+        <div className={"typeicon " + typeClass}><h2>{props.type.toUpperCase()}</h2><div>{typeIcon}</div></div>
     )
 
 }
 
-export default PokemonType;
+export default PokemonPageType;
