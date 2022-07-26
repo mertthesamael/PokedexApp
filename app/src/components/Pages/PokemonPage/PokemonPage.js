@@ -13,6 +13,7 @@ import PokemonPageType from "./PokemonPageType";
 import PokemonPageButton from "./PokemonPageButton";
 import PokemonAbilities from "../../Pokemon/PokemonAbilities/PokemonAbilities";
 import reducer from "../../reducer";
+
 const PokemonPage = (props) => {
     const location = useLocation()
     const pokeName=location.pathname.slice(1)
@@ -35,6 +36,7 @@ const PokemonPage = (props) => {
     const {height: pokemonHeight, weight: pokemonWeight} = pokemon.physicalStats;
     const [pokemonTypes, setPokemonTypes] = useState([])
     const [pokemonAbilities, setPokemonAbilities] = useState([])
+    
     useEffect(()=>{
         const fetchPokemonInfo =  async (pokemon) => {
             const data = await axios("https://pokeapi.co/api/v2/pokemon/"+pokemonName).then(response=>response.data)   
