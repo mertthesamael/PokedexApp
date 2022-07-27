@@ -22,6 +22,7 @@ const PokemonPage = (props) => {
         name:"",
         stats:"",
         physicalStats:"",
+        heldItems: [],
         icon:"",
         types:"",
         mainType:"",
@@ -32,30 +33,35 @@ const PokemonPage = (props) => {
         baseFormIcon: ""
     })
     
-    const [pokemonStats, setPokemonStats] = useState([])
+  
     const {height: pokemonHeight, weight: pokemonWeight} = pokemon.physicalStats;
-    const [pokemonTypes, setPokemonTypes] = useState([])
-    const [pokemonAbilities, setPokemonAbilities] = useState([])
     
     useEffect(()=>{
         const fetchPokemonInfo =  async (pokemon) => {
             const data = await axios("https://pokeapi.co/api/v2/pokemon/"+pokemonName).then(response=>response.data)   
             const data2 = await axios("https://pokeapi.co/api/v2/pokemon-species/"+pokemonName).then( (response) => response.data)
             const data3 = await axios(data2.evolution_chain.url).then((response) => axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.evolves_to[0].species.name))
+
             const data4 = await axios(data2.evolution_chain.url).then((response) => axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.evolves_to[0].evolves_to[0].species.name))
+            
             const data5 = await axios(data2.evolution_chain.url).then((response) => axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.species.name))
+
             const data6 = await axios(data2.evolution_chain.url).then((response) => response.data)
             dispatch({
                 type: "UPDATE",
                 info: data,
                 name: pokeName,
-                pokemonTypes: data.types,
-                pokemonAbilities: data.abilities,
+                types: data.types,
+                abilities: data.abilities,
                 mainType: data.types[0].type.name,
+                baseExp:data.base_experience,
                 stats: data.stats,
+                heldItems: data.held_items,
                 physicalStats: {weight:data.weight, height:data.height},
                 icon : data.sprites.other['official-artwork'].front_default,
                 category:data2.genera[7].genus,
+                catchRate:data2.capture_rate,
+                growthRate: data2.growth_rate.name,
                 firstEvoIcon:data3.data.sprites.other['official-artwork'].front_default,
                 secondEvoIcon:data4.data.sprites.other['official-artwork'].front_default,
                 baseFormIcon:data5.data.sprites.other['official-artwork'].front_default,
@@ -66,18 +72,13 @@ const PokemonPage = (props) => {
                 baseFormName: data6.chain.species.name
             })
             
-            setPokemonTypes(data.types)
-            setPokemonAbilities(data.abilities)
-            setPokemonStats(data.stats)
             
         }
         fetchPokemonInfo()
     },[pokemonName])
     
     props.onSwitchPokemon(pokemon.mainType)
-   
-
-
+    
     return (
             <div className="pokemon-page">
                 <div className="pokemon-page-info">
@@ -115,12 +116,12 @@ const PokemonPage = (props) => {
                             </div>
                             <div className="stat-item">
                                 <h1> Abilities :</h1> 
-                               {pokemonAbilities.map (x=> <PokemonAbilities type={pokemon.mainType} path="/sads" title={x.ability.name}/>)} 
+                               {pokemon.abilities && pokemon.abilities.map (x=> <PokemonAbilities type={pokemon.mainType} path="/sads" title={x.ability.name}/>)} 
                             </div>
                             <div className="stat-item">
                                 <h1> Types :</h1> 
                                 
-                                {pokemonTypes.map(x => <PokemonPageType key={x.slot} type={x.type.name}/>)}
+                                {(pokemon.types) && (pokemon.types).map(x => <PokemonPageType key={x.slot} type={x.type.name}/>)}
                             </div>
 
                         </div> 
@@ -132,7 +133,7 @@ const PokemonPage = (props) => {
                  
 
                     <div className="pokemon-stats">
-                    {pokemonStats.map(x=><PokemonStats key={x.stat.name} type={pokemon.mainType} statName={x.stat.name} statValue={x.base_stat} />)}
+                    {pokemon.stats && pokemon.stats.map(x=><PokemonStats key={x.stat.name} type={pokemon.mainType} statName={x.stat.name} statValue={x.base_stat} />)}
                     </div>
 
                   
@@ -200,6 +201,27 @@ const PokemonPage = (props) => {
                         </PokemonPageButton>
 
                         </div>
+                    </div>
+                    <div className="pokemon-details-section">
+
+                        <div className="pokemon-training">
+                            <h1>Training</h1>
+                            <h2>Capture Rate : {pokemon.catchRate}</h2>
+                            <h2>Growth Rate : {pokemon.growthRate}</h2>
+                            <h2>Base Experience : {pokemon.baseExp}</h2>
+                            <h2>Held Items :  {pokemon.heldItems.length!==0 ? pokemon.heldItems.map(x=>  `${x.item.name}  ${x.version_details[0].rarity}%` ): "None"}
+                            </h2>
+                        </div>
+
+                        <div className="pokemon-breeding">
+
+                        </div>
+
+                        <div className="pokemon-typing">
+
+                        </div>
+
+
                     </div>
 
         </div>
