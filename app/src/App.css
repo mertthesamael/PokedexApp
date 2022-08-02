@@ -2,9 +2,13 @@
 @font-face {font-family: "AlleynW01-Regular"; src: url("//db.onlinewebfonts.com/t/faa9c8362473bf8b1d2886cfb5962735.eot"); src: url("//db.onlinewebfonts.com/t/faa9c8362473bf8b1d2886cfb5962735.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/faa9c8362473bf8b1d2886cfb5962735.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/faa9c8362473bf8b1d2886cfb5962735.woff") format("woff"), url("//db.onlinewebfonts.com/t/faa9c8362473bf8b1d2886cfb5962735.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/faa9c8362473bf8b1d2886cfb5962735.svg#AlleynW01-Regular") format("svg"); }
 *{
   font-family: 'AlleynW01-Regular';
+  font-weight: lighter;
 }
-
+html{
+  background-color: white;
+}
 .App {
+  background-color: #fff;
   text-align: center;
   display: flex;
   flex-direction: column;

@@ -195,4 +195,10 @@ const ghost = () =>{
     )
 
 }
-export {electric, flying, nature, fire, ground, water, bug, poison, normal, fairy, psychic, fighting, rock, dark, steel, dragon, ice, ghost};
+
+const firstLetterUpper = (x) =>{
+    
+    return x.charAt(0).toUpperCase() + x.slice(1)
+}
+
+export {electric, flying, nature, fire, ground, water, bug, poison, normal, fairy, psychic, fighting, rock, dark, steel, dragon, ice, ghost, firstLetterUpper};

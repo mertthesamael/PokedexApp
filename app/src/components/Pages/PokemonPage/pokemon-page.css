@@ -78,7 +78,8 @@ pokemon-icon-wrapper img{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    width: 100%;
+    width: 60%;
+    margin: 0 auto;
     transform: scale(0.8);
 }
 
@@ -87,7 +88,8 @@ pokemon-icon-wrapper img{
     display: flex;
     justify-content: center;
     height: auto;
-    align-items: center;
+    align-items: center;    
+ 
 }
 .evolution-chain-wrapper h2{
     display: flex;
@@ -122,6 +124,27 @@ pokemon-icon-wrapper img{
     text-decoration: none;
     justify-content: center;
     height: 2rem;
-   
     color: white;
+}
+
+.pokemon-details-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 60%;
+    margin: 0 auto;
+  
+}
+
+.pokemon-training{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+}
+
+.pokemon-training h2{
+    display: flex;
+    width: 110%;
 }
