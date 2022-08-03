@@ -28,12 +28,14 @@ else if (props.type==="fire"){
                 <h2>Level</h2>
                     <h2>Move Name</h2>
             </div>
+            
             <div className="pokemon-move-info">
+                
                 <div className="required-level">
-                {props.requiredLevel}
+                <h3>{props.requiredLevel}</h3>
                 </div>
                 <div className="move-name">
-                {props.moveName}
+                <h3>{props.moveName}</h3>
                 </div> 
                 {/* <div className="move-type">
                     <h2>Move Type</h2>

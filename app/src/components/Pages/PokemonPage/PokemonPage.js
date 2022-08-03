@@ -17,6 +17,8 @@ import reducer from "../../reducer";
 import { firstLetterUpper } from "../../store/context";
 import PokemonDetails from "../../Pokemon/PokemonDetails/PokemonDetails";
 import PokemonMoves from "../../Pokemon/PokemonMoves/PokemonMoves";
+import Popup from "../../Popup/Popup";
+import PokemonMovesButton from "../../Buttons/PokemonMovesButton";
 
 
 const PokemonPage = (props) => {
@@ -25,6 +27,7 @@ const PokemonPage = (props) => {
     const location = useLocation()
     const pokeName=location.pathname.slice(1)
     const [pokemonName, setPokemonName] = useState(location.pathname.slice(1))
+    const [state, setState] = useState(false)
     const [pokemon, dispatch] = useReducer(reducer, {
         name:"",
         stats:"",
@@ -96,11 +99,15 @@ const PokemonPage = (props) => {
     },[pokemonName])
 
 
-    console.log(pokemon.moves && pokemon.moves.map(x=>x.version_group_details[0].level_learned_at))
+    console.log(pokemon.moves && pokemon.moves.map(x=>x))
     props.onSwitchPokemon(pokemon.mainType)
-    
+
+  function stateHandler () {
+    setState(!state)
+    console.log(state)
+  }
     return (
-            <div className="pokemon-page">
+        <div className="pokemon-page">
                 <div className="pokemon-page-info">
                 <h1>{pokeName.toUpperCase()}</h1>
                 <div className="evolution-chain-wrapper">
@@ -193,7 +200,7 @@ const PokemonPage = (props) => {
                         }                
                         {pokemon.firstEvolutionName &&
                                         
-                        <div className="pokemon-evolution-icon-wrapper">
+                                        <div className="pokemon-evolution-icon-wrapper">
 
                             <PokemonIcon src={pokemon.firstEvoIcon}></PokemonIcon>
 
@@ -232,17 +239,23 @@ setPokemonName(pokemon.firstEvolutionName)}><h2>{firstLetterUpper(pokemon.firstE
                         <div className="pokemon-typing">
 
                         </div>
+                   <PokemonMovesButton onClick={stateHandler} type={pokemon.mainType} />
+
+                    
 
                     </div>
+                    <Popup state={state} setTrigger={setState}>
 
                     <div className="pokemon-moves-section">
-
-                    <PokemonMoves  type={pokemon.mainType}requiredLevel={pokemon.moves && pokemon.moves.map(x=> <div>{x.version_group_details[0].level_learned_at}</div>)} moveName={pokemon.moves&& pokemon.moves.map(x=><div>{x.move.name}</div>)}>
-                    </PokemonMoves>
+                    
+                    <PokemonMoves   type={pokemon.mainType}requiredLevel={pokemon.moves && pokemon.moves.map(x=> <div>{x.version_group_details[0].level_learned_at}</div>)} moveName={pokemon.moves&& pokemon.moves.map(x=><div>{x.move.name}</div>)}>
+                        </PokemonMoves>
                     </div>
+                    </Popup>
                     
 
         </div>
+
     )
 
 }
