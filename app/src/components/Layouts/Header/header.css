@@ -10,3 +10,29 @@
 .red{
     background-color: red;
 }
+
+.side-menu-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.search-section{
+    display: flex;
+    width: 15rem;
+    height: 2rem;
+    border-radius: 20px; 
+    margin-left: 4rem;
+    background-color: #f6f6f6;
+    justify-content: space-around;
+}
+
+.search-section img{
+    transform:  scale(0.7);
+}
+.search-bar{
+    border:0;
+    background-color: transparent;
+}
+input:focus {outline:none!important;}

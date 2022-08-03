@@ -216,7 +216,7 @@ setPokemonName(pokemon.firstEvolutionName)}><h2>{firstLetterUpper(pokemon.firstE
                         
                        {pokemon.secondEvolutionName && 
                         <div className="pokemon-evolution-name-wrapper">
-                            <h1> {pokemon.secondEvolutionLevel ?`Level + ${pokemon.secondEvolutionLevel}`:`Use Item ${pokemon.secondEvolutionItem}`}</h1>
+                            <h1> {pokemon.secondEvolutionLevel ?`Level + ${pokemon.secondEvolutionLevel}`:`Use Item ${pokemon.secondEvolutionItem.name}`}</h1>
                             <img src={require("../../Icons/icons/icons8-arrow-48.png")}></img>
                         
                         </div>

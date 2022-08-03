@@ -16,12 +16,14 @@ const getColor = (color) => {
 
 return setColor(color)
 }
-
+const handleText = (event) => {
+  setText(event.target.value.toLowerCase())
+}
   return (
 
     <div className="App">
-
-     <Header color={color}></Header>
+      
+     <Header color={color} onSearch={handleText}></Header>
 
         <Content>
 

@@ -1,8 +1,9 @@
+import { useLocation } from 'react-router-dom'
 import "../../Pages/PokemonPage/pokemon-page-button.css"
 import "./header.css"
 const Header = (props) =>{
     console.log(props.color+55)
-
+const location = useLocation();
     let color = "";
 if(props.color === "electric"){
     color="yellow"
@@ -24,7 +25,13 @@ else if (props.color==="fire"){
     return(
         <div className={"header "+color}>
         <div className="side-menu-content">
-        {props.children}
+            <div className="search-section">
+               
+            <input type="text" onChange={props.onSearch} className="search-bar">
+               </input> <img src={require("../../Icons/icons/search.png")}></img>
+                
+            </div>
+        <h1>PokédexApp</h1>
         </div>
         </div>
     )

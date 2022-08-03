@@ -2,7 +2,6 @@ import "./pokemon-card.css"
 import axios from "axios"
 import {useEffect, useState} from "react"
 import PokemonCard from "./PokemonCard"
-import PokeballButton from "../Buttons/PokeballButton"
 import PokemonLoadButton from "../Buttons/PokemonLoadButton"
 const CardsWrapper = (props) =>{
 
@@ -23,24 +22,6 @@ function pad(num, size) {
     return num;
 }
 
-//pokeball animation
-const [pressed, setPressed] = useState(true)
-function trigger(){
-    setPressed(true)
-}
-let magic = ""
-let wrapMagic=""
-let pokeballBottomMagic=""
-let pokeballTopMagic = ""
-let offsetButtonMagic=""
-if(pressed === true){
-    magic="magic"
-    pokeballBottomMagic = "pokeball-bottom-magic"
-    pokeballTopMagic = "pokeball-top-magic"
-    wrapMagic="wrap-magic"
-    let offsetButtonMagic="offset-button-magic"
-   
-}
 
 //pokeapi offset
 const [offset, setOffset] = useState(50)
@@ -70,8 +51,6 @@ return (
                </div>
     </div>
            
-     
-      
     )
 
 }
