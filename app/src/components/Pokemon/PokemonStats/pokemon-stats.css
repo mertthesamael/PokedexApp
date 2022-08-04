@@ -2,11 +2,9 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
- 
     width: 100%;
     height: 100%;
     background-color: orange;
- 
 }
 
 .stat-bar-wrapper{
@@ -29,7 +27,6 @@ background-position: 10%;
 border-radius: 3px;
 background-size: 35px 100%;
 animation: shift infinite 2s linear ;
-animation: name duration timing-function delay iteration-count direction fill-mode;
 display: flex;
 justify-content: flex-end;
 align-items: center;

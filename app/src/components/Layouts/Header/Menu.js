@@ -1,11 +1,17 @@
-import { useLocation } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
+import { useLocation, useNavigate  } from 'react-router-dom'
+
 import "../../Pages/PokemonPage/pokemon-page-button.css"
 import "./header.css"
+
 const Header = (props) =>{
-    console.log(props.color+55)
+let navigate = useNavigate()
 const location = useLocation();
     let color = "";
-if(props.color === "electric"){
+if(location.pathname==="/"){
+    color="white"
+}
+else if(props.color === "electric"){
     color="yellow"
 }else if (props.color==="poison"){
     color="purple"
@@ -36,15 +42,19 @@ else if (props.color==="fire"){
 }else if (props.color==="ghost"){
     color="purple"
 }
+
     return(
         <div className={"header "+color}>
+            <NavLink to="/favorites"><h1>Favorites</h1></NavLink>
         <div className="side-menu-content">
+            {location.pathname === "/" ?
             <div className="search-section">
                
-            <input type="text" onChange={props.onSearch} className="search-bar">
+            <input type="text" onChange={props.onSearch} placeholder="Search..." className="search-bar">
                </input> <img src={require("../../Icons/icons/search.png")}></img>
                 
             </div>
+            : <div className='back-icon'> <img src={require("../../Icons/icons/arrow.png")} onClick={()=> navigate("/")}></img></div>}
         <h1>PokédexApp</h1>
         </div>
         </div>

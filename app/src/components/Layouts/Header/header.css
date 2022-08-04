@@ -26,6 +26,7 @@
     margin-left: 4rem;
     background-color: #f6f6f6;
     justify-content: space-around;
+    box-shadow: 0 1rem 1rem rgba(0,0,0,.1)!important;
 }
 
 .search-section img{
@@ -36,3 +37,8 @@
     background-color: transparent;
 }
 input:focus {outline:none!important;}
+.back-icon{
+    display: flex;
+    margin-left: 4rem ;
+    background-color: transparent;
+}

@@ -56,10 +56,10 @@ const PokemonPage = (props) => {
         const fetchPokemonInfo =  async (pokemon) => {
             const data = await axios("https://pokeapi.co/api/v2/pokemon/"+pokemonName).then(response=>response.data)   
             const data2 = await axios("https://pokeapi.co/api/v2/pokemon-species/"+pokemonName).then( (response) => response.data)
-            const data3 = await axios(data2.evolution_chain.url).then((response) => axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.evolves_to[0].species.name))
+            const data3 = await axios(data2.evolution_chain.url).then((response) => response.data.chain.evolves_to[0]?.species.name ? axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.evolves_to[0].species.name) : "")
 
 
-                const data4 = await axios(data2.evolution_chain.url).then((response) => response.data.chain.evolves_to[0].evolves_to[0]?.species ? axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.evolves_to[0].evolves_to[0].species.name): "")
+                const data4 = await axios(data2.evolution_chain.url).then((response) => response.data.chain.evolves_to[0]?.evolves_to[0]?.species ? axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.evolves_to[0].evolves_to[0].species.name): "")
 
                 const data5 = await axios(data2.evolution_chain.url).then((response) => axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.species.name))
                 
@@ -84,19 +84,19 @@ const PokemonPage = (props) => {
                 eggCycles:data2.hatch_counter,
                 catchRate:data2.capture_rate,
                 growthRate: data2.growth_rate.name,
-                firstEvoIcon:data3.data.sprites.other['official-artwork'].front_default,
+                firstEvoIcon:data3.data?.sprites.other['official-artwork'].front_default,
                 secondEvoIcon:data4.data?.sprites.other['official-artwork'].front_default,
                 baseFormIcon:data5.data.sprites.other['official-artwork'].front_default,
-                firstEvolutionName: data6.chain.evolves_to[0].species.name,
-                secondEvolutionName: data6.chain.evolves_to[0].evolves_to[0]?.species.name,
-                firstEvolutionLevel: data6.chain.evolves_to[0].evolution_details[0].min_level,
-                secondEvolutionLevel : data6.chain.evolves_to[0].evolves_to[0]?.evolution_details[0].min_level,
-                firstEvolutionItem: data6.chain.evolves_to[0].evolution_details[0].item,
-                firstEvolutionTrigger:data6.chain.evolves_to[0].evolution_details[0].trigger,
-                secondEvolutionItem: data6.chain.evolves_to[0].evolves_to[0]?.evolution_details[0].item,
-                secondEvolutionTrigger:data6.chain.evolves_to[0].evolves_to[0]?.evolution_details[0].trigger,
-                firstEvolutionHapiness:data6.chain.evolves_to[0].evolution_details[0].min_happiness,
-                secondEvolutionHapiness:data6.chain.evolves_to[0].evolves_to[0]?.evolution_details[0].min_happiness,
+                firstEvolutionName: data6.chain.evolves_to[0]?.species.name,
+                secondEvolutionName: data6.chain.evolves_to[0]?.evolves_to[0]?.species.name,
+                firstEvolutionLevel: data6.chain.evolves_to[0]?.evolution_details[0].min_level,
+                secondEvolutionLevel : data6.chain.evolves_to[0]?.evolves_to[0]?.evolution_details[0].min_level,
+                firstEvolutionItem: data6.chain.evolves_to[0]?.evolution_details[0].item,
+                firstEvolutionTrigger:data6.chain.evolves_to[0]?.evolution_details[0].trigger,
+                secondEvolutionItem: data6.chain.evolves_to[0]?.evolves_to[0]?.evolution_details[0].item,
+                secondEvolutionTrigger:data6.chain.evolves_to[0]?.evolves_to[0]?.evolution_details[0].trigger,
+                firstEvolutionHapiness:data6.chain.evolves_to[0]?.evolution_details[0].min_happiness,
+                secondEvolutionHapiness:data6.chain.evolves_to[0]?.evolves_to[0]?.evolution_details[0].min_happiness,
                 baseFormName: data6.chain.species.name
             })
             
@@ -246,6 +246,7 @@ const PokemonPage = (props) => {
                         }
                         
                        {pokemon.secondEvolutionName && 
+
                         <div className="pokemon-evolution-name-wrapper">
                             <h1> {pokemon.secondEvolutionLevel ?`Level + ${pokemon.secondEvolutionLevel}`: pokemon.secondEvolutionItem ?`Use Item : ${firstLetterUpper(pokemon.secondEvolutionItem.name.split('-').join(' '))}`: pokemon.secondEvolutionHapiness ?`Base Happiness ${pokemon.secondEvolutionHapiness}`: `Trigger ${firstLetterUpper(pokemon.secondEvolutionTrigger.name)}`}</h1>
                             <img src={require("../../Icons/icons/icons8-arrow-48.png")}></img>
@@ -254,6 +255,7 @@ const PokemonPage = (props) => {
                         }
                     
                         {pokemon.secondEvolutionName && 
+
                         <div className="pokemon-evolution-icon-wrapper">
                        
                         <PokemonIcon src={pokemon.secondEvoIcon}></PokemonIcon>

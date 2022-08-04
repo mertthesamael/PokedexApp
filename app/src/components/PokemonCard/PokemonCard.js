@@ -36,11 +36,20 @@ fetchPokemonType()
 }, []);
 
 
+function getFavorite (event) {
+const favInfo = {
+    name: props.name,
+    image: event.target.parentElement.querySelector('.iconn').src,
+    number:event.target.parentElement.querySelector('.pokemon-number').innerHTML
+}
+return props.getFavorite(favInfo)
+
+}
 
     return (
    
         <div className="pokemon-card">
-            
+            <button onClick={getFavorite}>Test</button>
             <div className="pokemon-card-body">
 
             <div className="pokemon-card-header">

@@ -40,7 +40,7 @@ else if (props.type==="fire"){
                             <h2>Capture Rate : <span className={"pokemon-detail-value "+ color}>{props.catchRate}</span></h2>
                             <h2>Growth Rate : <span className={"pokemon-detail-value "+ color}>{props.growthRate}</span></h2>
                             <h2>Base Experience : <span className={"pokemon-detail-value "+ color}>{props.baseExp}</span></h2>
-                            <h2>Held Items :  <span className={"pokemon-detail-value "+ color}>{props.heldItems.length!==0 ? props.heldItems.map(x=>  `${firstLetterUpper(x.item.name.split('-').join(' '))}  ${x.version_details[0].rarity}%` ): "None"}</span>
+                            <h2>Held Items :  <span className={"pokemon-detail-value "+ color}><div className="held-items-wrapper">{props.heldItems.length!==0 ? props.heldItems.map(x=>  <div>{firstLetterUpper(x.item.name.split('-').join(' '))}  {x.version_details[0].rarity}% </div>): "None"}</div></span>
                             </h2>
 
             </div>

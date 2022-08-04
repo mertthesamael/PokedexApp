@@ -9,9 +9,13 @@
         display: flex;
         text-align: left;
         flex-direction: column;
-      
-        
+         
     
+}
+
+.held-items-wrapper{
+    display: flex;
+    flex-direction: column;
 }
 .pink1{
     color: #e83e8c!important;
