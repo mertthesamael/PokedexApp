@@ -3,7 +3,7 @@
 const PokemonHeight = (props) => {
 
     return (
-        <h2>{props.value}</h2>
+        <h2>{props.value}m</h2>
     )
 
 }

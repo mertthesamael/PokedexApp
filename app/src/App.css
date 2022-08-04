@@ -3,6 +3,7 @@
 *{
   font-family: 'AlleynW01-Regular';
   font-weight: lighter;
+  transition: all 1s ease-in-out;
 }
 html{
   background-color: white;

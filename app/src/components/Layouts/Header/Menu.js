@@ -21,6 +21,20 @@ else if (props.color==="fire"){
     color="blue"
 }else if (props.color==="ice"){
     color="blue"
+}else if (props.color==="normal"){
+    color="normal"
+}else if (props.color==="fairy"){
+    color="pink"
+}else if (props.color==="dragon"){
+    color="blue"
+}else if (props.color==="fighting"){
+    color="red"
+}else if (props.color==="ground"){
+    color="normal"
+}else if (props.color==="psychic"){
+    color="red"
+}else if (props.color==="ghost"){
+    color="purple"
 }
     return(
         <div className={"header "+color}>

@@ -18,6 +18,20 @@ else if (props.type==="fire"){
     color="blue1"
 }else if (props.type==="ice"){
     color="blue1"
+}else if (props.type==="normal"){
+    color="normal1"
+}else if (props.type==="fairy"){
+    color="pink1"
+}else if (props.type==="dragon"){
+    color="blue1"
+}else if (props.type==="fighting"){
+    color="red1"
+}else if (props.type==="ground"){
+    color="normal1"
+}else if (props.type==="psychic"){
+    color="red1"
+}else if (props.type==="ghost"){
+    color="purple1"
 }
     return(
         <>
@@ -26,7 +40,7 @@ else if (props.type==="fire"){
                             <h2>Capture Rate : <span className={"pokemon-detail-value "+ color}>{props.catchRate}</span></h2>
                             <h2>Growth Rate : <span className={"pokemon-detail-value "+ color}>{props.growthRate}</span></h2>
                             <h2>Base Experience : <span className={"pokemon-detail-value "+ color}>{props.baseExp}</span></h2>
-                            <h2>Held Items :  <span className={"pokemon-detail-value "+ color}>{props.heldItems.length!==0 ? props.heldItems.map(x=>  `${x.item.name}  ${x.version_details[0].rarity}%` ): "None"}</span>
+                            <h2>Held Items :  <span className={"pokemon-detail-value "+ color}>{props.heldItems.length!==0 ? props.heldItems.map(x=>  `${firstLetterUpper(x.item.name.split('-').join(' '))}  ${x.version_details[0].rarity}%` ): "None"}</span>
                             </h2>
 
             </div>

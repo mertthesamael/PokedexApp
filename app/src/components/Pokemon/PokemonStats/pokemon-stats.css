@@ -23,13 +23,9 @@
     width: 100%;
 }
 .pokemon-stat-bar{
-    
 height: 1.5rem;
-
 background-image: linear-gradient(-45deg,hsla(0,0%,100%,.15) 25%,transparent 0,transparent 50%,hsla(0,0%,100%,.15) 0,hsla(0,0%,100%,.15) 75%,transparent 0,transparent);
 background-position: 10%;
-
-
 border-radius: 3px;
 background-size: 35px 100%;
 animation: shift infinite 2s linear ;
@@ -40,6 +36,7 @@ align-items: center;
 color: white;
 }
 .stat-bar-bg{
+    max-width: 100%;
    border-radius: 3px;
    display: flex;
 
