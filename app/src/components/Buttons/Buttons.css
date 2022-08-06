@@ -13,9 +13,15 @@
 .pokemon-load-button{
     pointer-events:all;
 position: fixed;
-width: 5rem;
-height: 5rem;
-border-radius: 50px;
+width: fit-content;
+transform: scale(1);
+height: fit-content;
+border-radius: 50%;
+background-color: white;
+}
+.pokemon-load-button:hover{
+    background-color: grey;
+
 }
 .pokemon-load-button-wrapper{
     pointer-events: none;

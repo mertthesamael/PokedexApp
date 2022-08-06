@@ -10,7 +10,7 @@
     display: flex;
     flex-direction: column;
     width:10rem;
-    height:14rem ;
+    height:max-content ;
     border: 1px solid rgba(0, 0, 0, 0.233);
     padding: 0.5rem;
     transition: all 1s ease-out;
@@ -58,4 +58,36 @@
 .icon-wrap{
     display: flex;
     align-items: center;
+}
+
+
+.favorite-pokemon{
+    display: flex;
+    flex-direction: column;
+    width: 11rem;
+    height: fit-content;
+}
+
+.favorite-pokemon:hover{
+    background-color: rgba(128, 128, 128, 0.233);
+
+}
+.fav-icon{
+    width: 1.5rem;
+    height:max-content;
+    z-index: 1231231;
+}
+.favorite{
+    background-color: #ffd600!important;
+    pointer-events: none;
+}
+
+.favorite-pokemons-section{
+    display: flex;
+    justify-content: center;
+
+}
+.fav-poke-link{
+    text-decoration: none;
+    color: inherit;
 }

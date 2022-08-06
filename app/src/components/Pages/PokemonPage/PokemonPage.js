@@ -48,14 +48,14 @@ const PokemonPage = (props) => {
         secondEvolutionLevel :"",
         baseFormName:""
     })
-    
-  
+   
+  console.log(JSON.stringify(pokeName))
     const {height: pokemonHeight, weight: pokemonWeight} = pokemon.physicalStats;
     
     useEffect(()=>{
         const fetchPokemonInfo =  async (pokemon) => {
-            const data = await axios("https://pokeapi.co/api/v2/pokemon/"+pokemonName).then(response=>response.data)   
-            const data2 = await axios("https://pokeapi.co/api/v2/pokemon-species/"+pokemonName).then( (response) => response.data)
+            const data = await axios("https://pokeapi.co/api/v2/pokemon/"+pokeName).then(response=>response.data)   
+            const data2 = await axios("https://pokeapi.co/api/v2/pokemon-species/"+data.id).then( (response) => response.data)
             const data3 = await axios(data2.evolution_chain.url).then((response) => response.data.chain.evolves_to[0]?.species.name ? axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.evolves_to[0].species.name) : "")
 
 
@@ -222,9 +222,9 @@ const PokemonPage = (props) => {
                         {pokemon.firstEvolutionName &&
                         <div className="pokemon-evolution-name-wrapper">
 
-                            <h1> {pokemon.firstEvolutionLevel ?`Level + ${pokemon.firstEvolutionLevel}`: pokemon.firstEvolutionHapiness?`Base Happiness ${pokemon.firstEvolutionHapiness}`: pokemon.firstEvolutionItem?`Use Item : ${firstLetterUpper(pokemon.firstEvolutionItem.name.split('-').join(' '))}`: `Trigger ${pokemon.firstEvolutionTrigger}`}</h1>
+                            <h1> {pokemon.firstEvolutionLevel ?`Level + ${pokemon.firstEvolutionLevel}`: pokemon.firstEvolutionHapiness?`Base Happiness ${pokemon.firstEvolutionHapiness}`: pokemon.firstEvolutionItem?`Use Item : ${firstLetterUpper(pokemon.firstEvolutionItem.name.split('-').join(' '))}`: `Trigger ${pokemon.firstEvolutionTrigger.name}`}</h1>
 
-                            <img src={require("../../Icons/icons/icons8-arrow-48.png")}></img>
+                            <img className="arrow-img" src={require("../../Icons/icons/icons8-arrow-48.png")}></img>
                         
                         </div>
 
@@ -249,7 +249,7 @@ const PokemonPage = (props) => {
 
                         <div className="pokemon-evolution-name-wrapper">
                             <h1> {pokemon.secondEvolutionLevel ?`Level + ${pokemon.secondEvolutionLevel}`: pokemon.secondEvolutionItem ?`Use Item : ${firstLetterUpper(pokemon.secondEvolutionItem.name.split('-').join(' '))}`: pokemon.secondEvolutionHapiness ?`Base Happiness ${pokemon.secondEvolutionHapiness}`: `Trigger ${firstLetterUpper(pokemon.secondEvolutionTrigger.name)}`}</h1>
-                            <img src={require("../../Icons/icons/icons8-arrow-48.png")}></img>
+                            <img className="arrow-img" src={require("../../Icons/icons/icons8-arrow-48.png")}></img>
                         
                         </div>
                         }
@@ -281,7 +281,7 @@ const PokemonPage = (props) => {
 
                     <div className="pokemon-moves-section">
                     
-                    <PokemonMoves type={pokemon.mainType}requiredLevel={pokemon.moves && pokemon.moves.map(x=> <div>{x.version_group_details[0].level_learned_at}</div>)} moveName={pokemon.moves&& pokemon.moves.map(x=><div>{x.move.name}</div>)}>
+                    <PokemonMoves type={pokemon.mainType}requiredLevel={pokemon.moves && pokemon.moves.map(x=> <div>{x.version_group_details[0].level_learned_at}</div>)} moveName={pokemon.moves&& pokemon.moves.map(x=><div>{firstLetterUpper(x.move.name.split('-').join(' '))}</div>)}>
                         </PokemonMoves>
                     </div>
                     </Popup>

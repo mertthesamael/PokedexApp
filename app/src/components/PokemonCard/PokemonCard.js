@@ -6,6 +6,7 @@ import axios from "axios";
 import PokemonIcon from "../Pokemon/PokemonIcon/PokemonIcon";
 import PokemonNumber from "../Pokemon/PokemonNumber/PokemonNumber";
 import {NavLink} from "react-router-dom"
+import { star,starEmpty } from "../store/context";
 
 
 const PokemonCard = (props) => {
@@ -21,7 +22,7 @@ useEffect(()=>{
         setIcon(data.sprites.other['official-artwork'].front_default)
         }
 fetchPokemonIcon()
-}, []);
+}, [props.url]);
   
 const [type, setType] = useState([])
 
@@ -33,7 +34,7 @@ useEffect(()=>{
         setType(data.types)
         }
 fetchPokemonType()
-}, []);
+}, [props.url]);
 
 
 function getFavorite (event) {
@@ -42,14 +43,20 @@ const favInfo = {
     image: event.target.parentElement.querySelector('.iconn').src,
     number:event.target.parentElement.querySelector('.pokemon-number').innerHTML
 }
+setIsFavorite(!isFavorite)
 return props.getFavorite(favInfo)
-
 }
+const [isFavorite, setIsFavorite] = useState(false)
+let favoriteButton =starEmpty()
+
+JSON.parse(localStorage?.getItem('fav'))?.map(x=> x.name === props.name ? favoriteButton=star():"")
+
+
 
     return (
    
         <div className="pokemon-card">
-            <button onClick={getFavorite}>Test</button>
+            <div onClick={getFavorite} className={"fav-icon"}>{favoriteButton}</div>
             <div className="pokemon-card-body">
 
             <div className="pokemon-card-header">

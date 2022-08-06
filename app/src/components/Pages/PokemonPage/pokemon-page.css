@@ -20,9 +20,27 @@
     align-items: center;
     justify-content: space-around;
 }
+@media only screen and (max-width:992px){
+    .pokemon-page-header{
+      
+        flex-direction: column;
+        
+    }
+    .pokemon-evolution-section{
+        flex-direction: column;
+    }
+    .arrow-img{
+        transform: rotate(90deg);
+    }
+    .pokemon-details-section{
+        flex-direction: column;
+        
+    }
+    
+}
 @media only screen and (min-width: 992px){
 
-    
+   
 .pokemon-physical-stats{
     
     transition: .3s;
@@ -131,7 +149,7 @@ pokemon-icon-wrapper img{
 
 .pokemon-details-section{
     display: flex;
-    flex-direction: row;
+    
     justify-content: space-around;
     width: 60%;
     margin: 0 auto;
@@ -139,7 +157,12 @@ pokemon-icon-wrapper img{
 .pokemon-details-section h1{
     margin: 0;
 }
-
+.pokemon-training {
+    width: max-content;
+}
+.pokemon-breeding{
+    width: max-content;
+}
 .pokemon-training h2{
     display: flex;
     width: 110%;

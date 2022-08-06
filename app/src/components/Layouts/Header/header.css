@@ -42,3 +42,7 @@ input:focus {outline:none!important;}
     margin-left: 4rem ;
     background-color: transparent;
 }
+
+.favorites-link{
+    text-decoration: none;
+}

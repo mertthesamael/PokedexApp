@@ -32,6 +32,12 @@ else if (props.type==="fire"){
     color="red"
 }else if (props.type==="ghost"){
     color="purple"
+}else if (props.type==="steel"){
+    color="steel"
+}else if (props.type==="dark"){
+    color="dark"
+}else if (props.type==='rock'){
+    color="rock"
 }
 
 return (

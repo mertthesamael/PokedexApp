@@ -1,5 +1,12 @@
 .page-content{
-    height: 92vh;
+    height: 100%;
     width: 100%;
-  
+   
+}
+
+.pop-up-info{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    text-align: center;
 }

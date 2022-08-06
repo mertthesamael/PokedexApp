@@ -1,5 +1,5 @@
 import "./pokemon-stats.css"
-
+import { firstLetterUpper } from "../../store/context";
 const PokemonStats = (props) => {
 
     let color = "";
@@ -33,6 +33,12 @@ const PokemonStats = (props) => {
         color="red"
     }else if (props.type==="ghost"){
         color="purple"
+    }else if (props.type==="steel"){
+        color="steel"
+    }else if (props.type==="dark"){
+        color="dark"
+    }else if (props.type==='rock'){
+        color="rock"
     }
     
 
@@ -42,7 +48,7 @@ const PokemonStats = (props) => {
             <div className="stats-and-progressbar">
 
                 <div className="pokemon-stat-info">
-                    <h2>{props.statName}</h2>
+                    <h2>{firstLetterUpper(props.statName.split('-').join(' '))}</h2>
                    
                 </div>
                 <div className="stat-bar-wrapper">

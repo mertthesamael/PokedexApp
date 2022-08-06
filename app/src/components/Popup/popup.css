@@ -1,12 +1,11 @@
 .popup-wrapper{
-    position:fixed;
+    position:absolute;
     height: 100%;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-   
-    z-index: 57656;
+    z-index: 576221356;
 }
 
 .popup-card{
@@ -15,12 +14,21 @@
     align-items: center;
     flex-direction: column;
     width: 30rem;
-    height: 30rem;
+    height: fit-content;
+    color: grey;
+    letter-spacing: 1px;
     border-radius: 9px;
-    justify-content: center;
+    justify-content: space-evenly;
     transition: all 2s ease-in;
 
     box-shadow: 0 0 9px 4px rgb(0 0 0 / 13%);
     border: 1px solid rgba(0,0,0,.2);
     background-color: rgb(255, 255, 255);
+}
+
+
+.close-btn{
+    font-size: 2rem;
+    font-weight: bold;
+    cursor:pointer;
 }
