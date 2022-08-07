@@ -56,31 +56,7 @@ const PokemonMoves = (props) => {
                 </div>
                 <div className="move-name">
                 <h3>{props.moveName}</h3>
-                </div> 
-                {/* <div className="move-type">
-                    <h2>Move Type</h2>
-                {props.moveType}
                 </div>
-                <div className="move-category">
-                    <h2>Move Category</h2>
-                {props.moveCategory}
-                </div>
-                <div className="move-power">
-                {props.movePower}
-                </div>
-
-                <div className="move-pp">
-                {props.movePp}
-                </div>
-                <div className="move-accuracy">
-                {props.moveAccuracy}
-                </div>
-                <div className="move-priority">
-                {props.movePriority}
-                </div>
-                <div className="move-generation">
-                {props.moveGeneration}
-                </div> */}
 
             </div>
             <div className={"pokemon-move-list-footer "+color}>

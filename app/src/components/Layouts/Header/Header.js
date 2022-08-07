@@ -1,8 +1,7 @@
-import { useState } from 'react'
+
 import { NavLink } from 'react-router-dom'
 import { useLocation, useNavigate  } from 'react-router-dom'
 import "../../Pages/PokemonPage/pokemon-page-button.css"
-import Popup from '../../Popup/Popup'
 import "./header.css"
 
 const Header = (props) =>{
@@ -54,15 +53,18 @@ else if (props.color==="fire"){
         <div className={"header "+color}>
         <div className="side-menu-content">
             {location.pathname === "/" ?
+            <>
             <div className="search-section">
                
             <input type="text" onChange={props.onSearch} placeholder="Search..." className="search-bar">
                </input> <img src={require("../../Icons/icons/search.png")}></img>
                 
             </div>
-            : <div className='back-icon'> <img src={require("../../Icons/icons/arrow.png")} onClick={()=> navigate("/")}></img></div>}
-            <NavLink to="/favorites" className="favorites-link">Favorites</NavLink>
-            <h1 onClick={props.stateHandler}>PokédexApp</h1>
+               <NavLink to="/favorites" className="favorites-link">Favorites</NavLink>
+            </>
+            : <div className='back-icon'> <img src={require("../../Icons/icons/arrow.png")} onClick={()=> navigate("/")}></img></div>
+            }
+            <h1 onClick={props.stateHandler} style={{cursor: 'pointer'}}>PokédexApp</h1>
         
             
 

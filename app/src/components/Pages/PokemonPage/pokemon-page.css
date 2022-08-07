@@ -20,6 +20,36 @@
     align-items: center;
     justify-content: space-around;
 }
+@media only screen and (max-width:592px){
+.pokemon-physical-stats{
+    transform: scale(0.8);
+}
+.pokemon-stats{
+    transform: scale(0.8);
+}
+.pokemon-icon-wrapper{
+   width: 50%;
+}
+}
+@media only screen and (max-width:440px){
+    .pokemon-physical-stats{
+        transform: scale(0.7);
+    }
+    .pokemon-stats{
+        transform: scale(0.7);
+    }
+    .pokemon-icon-wrapper{
+       width: 50%;
+    }
+    .pokemon-training{
+        transform: scale(0.7);
+
+    }
+    .pokemon-breeding{
+        transform: scale(0.7);
+
+    }
+}
 @media only screen and (max-width:992px){
     .pokemon-page-header{
       

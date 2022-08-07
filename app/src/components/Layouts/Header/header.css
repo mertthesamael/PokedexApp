@@ -29,6 +29,19 @@
     box-shadow: 0 1rem 1rem rgba(0,0,0,.1)!important;
 }
 
+@media screen and (max-width: 600px) {
+
+.search-section{
+    width: 5rem;
+}
+
+.search-bar{
+    width: 3rem;
+}
+h1{
+    transform: scale(0.8);
+}
+}
 .search-section img{
     transform:  scale(0.7);
 }
@@ -45,4 +58,6 @@ input:focus {outline:none!important;}
 
 .favorites-link{
     text-decoration: none;
+    color: inherit;
+    font-size: 20px;
 }

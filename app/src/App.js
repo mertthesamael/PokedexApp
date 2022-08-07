@@ -4,7 +4,7 @@ import {Route, Routes} from "react-router-dom"
 import CardsWrapper from "./components/PokemonCard/CardsWrapper"
 import PokemonPage from './components/Pages/PokemonPage/PokemonPage';
 import React, {useState} from "react"
-import Header from './components/Layouts/Header/Menu';
+import Header from './components/Layouts/Header/Header';
 import FavoriteCards from './components/PokemonCard/FavoriteCards';
 
 function App() {

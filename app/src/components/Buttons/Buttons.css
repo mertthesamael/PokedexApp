@@ -37,8 +37,9 @@ background-color: white;
 
 
 .pokemon-moves-button{
-    width: 20%;
-    height: 20%;
+    width: fit-content;
+    padding: 5rem;
+    height: 10rem;
     display: flex;
     justify-content: center;
     align-items: center;
