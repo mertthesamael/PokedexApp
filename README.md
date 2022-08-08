@@ -6,6 +6,8 @@ Selam !
 
 Bu proje benim ilk React projem olamsı dışında aynı zamanda Kodluyoruz 2022 Front End ReactJS Bootcampi için hazırladığım bitirme çalışması. Bootcamp süresince öğrendiğim bilgileri olabildiğince uygulamaya çalıştım.
 
+Live : https://mertenercan-pokedex.netlify.app/
+
 Proje içerisindeki tüm datayı PokeAPIv2.0 üzerinden çektim. (https://github.com/PokeAPI/pokeapi). Projenin basitçe tanımı, API'den gelen Pokémon bilgilerini cardlara mapladim, cardlara tıklandığı zaman ise o Pokémonun detay sayfasına yönlendirdim. Detay sayfası içerisinde ilgili Pokémonun evrim bilgileri, base statları ve movesetleri gibi bilgiler mevcut. Aynı zamanda localstorage üzerinde favori Pokémonları tutuyor.
 
 ![image](https://user-images.githubusercontent.com/79616834/183292123-977224b1-3a08-48c0-936f-a77e7ad71ba4.png)
