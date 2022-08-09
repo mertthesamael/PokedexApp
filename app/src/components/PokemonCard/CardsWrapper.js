@@ -3,7 +3,6 @@ import axios from "axios"
 import {useEffect, useState} from "react"
 import PokemonCard from "./PokemonCard"
 import PokemonLoadButton from "../Buttons/PokemonLoadButton"
-import Popup from "../Popup/Popup"
 const CardsWrapper = (props) =>{
     const [pokemon, setPokemon] = useState([])
     //fetch pokemons from API
@@ -45,10 +44,7 @@ return (
                     <PokemonLoadButton onClick={offsetHandler}/>
 
                     {pokemon.filter((x)=>{
-
-                    if(props.input===""){
-                        
-                    }return x.name.includes(props.input)
+                    return x.name.includes(props.input)
                     }).slice(0, offset).map((data)=><PokemonCard  getFavorite={props.getData} key={data.name} name={data.name} url={data.url} number={pad((pokemon.indexOf(data)+1),3)}/>)}
 
                 </div>
