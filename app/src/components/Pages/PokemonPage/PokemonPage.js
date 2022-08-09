@@ -1,15 +1,13 @@
 import PokemonIcon from "../../Pokemon/PokemonIcon/PokemonIcon";
-import PokemonName from "../../Pokemon/PokemonName/PokemonName"
 import "./pokemon-page.css"
 import "./pokemon-page-button.css"
-import {useLocation} from 'react-router-dom'
+import {useLocation, NavLink } from 'react-router-dom'
 import {useState, useEffect, useReducer} from "react"
 import axios from "axios";
 import PokemonStats from "../../Pokemon/PokemonStats/PokemonStats";
 import PokemonCatagory from "../../Pokemon/PokemonCatagory/PokemonCatagory";
 import PokemonWeight from "../../Pokemon/PokemonWeight/PokemonWeight";
 import PokemonHeight from "../../Pokemon/PokemonHeight/PokemonHeight";
-import { NavLink } from "react-router-dom";
 import PokemonPageType from "./PokemonPageType";
 import PokemonPageButton from "./PokemonPageButton";
 import PokemonAbilities from "../../Pokemon/PokemonAbilities/PokemonAbilities";
@@ -23,7 +21,6 @@ import PokemonMovesButton from "../../Buttons/PokemonMovesButton";
 
 const PokemonPage = (props) => {
    
- 
     const location = useLocation()
     const pokeName=location.pathname.slice(1)
     const [pokemonName, setPokemonName] = useState(location.pathname.slice(1))
@@ -56,7 +53,6 @@ const PokemonPage = (props) => {
             const data = await axios("https://pokeapi.co/api/v2/pokemon/"+pokeName).then(response=>response.data)   
             const data2 = await axios("https://pokeapi.co/api/v2/pokemon-species/"+data.id).then( (response) => response.data)
             const data3 = await axios(data2.evolution_chain.url).then((response) => response.data.chain.evolves_to[0]?.species.name ? axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.evolves_to[0].species.name) : "")
-
 
                 const data4 = await axios(data2.evolution_chain.url).then((response) => response.data.chain.evolves_to[0]?.evolves_to[0]?.species ? axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.evolves_to[0].evolves_to[0].species.name): "")
 
@@ -230,7 +226,7 @@ const PokemonPage = (props) => {
                         }                
                         {pokemon.firstEvolutionName &&
                                         
-                            <div className="pokemon-evolution-icon-wrapper">
+                        <div className="pokemon-evolution-icon-wrapper">
 
                             <PokemonIcon src={pokemon.firstEvoIcon}></PokemonIcon>
 

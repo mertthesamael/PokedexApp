@@ -41,11 +41,13 @@ return (
          
            
                 <div className={"cards-wrapper"}>
-                   
+                
                     <PokemonLoadButton onClick={offsetHandler}/>
+
                     {pokemon.filter((x)=>{
+
                     if(props.input===""){
-                        return x
+                        
                     }return x.name.includes(props.input)
                     }).slice(0, offset).map((data)=><PokemonCard  getFavorite={props.getData} key={data.name} name={data.name} url={data.url} number={pad((pokemon.indexOf(data)+1),3)}/>)}
 

@@ -18,14 +18,16 @@ const getColor = (color) => {
 setColor(color)
 }
 const handleText = (event) => {
+  event.preventDefault()
   setText(event.target.value.toLowerCase())
 }
 
 let favoriPoke=[]
-function getData (x){
-    favoriPoke.push(x)
 
-return  localStorage.setItem('fav', JSON.stringify(favoriPoke))
+function getData (x){
+  favoriPoke.push(x)
+ 
+ localStorage.setItem('fav', JSON.stringify(favoriPoke))
 }
 
 const [state, setState] = useState(false)

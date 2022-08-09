@@ -38,6 +38,7 @@ fetchPokemonType()
 
 
 function getFavorite (event) {
+    event.preventDefault()
 const favInfo = {
     name: props.name,
     image: event.target.parentElement.querySelector('.iconn').src,
