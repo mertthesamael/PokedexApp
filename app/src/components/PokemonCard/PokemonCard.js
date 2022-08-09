@@ -48,6 +48,10 @@ return props.getFavorite(favInfo)
 }
 const [isFavorite, setIsFavorite] = useState(false)
 let favoriteButton =starEmpty()
+let favClass = " "
+if ( isFavorite === true){
+    favClass="fav-active"
+}
 
 JSON.parse(localStorage?.getItem('fav'))?.map(x=> x.name === props.name ? favoriteButton=star():"")
 
@@ -56,7 +60,7 @@ JSON.parse(localStorage?.getItem('fav'))?.map(x=> x.name === props.name ? favori
     return (
    
         <div className="pokemon-card">
-            <div onClick={getFavorite} className={"fav-icon"}>{favoriteButton}</div>
+            <div onClick={getFavorite} className={"fav-icon "+favClass}>{favoriteButton}</div>
             <div className="pokemon-card-body">
 
             <div className="pokemon-card-header">

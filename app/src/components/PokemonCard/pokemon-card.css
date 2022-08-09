@@ -86,9 +86,6 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-
-   
-
 }
 .fav-poke-link{
     text-decoration: none;
@@ -107,6 +104,8 @@
 .reset-fav-btn:hover{
     background-color: grey;
     color: white;
-    
+}
 
+.fav-active{
+    pointer-events: none;
 }
