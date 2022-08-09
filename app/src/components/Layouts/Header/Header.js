@@ -1,52 +1,15 @@
 
 import { NavLink } from 'react-router-dom'
 import { useLocation, useNavigate  } from 'react-router-dom'
-import "../../Pages/PokemonPage/pokemon-page-button.css"
+import "../../Buttons/Pokemonpagebutton/pokemon-page-button.css"
 import "./header.css"
 
 const Header = (props) =>{
 let navigate = useNavigate()
 const location = useLocation();
-    let color = "";
-if(location.pathname==="/"){
+    let color = props.color;
+if(location.pathname==="/" || location.pathname==="/favorites"){
     color="white"
-}
-else if(props.color === "electric"){
-    color="yellow"
-}else if (props.color==="poison"){
-    color="purple"
-}
-else if (props.color==="grass"){
-    color="green"
-}else if (props.color==="bug"){
-    color="green"
-}
-else if (props.color==="fire"){
-    color="red"
-}else if (props.color==="water"){
-    color="blue"
-}else if (props.color==="ice"){
-    color="blue"
-}else if (props.color==="normal"){
-    color="normal"
-}else if (props.color==="fairy"){
-    color="pink"
-}else if (props.color==="dragon"){
-    color="blue"
-}else if (props.color==="fighting"){
-    color="red"
-}else if (props.color==="ground"){
-    color="normal"
-}else if (props.color==="psychic"){
-    color="red"
-}else if (props.color==="ghost"){
-    color="purple"
-}else if (props.color==="steel"){
-    color="steel"
-}else if (props.color==="dark"){
-    color="dark"
-}else if (props.color==='rock'){
-    color="rock"
 }
 
     return(

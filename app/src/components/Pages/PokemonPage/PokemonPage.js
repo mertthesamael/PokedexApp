@@ -1,6 +1,5 @@
 import PokemonIcon from "../../Pokemon/PokemonIcon/PokemonIcon";
 import "./pokemon-page.css"
-import "./pokemon-page-button.css"
 import {useLocation, NavLink } from 'react-router-dom'
 import {useState, useEffect, useReducer} from "react"
 import axios from "axios";
@@ -9,7 +8,7 @@ import PokemonCatagory from "../../Pokemon/PokemonCatagory/PokemonCatagory";
 import PokemonWeight from "../../Pokemon/PokemonWeight/PokemonWeight";
 import PokemonHeight from "../../Pokemon/PokemonHeight/PokemonHeight";
 import PokemonPageType from "./PokemonPageType";
-import PokemonPageButton from "./PokemonPageButton";
+import PokemonPageButton from "../../Buttons/Pokemonpagebutton/PokemonPageButton";
 import PokemonAbilities from "../../Pokemon/PokemonAbilities/PokemonAbilities";
 import reducer from "../../reducer";
 import { firstLetterUpper } from "../../store/context";
@@ -25,45 +24,29 @@ const PokemonPage = (props) => {
     const pokeName=location.pathname.slice(1)
     const [pokemonName, setPokemonName] = useState(location.pathname.slice(1))
     const [state, setState] = useState(false)
+
     const [pokemon, dispatch] = useReducer(reducer, {
-        name:"",
-        stats:"",
-        physicalStats:"",
-        heldItems: [],
-        eggGroups: [],
-        icon:"",
-        types:"",
-        mainType:"",
-        abilities:"",
-        category: "",
-        firstEvoIcon: "",
-        secondEvoIcon: "",
-        baseFormIcon: "",
-        firstEvolutionName: "",
-        secondEvolutionName: "",
-        firstEvolutionLevel: "",
-        secondEvolutionLevel :"",
-        baseFormName:""
+        name:"",stats:"",physicalStats:"",heldItems: [],eggGroups: [],icon:"",types:"",mainType:"",abilities:"",category: "",firstEvoIcon: "",secondEvoIcon: "",baseFormIcon: "",firstEvolutionName: "",secondEvolutionName: "",firstEvolutionLevel: "",secondEvolutionLevel :"",baseFormName:""
     })
    
     const {height: pokemonHeight, weight: pokemonWeight} = pokemon.physicalStats;
     
     useEffect(()=>{
         const fetchPokemonInfo =  async (pokemon) => {
-            const data = await axios("https://pokeapi.co/api/v2/pokemon/"+pokeName).then(response=>response.data)   
+            const data = await axios("https://pokeapi.co/api/v2/pokemon/"+pokeName).then(response=>response.data)  
+
             const data2 = await axios("https://pokeapi.co/api/v2/pokemon-species/"+data.id).then( (response) => response.data)
+
             const data3 = await axios(data2.evolution_chain.url).then((response) => response.data.chain.evolves_to[0]?.species.name ? axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.evolves_to[0].species.name) : "")
 
-                const data4 = await axios(data2.evolution_chain.url).then((response) => response.data.chain.evolves_to[0]?.evolves_to[0]?.species ? axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.evolves_to[0].evolves_to[0].species.name): "")
+            const data4 = await axios(data2.evolution_chain.url).then((response) => response.data.chain.evolves_to[0]?.evolves_to[0]?.species ? axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.evolves_to[0].evolves_to[0].species.name): "")
 
-                const data5 = await axios(data2.evolution_chain.url).then((response) => axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.species.name))
-                
-                const data6 = await axios(data2.evolution_chain.url).then((response) => response.data)
+            const data5 = await axios(data2.evolution_chain.url).then((response) => axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.species.name))   
             
-           
+            const data6 = await axios(data2.evolution_chain.url).then((response) => response.data)
+            
             dispatch({
-                type: "UPDATE",
-                info: data,
+                type: "UPDATE",info: data,
                 moves:data.moves,
                 name: pokeName,
                 types: data.types,
@@ -95,16 +78,17 @@ const PokemonPage = (props) => {
                 baseFormName: data6.chain.species.name
             })
             
-            
         }
         fetchPokemonInfo()
     },[pokemonName])
 
     props.onSwitchPokemon(pokemon.mainType)
 
-  function stateHandler () {
+ const stateHandler = () => {
     setState(!state)
   }
+
+
     return (
         <div className="pokemon-page">
 
@@ -158,7 +142,7 @@ const PokemonPage = (props) => {
 
                             <h1> Abilities :</h1>
 
-                            {pokemon.abilities && pokemon.abilities.map (x=> <PokemonAbilities type={pokemon.mainType} path={pokeName} title={x.ability.name.toUpperCase()}/>)} 
+                            {pokemon.abilities && pokemon.abilities.map (x=> <PokemonAbilities key={x.ability.name} type={pokemon.mainType} path={pokeName} title={x.ability.name.toUpperCase()}/>)} 
 
                         </div>
 
@@ -262,23 +246,20 @@ const PokemonPage = (props) => {
                         </div>
                     }
                     </div>
+
                     <div className="pokemon-details-section">
-                        <PokemonDetails type={pokemon.mainType} catchRate={pokemon.catchRate} growthRate={pokemon.growthRate} baseExp={pokemon.baseExp} heldItems={pokemon.heldItems} eggGroups={pokemon.eggGroups} eggCycles={pokemon.eggCycles}></PokemonDetails>
-                        <div className="pokemon-typing">
 
-                        </div>
-                   <PokemonMovesButton onClick={stateHandler} type={pokemon.mainType} />
-
-                    
+                        <PokemonDetails type={pokemon.mainType} catchRate={pokemon.catchRate} growthRate={pokemon.growthRate} baseExp={pokemon.baseExp} heldItems={pokemon.heldItems} eggGroups={pokemon.eggGroups} eggCycles={pokemon.eggCycles}/>
+                        <PokemonMovesButton onClick={stateHandler} type={pokemon.mainType} />
 
                     </div>
+
                     <Popup state={state} setTrigger={setState}>
 
-                    <div className="pokemon-moves-section">
-                    
-                    <PokemonMoves type={pokemon.mainType}requiredLevel={pokemon.moves && pokemon.moves.map(x=> <div>{x.version_group_details[0].level_learned_at}</div>)} moveName={pokemon.moves&& pokemon.moves.map(x=><div>{firstLetterUpper(x.move.name.split('-').join(' '))}</div>)}>
-                        </PokemonMoves>
-                    </div>
+                        <div className="pokemon-moves-section">
+                        <PokemonMoves type={pokemon.mainType}requiredLevel={pokemon.moves && pokemon.moves.map(x=> <div>{x.version_group_details[0].level_learned_at}</div>)} moveName={pokemon.moves&& pokemon.moves.map(x=><div>{firstLetterUpper(x.move.name.split('-').join(' '))}</div>)}/>
+                        </div>
+
                     </Popup>
                     
         </div>

@@ -10,13 +10,14 @@ import FavoriteCards from './components/PokemonCard/FavoriteCards';
 function App() {
 const [text, setText] = useState("")
 
-
 const [color, setColor] = useState([""])
 
 const getColor = (color) => {
 
 setColor(color)
+
 }
+
 const handleText = (event) => {
   event.preventDefault()
   setText(event.target.value.toLowerCase())
@@ -24,20 +25,21 @@ const handleText = (event) => {
 
 let favoriPoke=[]
 
-function getData (x){
+const getData = (x) => {
   favoriPoke.push(x)
  
  localStorage.setItem('fav', JSON.stringify(favoriPoke))
 }
 
 const [state, setState] = useState(false)
-function stateHandler () {
+const stateHandler = () => {
     setState(!state)
   }
 
   return (
 
     <div className="App">
+
       <React.StrictMode>
 
      <Header color={color} onSearch={handleText} stateHandler={stateHandler}></Header>

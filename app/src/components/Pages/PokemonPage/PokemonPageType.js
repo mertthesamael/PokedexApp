@@ -6,7 +6,7 @@ const PokemonPageType = (props) => {
 
 
     let typeClass = props.type;
-    let typeIcon =""
+    let typeIcon = ""
 if(typeClass === "electric"){
     typeIcon = electric()
 }else if(typeClass === "grass"){
@@ -47,7 +47,7 @@ else if (typeClass ==="rock"){
 }
 
     return(
-        <div className={"typeicon " + typeClass}><h2>{props.type.toUpperCase()}</h2><div>{typeIcon}</div></div>
+        <div className={"typeicon " + typeClass}><h2 style={{color: "white"}}>{props.type.toUpperCase()}</h2><div>{typeIcon}</div></div>
     )
 
 }

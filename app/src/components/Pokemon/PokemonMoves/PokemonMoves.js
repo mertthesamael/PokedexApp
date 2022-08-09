@@ -1,49 +1,13 @@
 import "./pokemon-moves.css"
-import "../../Pages/PokemonPage/PokemonPageButton"
+import "../../Buttons/Pokemonpagebutton/PokemonPageButton"
 const PokemonMoves = (props) => {
 
-    let color = ""
-    if(props.type === "electric"){
-        color="yellow"
-    }else if (props.type==="poison"){
-        color="purple"
-    }
-    else if (props.type==="grass"){
-        color="green"
-    }else if (props.type==="bug"){
-        color="green"
-    }
-    else if (props.type==="fire"){
-        color="red"
-    }else if (props.type==="water"){
-        color="blue"
-    }else if (props.type==="ice"){
-        color="blue"
-    }else if (props.type==="normal"){
-        color="normal"
-    }else if (props.type==="fairy"){
-        color="pink"
-    }else if (props.type==="dragon"){
-        color="blue"
-    }else if (props.type==="fighting"){
-        color="red"
-    }else if (props.type==="ground"){
-        color="normal"
-    }else if (props.type==="psychic"){
-        color="red"
-    }else if (props.type==="ghost"){
-        color="purple"
-    }else if (props.type==="steel"){
-        color="steel"
-    }else if (props.type==="dark"){
-        color="dark"
-    }else if (props.type==='rock'){
-        color="rock"
-    }
+    let color = props.type
+   
     console.log(props.data)
     return(
         <div className="pokemon-move-list-wrapper">
-            <div className={"pokemon-move-list-header "+ color}>
+            <div className={"pokemon-move-list-header "+ color} style={{boxShadow: 'none'}}>
 
                 <h2>Level</h2>
                     <h2>Move Name</h2>
@@ -59,7 +23,7 @@ const PokemonMoves = (props) => {
                 </div>
 
             </div>
-            <div className={"pokemon-move-list-footer "+color}>
+            <div className={"pokemon-move-list-footer "+color} style={{boxShadow: 'none'}}>
   
                 </div>
 

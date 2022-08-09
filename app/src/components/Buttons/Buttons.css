@@ -48,11 +48,11 @@ background-color: white;
     justify-content: center;
     align-items: center;
     border-radius: 9px;
-    border: 1px solid rgb(36, 26, 26);
     cursor:default;
     color: white;
 }
 
 .pokemon-moves-button:hover{
-    background-color: rgba(12, 12, 12, 0.322) !important;
+    cursor: pointer;
+    color: black;
 }
