@@ -12,12 +12,7 @@ const clear = () => {
     setArr(null)
    return props.favorites.length=0;
 }
-const test = (event) => {
- 
-console.log(JSON.parse(arr).filter(x=>x.name === (event.target.parentElement.querySelector('.favorite-pokemon-name').innerHTML.replace(/\s/g, '')))[0])
 
-
-}
     return(
         <>
         <div className="favorite-pokemons-section">

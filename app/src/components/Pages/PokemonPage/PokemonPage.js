@@ -49,7 +49,6 @@ const PokemonPage = (props) => {
         baseFormName:""
     })
    
-  console.log(JSON.stringify(pokeName))
     const {height: pokemonHeight, weight: pokemonWeight} = pokemon.physicalStats;
     
     useEffect(()=>{
