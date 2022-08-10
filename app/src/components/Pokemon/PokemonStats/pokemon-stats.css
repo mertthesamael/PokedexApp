@@ -14,7 +14,7 @@
 }
 
 @keyframes shift{
-    to{background-position: 67px 100%;}
+    to{background-position:115px 100%;}
 }
 .stat-bar-full{
     background-color: rgba(61, 58, 58, 0.089);
@@ -26,7 +26,7 @@ background-image: linear-gradient(-45deg,hsla(0,0%,100%,.15) 25%,transparent 0,t
 background-position: 10%;
 border-radius: 3px;
 background-size: 25px 100%;
-animation: shift infinite 2s linear ;
+animation: shift infinite 1s linear ;
 display: flex;
 justify-content: flex-end;
 align-items: center;

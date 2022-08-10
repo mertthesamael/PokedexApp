@@ -1,12 +1,9 @@
 import PokemonIcon from "../../Pokemon/PokemonIcon/PokemonIcon";
 import "./pokemon-page.css"
-import {useLocation, NavLink } from 'react-router-dom'
+import {useLocation} from 'react-router-dom'
 import {useState, useEffect, useReducer} from "react"
 import axios from "axios";
 import PokemonStats from "../../Pokemon/PokemonStats/PokemonStats";
-import PokemonCatagory from "../../Pokemon/PokemonCatagory/PokemonCatagory";
-import PokemonWeight from "../../Pokemon/PokemonWeight/PokemonWeight";
-import PokemonHeight from "../../Pokemon/PokemonHeight/PokemonHeight";
 import PokemonPageType from "./PokemonPageType";
 import PokemonPageButton from "../../Buttons/Pokemonpagebutton/PokemonPageButton";
 import PokemonAbilities from "../../Pokemon/PokemonAbilities/PokemonAbilities";
@@ -16,6 +13,8 @@ import PokemonDetails from "../../Pokemon/PokemonDetails/PokemonDetails";
 import PokemonMoves from "../../Pokemon/PokemonMoves/PokemonMoves";
 import Popup from "../../Popup/Popup";
 import PokemonMovesButton from "../../Buttons/PokemonMovesButton";
+import PokemonInfo from "../../Pokemon/PokemonInfo/PokemonInfo";
+import PokemonStatItem from "../../Pokemon/PokemonStats/PokemonStatItem/PokemonStatItem";
 
 
 const PokemonPage = (props) => {
@@ -82,7 +81,9 @@ const PokemonPage = (props) => {
         fetchPokemonInfo()
     },[pokemonName])
 
+useEffect(()=>{
     props.onSwitchPokemon(pokemon.mainType)
+})
 
  const stateHandler = () => {
     setState(!state)
@@ -98,169 +99,132 @@ const PokemonPage = (props) => {
 
                 <div className="evolution-chain-wrapper">
 
-                <PokemonPageButton path={pokemonName}title={<PokemonCatagory title={pokemon.category} />} type={pokemon.mainType}/>
+                <PokemonPageButton path={pokemonName}title={<PokemonInfo content={pokemon.category} />} type={pokemon.mainType}/>
 
                 </div>
                 
             </div>
 
-                <div className="pokemon-page-header">
+            <div className="pokemon-page-header">
 
-                    <div className="pokemon-physical-stats">
+                <div className="pokemon-physical-stats">
 
-                        <div className="stat-item">
+                    <PokemonStatItem content={firstLetterUpper(pokeName)} statName="Name :" />
+                    <PokemonStatItem content={pokemon.category} statName="Category :" />
+                    <PokemonStatItem content={(pokemonHeight*0.1).toFixed(1)+"m"} statName="Height :" />
+                    <PokemonStatItem content={(pokemonWeight*0.1).toFixed(1)+"kg"} statName="Weight :" />
+                    <PokemonStatItem content={pokemon.abilities && pokemon.abilities.map (x=> <PokemonAbilities key={x.ability.name} type={pokemon.mainType} path={pokeName} title={x.ability.name.toUpperCase()}/>)}  statName="Abilities :" />
+                    <PokemonStatItem content={(pokemon.types) && (pokemon.types).map(x => <PokemonPageType key={x.slot} type={x.type.name}/>)} statName="Types :" />
 
-                            <h1>Name : {firstLetterUpper(pokeName)}</h1>
-
-                        </div>
-
-                        <div className="stat-item">
-
-                            <h1>Category :</h1>
-
-                            <PokemonCatagory title={pokemon.category} />
-
-                        </div>
-
-                        <div className="stat-item">
-
-                            <h1>Height :</h1>
-
-                            <PokemonHeight value={(pokemonHeight*0.1).toFixed(1)}/>
-
-                        </div>
-
-                        <div className="stat-item">
-
-                            <h1> Weight :</h1> 
-
-                            <PokemonWeight value={(pokemonWeight*0.1).toFixed(1)}/> 
-
-                        </div>
-
-                        <div className="stat-item">
-
-                            <h1> Abilities :</h1>
-
-                            {pokemon.abilities && pokemon.abilities.map (x=> <PokemonAbilities key={x.ability.name} type={pokemon.mainType} path={pokeName} title={x.ability.name.toUpperCase()}/>)} 
-
-                        </div>
-
-                        <div className="stat-item">
-
-                            <h1> Types :</h1> 
-                                
-                            {(pokemon.types) && (pokemon.types).map(x => <PokemonPageType key={x.slot} type={x.type.name}/>)}
-
-                        </div>
-
-                    </div> 
+                </div> 
 
 
-                    <div className="pokemon-icon-wrapper">
+                <div className="pokemon-icon-wrapper">
 
-                        <PokemonIcon src={pokemon.icon} />
+                    <PokemonIcon src={pokemon.icon} />
 
-                    </div>
+                </div>
                  
 
-                    <div className="pokemon-stats">
+                <div className="pokemon-stats">
 
-                    {pokemon.stats && pokemon.stats.map(x=><PokemonStats key={x.stat.name} type={pokemon.mainType} statName={x.stat.name} statValue={x.base_stat} />)}
+                {pokemon.stats && pokemon.stats.map(x=><PokemonStats key={x.stat.name} type={pokemon.mainType} statName={x.stat.name} statValue={x.base_stat} />)}
                     
-                    </div>
-
-                  
                 </div>
 
-                    <div className="evolution-chain-wrapper">
+                  
+            </div>
 
-                       <PokemonPageButton path={pokemonName}title={"EVOLUTION CHAIN"} type={pokemon.mainType}></PokemonPageButton>
+                <div className="evolution-chain-wrapper">
 
-                    </div>
+                    <PokemonPageButton path={pokemonName}title={"EVOLUTION CHAIN"} type={pokemon.mainType}></PokemonPageButton>
+
+                </div>
                        
-                    <div className="pokemon-evolution-section">
+                <div className="pokemon-evolution-section">
 
-                        <div className="pokemon-evolution-name-wrapper">
+                    <div className="pokemon-evolution-name-wrapper">
                         
-                            <div className="pokemon-evolution-icon-wrapper">
-
-                                <PokemonIcon src={pokemon.baseFormIcon}></PokemonIcon>
-
-                                <PokemonPageButton path={pokemonName}type={pokemon.mainType}>
-
-                                <NavLink to={"/"+pokemon.baseFormName} className="pokemon-evolution-name" onClick={() =>
-                                setPokemonName(pokemon.baseFormName)}><h2>{firstLetterUpper(pokemon.baseFormName)}</h2></NavLink>
-                                </PokemonPageButton>
-
-
-                            </div>
-
-                        </div>
-
-                        {pokemon.firstEvolutionName &&
-                        <div className="pokemon-evolution-name-wrapper">
-
-                            <h1> {pokemon.firstEvolutionLevel ?`Level + ${pokemon.firstEvolutionLevel}`: pokemon.firstEvolutionHapiness?`Base Happiness ${pokemon.firstEvolutionHapiness}`: pokemon.firstEvolutionItem?`Use Item : ${firstLetterUpper(pokemon.firstEvolutionItem.name.split('-').join(' '))}`: `Trigger ${pokemon.firstEvolutionTrigger.name}`}</h1>
-
-                            <img className="arrow-img" src={require("../../Icons/icons/icons8-arrow-48.png")}></img>
-                        
-                        </div>
-
-                        }                
-                        {pokemon.firstEvolutionName &&
-                                        
                         <div className="pokemon-evolution-icon-wrapper">
 
-                            <PokemonIcon src={pokemon.firstEvoIcon}></PokemonIcon>
+                            <PokemonIcon src={pokemon.baseFormIcon}></PokemonIcon>
 
-                            <PokemonPageButton path={pokemonName}type={pokemon.mainType}>
+                            <PokemonPageButton path={pokemon.baseFormName}type={pokemon.mainType}>
 
-                            <NavLink to={"/"+pokemon.firstEvolutionName} className="pokemon-evolution-name" onClick={() =>
-
-                            setPokemonName(pokemon.firstEvolutionName)}><h2>{firstLetterUpper(pokemon.firstEvolutionName)}</h2></NavLink>
+                            <div className="pokemon-evolution-name" onClick={() =>
+                            setPokemonName(pokemon.baseFormName)}><h2>{firstLetterUpper(pokemon.baseFormName)}</h2></div>
                             </PokemonPageButton>
 
-                        </div>      
-                        }
-                        
-                       {pokemon.secondEvolutionName && 
 
-                        <div className="pokemon-evolution-name-wrapper">
-                            <h1> {pokemon.secondEvolutionLevel ?`Level + ${pokemon.secondEvolutionLevel}`: pokemon.secondEvolutionItem ?`Use Item : ${firstLetterUpper(pokemon.secondEvolutionItem.name.split('-').join(' '))}`: pokemon.secondEvolutionHapiness ?`Base Happiness ${pokemon.secondEvolutionHapiness}`: `Trigger ${firstLetterUpper(pokemon.secondEvolutionTrigger.name)}`}</h1>
-                            <img className="arrow-img" src={require("../../Icons/icons/icons8-arrow-48.png")}></img>
-                        
                         </div>
-                        }
+
+                    </div>
+
+                    {pokemon.firstEvolutionName &&
+                    <div className="pokemon-evolution-name-wrapper">
+
+                        <h1> {pokemon.firstEvolutionLevel ?`Level + ${pokemon.firstEvolutionLevel}`: pokemon.firstEvolutionHapiness?`Base Happiness ${pokemon.firstEvolutionHapiness}`: pokemon.firstEvolutionItem?`Use Item : ${firstLetterUpper(pokemon.firstEvolutionItem.name.split('-').join(' '))}`: `Trigger ${pokemon.firstEvolutionTrigger.name}`}</h1>
+
+                        <img className="arrow-img" src={require("../../Icons/icons/icons8-arrow-48.png")}></img>
+                        
+                    </div>
+
+                    }                
+                    {pokemon.firstEvolutionName &&
+                                        
+                    <div className="pokemon-evolution-icon-wrapper">
+
+                        <PokemonIcon src={pokemon.firstEvoIcon}></PokemonIcon>
+
+                        <PokemonPageButton path={pokemon.firstEvolutionName}type={pokemon.mainType}>
+
+                        <div className="pokemon-evolution-name" onClick={() =>
+
+                        setPokemonName(pokemon.firstEvolutionName)}><h2>{firstLetterUpper(pokemon.firstEvolutionName)}</h2></div>
+                            </PokemonPageButton>
+
+                    </div>}  
+                        
+                        
+                    {pokemon.secondEvolutionName && 
+
+                    <div className="pokemon-evolution-name-wrapper">
+                        <h1> {pokemon.secondEvolutionLevel ?`Level + ${pokemon.secondEvolutionLevel}`: pokemon.secondEvolutionItem ?`Use Item : ${firstLetterUpper(pokemon.secondEvolutionItem.name.split('-').join(' '))}`: pokemon.secondEvolutionHapiness ?`Base Happiness ${pokemon.secondEvolutionHapiness}`: `Trigger ${firstLetterUpper(pokemon.secondEvolutionTrigger.name)}`}</h1>
+                        <img className="arrow-img" src={require("../../Icons/icons/icons8-arrow-48.png")}></img>
+                        
+                    </div>}
+                        
                     
-                        {pokemon.secondEvolutionName && 
+                    {pokemon.secondEvolutionName && 
 
-                        <div className="pokemon-evolution-icon-wrapper">
+                    <div className="pokemon-evolution-icon-wrapper">
                        
-                        <PokemonIcon src={pokemon.secondEvoIcon}></PokemonIcon>
-                        <PokemonPageButton path={pokemonName}type={pokemon.mainType}>
-                        <NavLink to={"/"+pokemon.secondEvolutionName} className="pokemon-evolution-name" onClick={() =>
-                        setPokemonName(pokemon.secondEvolutionName)}><h2>{firstLetterUpper(pokemon.secondEvolutionName)}</h2></NavLink>
-                        </PokemonPageButton>
+                    <PokemonIcon src={pokemon.secondEvoIcon}/>
 
-                        </div>
-                    }
+                    <PokemonPageButton path={pokemon.secondEvolutionName}type={pokemon.mainType}>
+                    <div className="pokemon-evolution-name" onClick={() =>
+                    setPokemonName(pokemon.secondEvolutionName)}><h2>{firstLetterUpper(pokemon.secondEvolutionName)}</h2></div>
+                    </PokemonPageButton>
+
+                    </div>}
+                    
+
+                </div>
+
+                <div className="pokemon-details-section">
+
+                    <PokemonDetails type={pokemon.mainType} catchRate={pokemon.catchRate} growthRate={pokemon.growthRate} baseExp={pokemon.baseExp} heldItems={pokemon.heldItems} eggGroups={pokemon.eggGroups} eggCycles={pokemon.eggCycles}/>
+                    <PokemonMovesButton onClick={stateHandler} type={pokemon.mainType} />
+
+                </div>
+
+                <Popup state={state} setTrigger={setState}>
+
+                    <div className="pokemon-moves-section">
+                    <PokemonMoves type={pokemon.mainType}requiredLevel={pokemon.moves && pokemon.moves.map(x=> <div key={JSON.stringify(x.name)}>{x.version_group_details[0].level_learned_at}</div>)} moveName={pokemon.moves&& pokemon.moves.map(x=><div key={JSON.stringify(x.move)}>{firstLetterUpper(x.move.name.split('-').join(' '))}</div>)}/>
                     </div>
 
-                    <div className="pokemon-details-section">
-
-                        <PokemonDetails type={pokemon.mainType} catchRate={pokemon.catchRate} growthRate={pokemon.growthRate} baseExp={pokemon.baseExp} heldItems={pokemon.heldItems} eggGroups={pokemon.eggGroups} eggCycles={pokemon.eggCycles}/>
-                        <PokemonMovesButton onClick={stateHandler} type={pokemon.mainType} />
-
-                    </div>
-
-                    <Popup state={state} setTrigger={setState}>
-
-                        <div className="pokemon-moves-section">
-                        <PokemonMoves type={pokemon.mainType}requiredLevel={pokemon.moves && pokemon.moves.map(x=> <div>{x.version_group_details[0].level_learned_at}</div>)} moveName={pokemon.moves&& pokemon.moves.map(x=><div>{firstLetterUpper(x.move.name.split('-').join(' '))}</div>)}/>
-                        </div>
-
-                    </Popup>
+                </Popup>
                     
         </div>
 

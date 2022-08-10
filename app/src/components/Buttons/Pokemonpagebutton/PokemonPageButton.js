@@ -5,11 +5,11 @@ let color = props.type;
 
 
 return (
-        <div className={"pokemon-page-button "+color}>
+        <div className={"pokemon-page-button "+color} style={{boxShadow: "none"}}>
 
-        <NavLink to={"/"+props.path} className="pokemon-page-button-text">{props.title}{props.children}</NavLink>
+            <NavLink to={"/"+props.path} className="pokemon-page-button-text">{props.title}{props.children}</NavLink>
 
-    </div>
+        </div>
     )
 
 }
