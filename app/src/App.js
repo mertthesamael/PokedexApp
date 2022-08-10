@@ -6,6 +6,7 @@ import PokemonPage from './components/Pages/PokemonPage/PokemonPage';
 import React, {useState} from "react"
 import Header from './components/Layouts/Header/Header';
 import FavoriteCards from './components/PokemonCard/FavoriteCards';
+import { TriggerContext } from './components/store/context';
 
 function App() {
 const [text, setText] = useState("")
@@ -32,17 +33,20 @@ const getData = (x) => {
 }
 
 const [state, setState] = useState(false)
+
 const stateHandler = () => {
     setState(!state)
   }
 
   return (
-
+  
     <div className="App">
 
       <React.StrictMode>
 
-     <Header color={color} onSearch={handleText} stateHandler={stateHandler}></Header>
+    <TriggerContext.Provider value={{state: state}}>
+
+     <Header color={color}  onSearch={handleText} stateHandler={stateHandler}></Header>
 
         <Content state={state} setTrigger={setState}>
 
@@ -50,13 +54,14 @@ const stateHandler = () => {
 
         <Route path="/" element={<CardsWrapper getData={getData}input={text}></CardsWrapper>}/>
 
-        <Route path=":name" element={<PokemonPage onSwitchPokemon={getColor}></PokemonPage>}/>
+        <Route path=":name" element={<PokemonPage state={state} setState={stateHandler} onSwitchPokemon={getColor}></PokemonPage>}/>
 
         <Route path="/favorites" element={<FavoriteCards favorites={favoriPoke}></FavoriteCards>}></Route>
 
       </Routes>
 
         </Content>
+      </TriggerContext.Provider>
 
       </React.StrictMode>
     </div>

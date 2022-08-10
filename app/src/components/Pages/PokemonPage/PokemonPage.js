@@ -15,6 +15,7 @@ import Popup from "../../Popup/Popup";
 import PokemonMovesButton from "../../Buttons/PokemonMovesButton";
 import PokemonInfo from "../../Pokemon/PokemonInfo/PokemonInfo";
 import PokemonStatItem from "../../Pokemon/PokemonStats/PokemonStatItem/PokemonStatItem";
+import TypeIcon from "../../Icons/icons/TypeIcon"
 
 
 const PokemonPage = (props) => {

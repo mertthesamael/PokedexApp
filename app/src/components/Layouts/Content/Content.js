@@ -7,6 +7,7 @@ const Content= (props) => {
         <>
         <div className="page-content">{props.children}
         </div>
+        
         <Popup state={props.state} setTrigger={props.setTrigger}><h1>Hi !</h1>
         <div className="pop-up-info">
         <p>I grew up by watching Pokémon on my grandma's television and always wanted to have a "Pokédex" for my own. Thats why i choose this project. I am <a target={"_blank"} style={{textDecoration:'none'}} href="https://github.com/mertthesamael">Merto</a> and this is my first ReactJS project.</p>

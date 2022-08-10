@@ -6,7 +6,7 @@ import axios from "axios";
 import PokemonIcon from "../Pokemon/PokemonIcon/PokemonIcon";
 import PokemonNumber from "../Pokemon/PokemonNumber/PokemonNumber";
 import {NavLink} from "react-router-dom"
-import { star,starEmpty } from "../store/context";
+import StarIcons from "../Icons/icons/StarIcons";
 
 
 const PokemonCard = (props) => {
@@ -48,20 +48,23 @@ setIsFavorite(!isFavorite)
 return props.getFavorite(favInfo)
 }
 const [isFavorite, setIsFavorite] = useState(false)
-let favoriteButton =starEmpty()
+
 let favClass = " "
+
+let starType= ""
 if ( isFavorite === true){
     favClass="fav-active"
+    starType="fill"
 }
 
-JSON.parse(localStorage?.getItem('fav'))?.map(x=> x.name === props.name ? favoriteButton=star():"")
+JSON.parse(localStorage?.getItem('fav'))?.map(x=> x.name === props.name ? starType="fill":"")
 
 
 
     return (
    
         <div className="pokemon-card">
-            <div onClick={getFavorite} className={"fav-icon "+favClass}>{favoriteButton}</div>
+            <div onClick={getFavorite} className={"fav-icon "+favClass}><StarIcons type={starType}></StarIcons></div>
             <div className="pokemon-card-body">
 
             <div className="pokemon-card-header">

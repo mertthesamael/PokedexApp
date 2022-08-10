@@ -14,7 +14,9 @@ if(location.pathname==="/" || location.pathname==="/favorites"){
 
     return(
         <div className={"header "+color}>
-        <div className="side-menu-content">
+
+            <div className="side-menu-content">
+                
             {location.pathname === "/" ?
             <>
             <div className="search-section">
