@@ -2,10 +2,10 @@ import { starEmpty,star } from "./IconSVG";
 
 const StarIcons = (props) => {
 
-let type = starEmpty()
-    if(props.type === "fill"){
-        type = star()
-    }
+let type = ""
+  props.type === "fill"? type = star() : type = starEmpty()
+       
+ 
 
     return (
         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px"

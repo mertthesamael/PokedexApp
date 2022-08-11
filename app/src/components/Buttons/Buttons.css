@@ -1,17 +1,3 @@
-.pokeball-button-wrapper{
-    padding: 1rem;
-    background-color: rgb(0, 0, 0);
-    transition: all 0.2s ease-in-out;
-}
-
-.pokeball-button-wrapper-magic{
-    transform: scale(0);
-}
-
-.pokeball-button{
-    width: 7rem;
-    height: 7rem;
-}
 
 .pokemon-load-button{
     pointer-events:all;
@@ -39,7 +25,6 @@ background-color: white;
     transition: all 4s ease-out;
 }
 
-
 .pokemon-moves-button{
     width: fit-content;
     padding: 5rem;
@@ -49,10 +34,55 @@ background-color: white;
     align-items: center;
     border-radius: 9px;
     cursor:default;
-    color: white;
 }
 
 .pokemon-moves-button:hover{
     cursor: pointer;
     color: black;
+}
+
+.pokemon-page-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    border-radius: 5px;
+    width: fit-content;
+}
+
+.pokemon-page-button-text{
+    color: white;
+    text-decoration: none;
+    font-size: larger;
+}
+
+
+.pink{
+    background-color: #e83e8c!important;
+}
+.red{
+    background-color: #ff8a80!important;
+}
+
+.green{
+    background-color: #81c784!important;
+}
+
+.blue{
+    background-color: #81d4fa!important;
+}
+.normal{
+    background-color: #bcaaa4;
+}
+.purple{
+    background-color: #ad8ee7!important;
+}
+.yellow{
+    background-color: #ffd600!important;
+}
+.steel{
+    background-color: #5695A3!important;
+}
+.rock {
+    background-color: #C9BB8A!important;
 }

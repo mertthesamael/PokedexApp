@@ -8,6 +8,7 @@ const TriggerContext = React.createContext({
 const firstLetterUpper = (x) =>{
     
     return x.charAt(0).toUpperCase() + x.slice(1)
+    
 }
 
 

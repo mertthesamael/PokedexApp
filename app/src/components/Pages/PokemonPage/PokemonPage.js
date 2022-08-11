@@ -5,7 +5,7 @@ import {useState, useEffect, useReducer} from "react"
 import axios from "axios";
 import PokemonStats from "../../Pokemon/PokemonStats/PokemonStats";
 import PokemonPageType from "./PokemonPageType";
-import PokemonPageButton from "../../Buttons/Pokemonpagebutton/PokemonPageButton";
+import PokemonPageButton from "../../Buttons/PokemonPageButton";
 import PokemonAbilities from "../../Pokemon/PokemonAbilities/PokemonAbilities";
 import reducer from "../../reducer";
 import { firstLetterUpper } from "../../store/context";
@@ -14,8 +14,7 @@ import PokemonMoves from "../../Pokemon/PokemonMoves/PokemonMoves";
 import Popup from "../../Popup/Popup";
 import PokemonMovesButton from "../../Buttons/PokemonMovesButton";
 import PokemonInfo from "../../Pokemon/PokemonInfo/PokemonInfo";
-import PokemonStatItem from "../../Pokemon/PokemonStats/PokemonStatItem/PokemonStatItem";
-import TypeIcon from "../../Icons/icons/TypeIcon"
+import PokemonStatItem from "../../Pokemon/PokemonStats/PokemonStatItem/PokemonStatItem"
 
 
 const PokemonPage = (props) => {

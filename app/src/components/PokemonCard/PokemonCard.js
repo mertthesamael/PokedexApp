@@ -11,71 +11,66 @@ import StarIcons from "../Icons/icons/StarIcons";
 
 const PokemonCard = (props) => {
     
+//Fetch data and set states
+const [icon, setIcon] = useState([])
+const [type, setType] = useState([])
 
-
-    const [icon, setIcon] = useState([])
-
-   
 useEffect(()=>{
     const fetchPokemonIcon =  async (pokemon) => {
         const data = await axios(props.url).then(response=>response.data)
-        setIcon(data.sprites.other['official-artwork'].front_default)
-        }
-fetchPokemonIcon()
-}, [props.url]);
-  
-const [type, setType] = useState([])
-
-
-
-useEffect(()=>{
-    const fetchPokemonType =  async (pokemon) => {
-        const data = await axios(props.url).then(response=>response.data)
         setType(data.types)
-        }
-fetchPokemonType()
+        setIcon(data.sprites.other['official-artwork'].front_default)
+    }
+    fetchPokemonIcon()
 }, [props.url]);
 
 
-function getFavorite (event) {
-    event.preventDefault()
-const favInfo = {
-    name: props.name,
-    image: event.target.parentElement.querySelector('.iconn').src,
-    number:event.target.parentElement.querySelector('.pokemon-number').innerHTML
+
+//Adding favorites (localstorage)
+const getFavorite = (event) => {
+    
+    const favInfo = {
+        name: props.name,
+        image: event.target.parentElement.querySelector('.iconn').src,
+        number:event.target.parentElement.querySelector('.pokemon-number').innerHTML
+    }
+    
+    setIsFavorite(!isFavorite)
+    return props.getFavorite(favInfo)
 }
-setIsFavorite(!isFavorite)
-return props.getFavorite(favInfo)
-}
+
 const [isFavorite, setIsFavorite] = useState(false)
 
 let favClass = " "
-
 let starType= ""
+
 if ( isFavorite === true){
     favClass="fav-active"
     starType="fill"
 }
 
-JSON.parse(localStorage?.getItem('fav'))?.map(x=> x.name === props.name ? starType="fill":"")
 
+JSON.parse(localStorage?.getItem('fav'))?.map(x=> x.name === props.name ? starType="fill":"")
 
 
     return (
    
         <div className="pokemon-card">
+
             <div onClick={getFavorite} className={"fav-icon "+favClass}><StarIcons type={starType}></StarIcons></div>
-            <div className="pokemon-card-body">
 
-            <div className="pokemon-card-header">
+                <div className="pokemon-card-body">
 
-                <div className="pokemon-name-number">
+                    <div className="pokemon-card-header">
 
-                    <PokemonNumber number={props.number} />
-                    <NavLink to={"/"+props.name} className="pokemon-name"><PokemonName name={props.name}/></NavLink>
-                </div>
+                        <div className="pokemon-name-number">
 
-                <div className="pokemon-type-div">{type.map(x=> <PokemonType key={x.slot}type={x.type.name}/> )}</div>
+                            <PokemonNumber number={props.number} />
+                            <NavLink to={"/"+props.name} className="pokemon-name"><PokemonName name={props.name}/></NavLink>
+
+                        </div>
+
+                    <div className="pokemon-type-div">{type.map(x=> <PokemonType key={x.slot}type={x.type.name}/> )}</div>
 
                 </div>
              
@@ -85,7 +80,6 @@ JSON.parse(localStorage?.getItem('fav'))?.map(x=> x.name === props.name ? starTy
 
             </div>
          
-      
         </div>
    
     )

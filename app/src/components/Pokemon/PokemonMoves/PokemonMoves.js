@@ -1,5 +1,5 @@
 import "./pokemon-moves.css"
-import "../../Buttons/Pokemonpagebutton/PokemonPageButton"
+import "../../Buttons/PokemonPageButton"
 const PokemonMoves = (props) => {
 
   let color = props.type

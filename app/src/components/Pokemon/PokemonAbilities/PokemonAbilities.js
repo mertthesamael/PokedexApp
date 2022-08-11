@@ -1,4 +1,4 @@
-import PokemonPageButton from "../../Buttons/Pokemonpagebutton/PokemonPageButton"
+import PokemonPageButton from "../../Buttons/PokemonPageButton"
 import "./pokemon-abilities.css"
 
 

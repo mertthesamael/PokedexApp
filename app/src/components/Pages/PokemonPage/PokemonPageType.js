@@ -3,10 +3,7 @@ import TypeIcon from "../../Icons/icons/TypeIcon";
 
 const PokemonPageType = (props) => {
 
-
-
     let typeClass = props.type;
-    let typeIcon = ""
 
     return(
 

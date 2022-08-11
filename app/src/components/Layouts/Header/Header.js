@@ -1,7 +1,7 @@
 
 import { NavLink } from 'react-router-dom'
 import { useLocation, useNavigate  } from 'react-router-dom'
-import "../../Buttons/Pokemonpagebutton/pokemon-page-button.css"
+import "../../Buttons/Buttons.css"
 import "./header.css"
 
 const Header = (props) =>{

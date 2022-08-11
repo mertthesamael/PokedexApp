@@ -3,6 +3,7 @@ import { electric, flying, nature, fire, ground, water, bug, poison, normal, fai
 const TypeIcon = (props) => {
     let typeClass = props.type;
     let typeIcon = ""
+    
     if(typeClass === "electric"){
         typeIcon = electric()
     }else if(typeClass === "grass"){
@@ -25,11 +26,11 @@ const TypeIcon = (props) => {
         typeIcon = fairy()
     }else if (typeClass ==="psychic"){
         typeIcon = psychic()
-    }else if (typeClass ==="fighting"){
+    }else if (typeClass === "fighting"){
         typeIcon = fighting()
     }
     else if (typeClass ==="rock"){
-        typeIcon = fighting()
+        typeIcon = rock()
     }else if (typeClass ==="dark"){
         typeIcon = dark()
     }else if (typeClass ==="steel"){
@@ -54,3 +55,5 @@ const TypeIcon = (props) => {
 
 
 export default TypeIcon;
+
+

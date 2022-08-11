@@ -5,8 +5,9 @@ import {firstLetterUpper} from "../store/context"
 
 
 const FavoriteCards = (props) => {
+    
+//Display localstorage items and clear function
 const [arr, setArr] = useState(localStorage.getItem('fav'))
-
 const clear = () => {
     localStorage.clear()
     setArr(null)

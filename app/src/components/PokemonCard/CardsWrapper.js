@@ -24,11 +24,11 @@ function pad(num, size) {
 
 //pokeapi offset
 const [offset, setOffset] = useState(50)
-function offsetSum(){
+const offsetSum = () => {
     return offset+50
 }
 
-function offsetHandler(){
+const offsetHandler = () =>{
     return setOffset(offsetSum())
 }
 
@@ -48,7 +48,9 @@ return (
                     }).slice(0, offset).map((data)=><PokemonCard  getFavorite={props.getData} key={data.name} name={data.name} url={data.url} number={pad((pokemon.indexOf(data)+1),3)}/>)}
 
                 </div>
-               </div>
+
+            </div>
+            
     </div>
            
     )

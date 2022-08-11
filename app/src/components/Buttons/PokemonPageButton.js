@@ -1,4 +1,4 @@
-import "./pokemon-page-button.css"
+import "./Buttons.css"
 import { NavLink } from "react-router-dom";
 const PokemonPageButton = (props) => {
 let color = props.type;
