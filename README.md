@@ -4,7 +4,7 @@
 Selam !
 
 
-Bu proje benim ilk React projem olamsı dışında aynı zamanda Kodluyoruz 2022 Front End ReactJS Bootcampi için hazırladığım bitirme çalışması. Bootcamp süresince öğrendiğim bilgileri olabildiğince uygulamaya çalıştım.
+Bu proje benim ilk React projem olamsı dışında, aynı zamanda Kodluyoruz 2022 Front End ReactJS Bootcampi için hazırladığım bitirme çalışması. Bootcamp süresince öğrendiğim bilgileri olabildiğince uygulamaya çalıştım.
 
 Live : https://mertenercan-pokedex.netlify.app/
 
