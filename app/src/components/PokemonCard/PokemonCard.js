@@ -1,12 +1,11 @@
-import PokemonName from "../Pokemon/PokemonName/PokemonName";
 import PokemonType from "../Pokemon/PokemonType/PokemonType";
 import "./pokemon-card.css"
 import {useEffect, useState} from "react"
 import axios from "axios";
 import PokemonIcon from "../Pokemon/PokemonIcon/PokemonIcon";
-import PokemonNumber from "../Pokemon/PokemonNumber/PokemonNumber";
 import {NavLink} from "react-router-dom"
 import StarIcons from "../Icons/icons/StarIcons";
+import { firstLetterUpper } from "../store/context";
 
 
 const PokemonCard = (props) => {
@@ -32,7 +31,7 @@ const getFavorite = (event) => {
     const favInfo = {
         name: props.name,
         image: event.target.parentElement.querySelector('.iconn').src,
-        number:event.target.parentElement.querySelector('.pokemon-number').innerHTML
+        number:event.target.parentElement.querySelector('.pokemon-name-number p').innerHTML
     }
     
     setIsFavorite(!isFavorite)
@@ -64,9 +63,8 @@ JSON.parse(localStorage?.getItem('fav'))?.map(x=> x.name === props.name ? starTy
                     <div className="pokemon-card-header">
 
                         <div className="pokemon-name-number">
-
-                            <PokemonNumber number={props.number} />
-                            <NavLink to={"/"+props.name} className="pokemon-name"><PokemonName name={props.name}/></NavLink>
+                            <p style={    {fontSize: '30px', color: '#9094C7', height: '0'}}>{props.number} </p>
+                            <NavLink to={"/"+props.name} className="pokemon-name">{firstLetterUpper(props.name)}</NavLink>
 
                         </div>
 

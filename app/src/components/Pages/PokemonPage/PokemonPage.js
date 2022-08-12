@@ -23,7 +23,7 @@ const PokemonPage = (props) => {
     const pokeName=location.pathname.slice(1)
     const [pokemonName, setPokemonName] = useState(location.pathname.slice(1))
     const [state, setState] = useState(false)
-
+    
     const [pokemon, dispatch] = useReducer(reducer, {
         name:"",stats:"",physicalStats:"",heldItems: [],eggGroups: [],icon:"",types:"",mainType:"",abilities:"",category: "",firstEvoIcon: "",secondEvoIcon: "",baseFormIcon: "",firstEvolutionName: "",secondEvolutionName: "",firstEvolutionLevel: "",secondEvolutionLevel :"",baseFormName:""
     })

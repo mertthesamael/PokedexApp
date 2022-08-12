@@ -37,10 +37,13 @@
     font-size:30px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content:center;
     align-items: flex-start;
-    height: 100%;
 }
+.pokemon-name-number p{
+    margin-top: 0;
+}
+
 
 .pokemon-name{
     color: #9094C7;

@@ -19,7 +19,7 @@ const clear = () => {
         <div className="favorite-pokemons-section">
 
 
-        {arr ? JSON.parse(arr).map(x=> <div className="fav-pokes"><NavLink className={"fav-poke-link"} to={"/"+x.name}><div className="favorite-pokemon"><h3 className="favorite-pokemon-name">{firstLetterUpper(x.name)} </h3><img alt="favoirte pokemon" src={x.image}></img>{x.number}</div></NavLink></div>): <h1>You have not any favorite Pokémon :( </h1>}
+        {arr ? JSON.parse(arr).map(x=> <div key={x.number}className="fav-pokes"><NavLink className={"fav-poke-link"} to={"/"+x.name}><div className="favorite-pokemon"><h3 className="favorite-pokemon-name">{firstLetterUpper(x.name)} </h3><img alt="favoirte pokemon" src={x.image}></img>{x.number}</div></NavLink></div>): <h1>You have not any favorite Pokémon :( </h1>}
 
 
         </div>

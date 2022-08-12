@@ -2,6 +2,7 @@
 import { NavLink } from 'react-router-dom'
 import { useLocation, useNavigate  } from 'react-router-dom'
 import "../../Buttons/Buttons.css"
+import { search } from '../../Icons/icons/IconSVG'
 import "./header.css"
 
 const Header = (props) =>{
@@ -22,7 +23,7 @@ if(location.pathname==="/" || location.pathname==="/favorites"){
             <div className="search-section">
                
             <input type="text" onChange={props.onSearch} placeholder="Search..." className="search-bar">
-               </input> <img src={require("../../Icons/icons/search.png")}></img>
+               </input>{search()}
                 
             </div>
                <NavLink to="/favorites" className="favorites-link">Favorites</NavLink>
