@@ -2,7 +2,8 @@ import React from "react";
 
 
 const PokemonsContext = React.createContext({
-    pokemons: 60
+    infoState: true,
+    moveState: false
 })
 
 

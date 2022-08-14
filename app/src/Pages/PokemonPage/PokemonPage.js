@@ -1,24 +1,24 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { arrowRight } from "../../assets/icons/icons";
 import useHttp from "../../hooks/useHttp";
-import PokemonInfoButton from "../Buttons/PokemonInfoButton";
-import PokemonMovesButton from "../Buttons/PokemonMovesButton";
-import PokemonDetails from "../PokemonDetails/PokemonDetails";
-import PokemonEvolution from "../PokemonEvolution/PokemonEvolution";
-import PokemonBaseStats from "../PokemonStats/PokemonBaseStats";
-import PokemonPhysicalStats from "../PokemonStats/PokemonPhysicalStats";
+import PokemonInfoButton from "../../components/Buttons/PokemonInfoButton";
+import PokemonMovesButton from "../../components/Buttons/PokemonMovesButton";
+import PokemonDetails from "../../components/PokemonDetails/PokemonDetails";
+import PokemonEvolution from "../../components/PokemonEvolution/PokemonEvolution";
+import PokemonBaseStats from "../../components/PokemonStats/PokemonBaseStats";
+import PokemonPhysicalStats from "../../components/PokemonStats/PokemonPhysicalStats";
 import "./pokemon-page.scss"
 
 const PokemonPage = (props) => {
 
     let name = useLocation().pathname.slice(1)
     let keygen = require("keygenerator")
-
     const {fetchPokemonPageData,
        pokemon
-
     } = useHttp(name)
+
+  
 
     useEffect(() =>{
     fetchPokemonPageData()
@@ -87,7 +87,7 @@ const PokemonPage = (props) => {
                         <PokemonDetails title={"Training"} type={pokemon.mainType} data={[{capture_rate: [pokemon.catchRate], growth_rate: [pokemon.growthRate], base_experience: [pokemon.baseExp], held_items: pokemon.heldItems.length!==0?pokemon.heldItems.map(x=><div key={keygen._()}>{x.item.name.split("-").join(" ")+" "+x.version_details[0].rarity+'%'}</div>):"None"}]}/>
                     
                         <PokemonDetails title={"Breeding"} type={pokemon.mainType} data={[{egg_groups: pokemon.eggGroups.map(x=><div key={keygen._()}>{x.name+" "}</div>), egg_cycles: pokemon.eggCycles}]}/>
-                        <PokemonMovesButton type={pokemon.mainType}></PokemonMovesButton>
+                        <div><PokemonMovesButton type={pokemon.mainType}></PokemonMovesButton></div>
                     </div>
                 <div>
                 </div>

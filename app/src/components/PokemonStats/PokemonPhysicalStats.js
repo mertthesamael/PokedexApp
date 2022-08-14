@@ -28,7 +28,7 @@ let keygen = require("keygenerator")
             </div>
 
             <div className="pokemon-stats__statitem" >
-            <h2>Types: </h2><div style={{display: 'flex', width: '20rem'}}>{props.types && props.types.map(type => <PokemonpageTypeIcon key={keygen._()} types={type.type.name}/>)}</div>
+            <h2>Types: </h2><div>{props.types && props.types.map(type => <PokemonpageTypeIcon key={keygen._()} types={type.type.name}/>)}</div>
             </div>
 
         </div>
