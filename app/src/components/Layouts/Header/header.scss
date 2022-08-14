@@ -1,0 +1,16 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem 1rem 2rem;
+    box-shadow: 0 0 40px 8px rgb(0 0 0 / 18%);
+    position: relative;
+    z-index: 5564;
+    svg{
+        width: 2rem;
+        height: 100%;
+    }
+}
+html{
+    cursor: default;
+}

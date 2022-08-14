@@ -1,0 +1,81 @@
+@keyframes shift{
+    to{background-position:115px 100%;}
+}
+
+.pokemon-stats{
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-evenly;
+    height: 25rem;
+    width: fit-content;
+        &:hover{
+            transform: rotateY(0deg);
+        }
+        h2{
+            margin-right:1rem;
+        }
+
+    &__statitem{
+        display: flex;
+        width: 100%;
+        align-items: center;
+
+        &__progressbar{
+            display: flex;
+            width: 190px;
+            height: 1.5rem;
+            border-radius :0.25rem;
+            background-color: rgba(61, 58, 58, 0.089);
+
+            &__loaded{
+                display: flex;
+                justify-content: flex-end;
+                color: white;
+                align-items: center;
+                padding-right: 1rem;
+                background-image: linear-gradient(-45deg,hsla(0,0%,100%,.15) 25%,transparent 0,transparent 50%,hsla(0,0%,100%,.15) 0,hsla(0,0%,100%,.15) 75%,transparent 0,transparent);
+                background-position: 10%;
+                border-radius: 3px;
+                background-size: 25px 100%;
+                animation: shift infinite 1s linear ;
+            }
+        }
+
+    }
+  
+}
+
+@media only screen and (min-width: 992px){
+   
+    .pokemon-stats{
+        
+        transition: .3s;
+        transform: perspective(800px) rotateY(35deg);
+        
+    }
+    .pokemon-base-stats{
+        
+        transition: .3s;
+        transform: perspective(800px) rotateY(-35deg);
+        
+    }
+    
+}
+
+.pokemon-base-stats{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-evenly;
+    height: 25rem;
+    width: fit-content;
+        &:hover{
+            transform: rotateY(0deg);
+        }
+        h2{
+            margin-right:1rem;
+        }
+}
+    

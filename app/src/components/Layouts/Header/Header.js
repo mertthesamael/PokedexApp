@@ -1,43 +1,34 @@
-
-import { NavLink } from 'react-router-dom'
-import { useLocation, useNavigate  } from 'react-router-dom'
-import "../../Buttons/Buttons.css"
-import { search } from '../../Icons/icons/IconSVG'
-import "./header.css"
-
-const Header = (props) =>{
-let navigate = useNavigate()
-const location = useLocation();
-    let color = props.color;
-if(location.pathname==="/" || location.pathname==="/favorites"){
-    color="white"
-}
-
+import { NavLink, useLocation } from "react-router-dom"
+import "./header.scss"
+import { PokemonsContext } from "../../../store/context"
+import { useContext } from "react"
+import { back } from "../../../assets/icons/icons"
+const Header = (props) => {
+    const ctx = useContext(PokemonsContext)
+    let randomItem = ctx.pokemons[Math.floor(Math.random()*ctx.pokemons.length)];
+    let location = useLocation().pathname
+    let color = ""
+    location === "/" ? color = 'white': color=props.color
     return(
         <div className={"header "+color}>
-
-            <div className="side-menu-content">
-                
-            {location.pathname === "/" ?
-            <>
-            <div className="search-section">
-               
-            <input type="text" onChange={props.onSearch} placeholder="Search..." className="search-bar">
-               </input>{search()}
-                
-            </div>
-               <NavLink to="/favorites" className="favorites-link">Favorites</NavLink>
-            </>
-            : <div className='back-icon'> <img src={require("../../Icons/icons/arrow.png")} onClick={()=> navigate("/")}></img></div>
-            }
-            <h1 onClick={props.stateHandler} style={{cursor: 'pointer'}}>PokédexApp</h1>
-        
+            {location === "/" ?
             
+            <details>
+            <summary>Menu</summary>
+            <div className="header__searchbar">
+                <input type="text"></input>
+            </div>
+            <h1>Favorites</h1>
+            <NavLink to={"/"+randomItem}>TEst</NavLink>
+            </details>
+            :<div><NavLink to="/">{back()}</NavLink></div>}
+            <div className="header__heading" style={{color: 'black'}}>
+                <h1>PokédexApp</h1>
+            </div>
 
-        </div>
         </div>
     )
 
 }
 
-export default Header;
+export default Header

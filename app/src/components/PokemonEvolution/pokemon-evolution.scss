@@ -1,0 +1,13 @@
+.pokemon__evolution__item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img{
+
+        height: 12rem;
+        width: 12rem;
+        display: flex;
+
+    }
+}

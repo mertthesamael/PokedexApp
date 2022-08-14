@@ -1,85 +1,47 @@
-import PokemonType from "../Pokemon/PokemonType/PokemonType";
-import "./pokemon-card.css"
-import {useEffect, useState} from "react"
-import axios from "axios";
-import PokemonIcon from "../Pokemon/PokemonIcon/PokemonIcon";
-import {NavLink} from "react-router-dom"
-import StarIcons from "../Icons/icons/StarIcons";
-import { firstLetterUpper } from "../store/context";
-
+import { useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import useHttp from "../../hooks/useHttp";
+import PokemonTypeIcon from "../PokemonTypeIcon/PokemonTypeIcon";
 
 const PokemonCard = (props) => {
-    
-//Fetch data and set states
-const [icon, setIcon] = useState([])
-const [type, setType] = useState([])
 
-useEffect(()=>{
-    const fetchPokemonIcon =  async (pokemon) => {
-        const data = await axios(props.url).then(response=>response.data)
-        setType(data.types)
-        setIcon(data.sprites.other['official-artwork'].front_default)
-    }
-    fetchPokemonIcon()
-}, [props.url]);
+     const { fetchPokemonData,pokemon } = useHttp(props.data)
+     let keygen = require("keygenerator")
+
+   useEffect(()=>{
+    fetchPokemonData()
+    },[])
 
 
 
-//Adding favorites (localstorage)
-const getFavorite = (event) => {
-    
-    const favInfo = {
-        name: props.name,
-        image: event.target.parentElement.querySelector('.iconn').src,
-        number:event.target.parentElement.querySelector('.pokemon-name-number p').innerHTML
-    }
-    
-    setIsFavorite(!isFavorite)
-    return props.getFavorite(favInfo)
-}
+    return(
+    <NavLink to={props.name} className="cardwrapper__link">
 
-const [isFavorite, setIsFavorite] = useState(false)
+        <div className="cardwrapper__pokemoncard">
 
-let favClass = " "
-let starType= ""
+            <div className="cardwrapper__pokemoncard__header">
 
-if ( isFavorite === true){
-    favClass="fav-active"
-    starType="fill"
-}
+                <div className="cardwrapper__pokemoncard__header__pokemoninfo">
 
-
-JSON.parse(localStorage?.getItem('fav'))?.map(x=> x.name === props.name ? starType="fill":"")
-
-
-    return (
-   
-        <div className="pokemon-card">
-
-            <div onClick={getFavorite} className={"fav-icon "+favClass}><StarIcons type={starType}></StarIcons></div>
-
-                <div className="pokemon-card-body">
-
-                    <div className="pokemon-card-header">
-
-                        <div className="pokemon-name-number">
-                            <p style={    {fontSize: '30px', color: '#9094C7', height: '0'}}>{props.number} </p>
-                            <NavLink to={"/"+props.name} className="pokemon-name">{firstLetterUpper(props.name)}</NavLink>
-
-                        </div>
-
-                    <div className="pokemon-type-div">{type.map(x=> <PokemonType key={x.slot}type={x.type.name}/> )}</div>
+                    <h2 style={{fontSize: '1.5rem'}}>{props.number}</h2>
+                    <h2>{pokemon.name}</h2>
 
                 </div>
-             
-                <div className="icon-wrap"></div>
 
-                <PokemonIcon src={icon}></PokemonIcon>
+                <div className="cardwrapper__pokemoncard__header__pokemontypes">
+                    {pokemon.types && pokemon.types.map( type => <PokemonTypeIcon key={keygen._()} type={type.type.name}/>)}
+                </div>
 
             </div>
-         
+
+            <div className="cardwrapper__pokemoncard__icon">
+
+                <img src={pokemon.icon} alt="pokemonicon"></img>
+
+            </div>
+
         </div>
-   
+    </NavLink>
     )
 
 }
