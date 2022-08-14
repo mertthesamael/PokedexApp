@@ -1,11 +1,9 @@
 import { NavLink, useLocation } from "react-router-dom"
 import "./header.scss"
-import { PokemonsContext } from "../../../store/context"
-import { useContext } from "react"
 import { back } from "../../../assets/icons/icons"
+
 const Header = (props) => {
-    const ctx = useContext(PokemonsContext)
-    let randomItem = ctx.pokemons[Math.floor(Math.random()*ctx.pokemons.length)];
+    let randomItem = Math.floor(Math.random()*800)
     let location = useLocation().pathname
     let color = ""
     location === "/" ? color = 'white': color=props.color
@@ -16,12 +14,12 @@ const Header = (props) => {
             <details>
             <summary>Menu</summary>
             <div className="header__searchbar">
-                <input type="text"></input>
+                <input type="text" onChange={props.onSearch}></input>
             </div>
             <h1>Favorites</h1>
-            <NavLink to={"/"+randomItem}>TEst</NavLink>
+            <NavLink to={"/"+randomItem} style={{textDecoration: 'none', color: 'inherit'}}>Summon Random Pokémon !</NavLink>
             </details>
-            :<div><NavLink to="/">{back()}</NavLink></div>}
+            :<div><NavLink to="/" >{back()}</NavLink></div>}
             <div className="header__heading" style={{color: 'black'}}>
                 <h1>PokédexApp</h1>
             </div>

@@ -12,7 +12,7 @@ const useHttp = (url)  => {
     
     
     const fetchPokemonData = async () => {
-        const data = await axios("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=65").then(response=>response.data)
+        const data = await axios("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=800").then(response=>response.data)
         setPokemons(data.results) 
         const data2 = await axios(url).then(response=>response.data)
         dispatch({
@@ -56,11 +56,11 @@ const useHttp = (url)  => {
             secondEvolutionName: data5.chain.evolves_to[0]?.evolves_to[0]?.species.name,
             firstEvolutionLevel:data5.chain.evolves_to[0]?.evolution_details[0].min_level,
             firstEvolutionItem: data5.chain.evolves_to[0]?.evolution_details[0].item,
-            firstEvolutionIcon:data6.data.sprites.other['official-artwork'].front_default,
+            firstEvolutionIcon:data6.data?.sprites.other['official-artwork'].front_default,
             secondEvolutionIcon: data7.data?.sprites.other['official-artwork'].front_default,
             secondEvolutionItem: data5.chain.evolves_to[0]?.evolves_to[0]?.evolution_details[0].item,
             firstEvolutionTrigger:data5.chain.evolves_to[0]?.evolution_details[0].trigger,
-            secondEvolutionTrigger:data5.chain.evolves_to[0]?.evolves_to[0].evolution_details[0].trigger,
+            secondEvolutionTrigger:data5.chain.evolves_to[0]?.evolves_to[0]?.evolution_details[0].trigger,
             secondEvolutionHapiness:data5.chain.evolves_to[0]?.evolves_to[0]?.evolution_details[0].min_happiness,
             firstEvolutionHapiness:data5.chain.evolves_to[0]?.evolution_details[0].min_happiness,
             secondEvolutionLevel : data5.chain.evolves_to[0]?.evolves_to[0]?.evolution_details[0].min_level,

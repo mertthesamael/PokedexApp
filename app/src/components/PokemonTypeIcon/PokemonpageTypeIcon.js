@@ -4,8 +4,6 @@ import "./pokemon-type-icon.scss"
 
 const PokemonpageTypeIcon = (props) =>{
 const icons = {electric: electric(), flying: flying(), nature: nature(), fire: fire(), ground: ground(), water: water(), bug: bug(), poison: poison(), normal: normal(), fairy: fairy(), psychic: psychic(), fighting: fighting(), rock: rock(), dark: dark(), steel: steel(), dragon:dragon(), ice: ice(), ghost:ghost(), grass: grass()}
-    let typeClass = props.types;
-    let typeIcon = ""
    
     return(
         <div className={"pokemonpage-type-icon "+props.types} style={{color: 'white'}}>

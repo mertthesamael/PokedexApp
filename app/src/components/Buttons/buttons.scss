@@ -8,4 +8,17 @@
     margin: 0.5rem;
 }
 
-
+.pokemon-moves-button{
+    width: fit-content;
+    padding: 5rem;
+    height: 10rem;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    border-radius: 9px;
+    cursor:default;
+    transition: all 0.5s ease-in;
+    &:hover{
+        color: black!important;
+    }
+}
