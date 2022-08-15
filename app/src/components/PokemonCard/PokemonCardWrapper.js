@@ -11,23 +11,23 @@ const PokemonCardWrapper = (props) => {
     const ctx = useContext(PokemonsContext)
 
     useEffect(()=>{
-    fetchPokemonData()
+        fetchPokemonData()
     },[])
     const pad = (num, size) => {
         num = num.toString();
         while (num.length < size) num = "0" + num;
         return num;
     }
-
+    
     const offsetHandler = (event)=>{
-     
-       return pokemonList+65
+        
+        return pokemonList+65
     }
     
     const favoritesHandler = (item) => {
         localStorage.setItem(item.name, JSON.stringify(item))
     }
-
+    
 
 
     return(

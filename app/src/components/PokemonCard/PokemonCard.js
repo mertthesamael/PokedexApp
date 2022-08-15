@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { star, starEmpty } from "../../assets/icons/icons";
 import useHttp from "../../hooks/useHttp";
+import { PokemonsContext } from "../../store/context";
 import PokemonTypeIcon from "../PokemonTypeIcon/PokemonTypeIcon";
 
 const PokemonCard = (props) => {
-
+    const ctx  = useContext(PokemonsContext)
     const { fetchPokemonData,pokemon } = useHttp(props.data)
     let keygen = require("keygenerator")
     const [isFavorite, setIsFavorite] = useState(false)
@@ -46,7 +47,7 @@ const PokemonCard = (props) => {
                      viewBox="0 0 512 512" style={{enableBackground:"new 0 0 512 512"}}>
                         {starIcon}
                     </svg>
-                        <NavLink to={props.name} className="cardwrapper__link">
+                        <NavLink to={props.name} onClick={ctx.onResetText} className="cardwrapper__link">
                     <h2 className="pokemon-number"style={{fontSize: '1.5rem'}}>{props.number}</h2>
                     <h2>{pokemon.name}</h2>
                         </NavLink>

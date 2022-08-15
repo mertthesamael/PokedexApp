@@ -30,9 +30,11 @@ export const PokemonsContextWrapper = (props) => {
     }
   
     const handleText = (event) => {
-    
     return setText(event.target.value.toLowerCase())
+    }
 
+    const resetText = () => {
+        return setText("")
     }
 
 return (
@@ -46,7 +48,8 @@ return (
         onChangeMoveState: moveStateHandler,
         onChangeText : handleText,
         onGetMoves : getMoves,
-        onGetType : getType
+        onGetType : getType,
+        onResetText:resetText
         }} >
         {props.children}
     </PokemonsContext.Provider>
