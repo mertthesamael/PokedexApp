@@ -1,5 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { star, starEmpty } from "../../assets/icons/icons";
 import useHttp from "../../hooks/useHttp";
 import PokemonTypeIcon from "../PokemonTypeIcon/PokemonTypeIcon";
 
@@ -7,24 +8,48 @@ const PokemonCard = (props) => {
 
      const { fetchPokemonData,pokemon } = useHttp(props.data)
      let keygen = require("keygenerator")
+     const [isFavorite, setIsFavorite] = useState(false)
+    let starIcon = ""
+    isFavorite ? starIcon = star() : starIcon = starEmpty()
 
-   useEffect(()=>{
+    const isFavoriteHandler = (event) => {
+    if(Object.keys(localStorage).includes(props.name)){
+        fetchPokemonData()
+            return localStorage.removeItem(props.name)
+        
+    }
     fetchPokemonData()
+
+        setIsFavorite(true)
+        const favInfo = {
+            name: props.name,
+        }
+       return props.onGetFavorite(favInfo)    
+    
+    }
+    useEffect(()=>{
+        fetchPokemonData()
     },[])
-
-
-
+    
+    Object.keys(localStorage).includes(props.name) ?  starIcon=star(): starIcon=starEmpty()
+    
+    
     return(
-    <NavLink to={props.name} className="cardwrapper__link">
-
+        
         <div className="cardwrapper__pokemoncard">
 
             <div className="cardwrapper__pokemoncard__header">
 
                 <div className="cardwrapper__pokemoncard__header__pokemoninfo">
 
-                    <h2 style={{fontSize: '1.5rem'}}>{props.number}</h2>
+                    <svg onClick={isFavoriteHandler}version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"  x="px" y="px"
+                     viewBox="0 0 512 512" style={{enableBackground:"new 0 0 512 512"}}>
+                        {starIcon}
+                    </svg>
+            <NavLink to={props.name} className="cardwrapper__link">
+                    <h2 className="pokemon-number"style={{fontSize: '1.5rem'}}>{props.number}</h2>
                     <h2>{pokemon.name}</h2>
+            </NavLink>
 
                 </div>
 
@@ -36,12 +61,11 @@ const PokemonCard = (props) => {
 
             <div className="cardwrapper__pokemoncard__icon">
 
-                <img src={pokemon.icon} alt="pokemonicon"></img>
+                <img src={pokemon.icon} className="iconn" alt="pokemonicon"></img>
 
             </div>
 
         </div>
-    </NavLink>
     )
 
 }

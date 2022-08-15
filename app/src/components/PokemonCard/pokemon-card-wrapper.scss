@@ -6,6 +6,7 @@
     &__link{
         text-decoration: none;
         cursor:default;
+        color: inherit;
     }
     
     &__pokemoncard{
@@ -35,6 +36,10 @@
                 height: fit-content;
                 font-size: 10px;
                 width: 100%;
+                svg{
+                    width: 32px;
+                    height: 32px;
+                }
             }
 
            &__pokemontypes{
@@ -57,5 +62,17 @@
             }
         }
     
+    }
+    &__loadmore{
+        position: fixed;
+        right: 2rem;
+        bottom: 2rem;
+        button{
+            background-color: white;
+            transition: all 0.5s ease-in;
+            &:hover{
+                background-color: #F94C66;
+            }
+        }
     }
 }

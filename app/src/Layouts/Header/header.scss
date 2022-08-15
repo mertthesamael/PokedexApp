@@ -6,13 +6,16 @@
     padding: 1rem 2em 1rem 2rem;
     box-shadow: 0 0 40px 8px rgb(0 0 0 / 18%);
     z-index: 5564;
-
+    width: 100%;
+    &__menu{
+        display: flex;
+        flex-direction: column;
+    }
     svg {
         width: 2rem;
         height: 100%;
     }
 
-    width: 100%;
 }
 
 html {
