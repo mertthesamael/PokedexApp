@@ -47,7 +47,7 @@ const PokemonCard = (props) => {
                      viewBox="0 0 512 512" style={{enableBackground:"new 0 0 512 512"}}>
                         {starIcon}
                     </svg>
-                        <NavLink to={props.name} onClick={ctx.onResetText} className="cardwrapper__link">
+                        <NavLink to={props.name} onClick={ctx.onChangeText} className="cardwrapper__link">
                     <h2 className="pokemon-number"style={{fontSize: '1.5rem'}}>{props.number}</h2>
                     <h2>{pokemon.name}</h2>
                         </NavLink>
