@@ -1,5 +1,5 @@
 # PokedexApp
-![image](https://user-images.githubusercontent.com/79616834/183291963-19ea1299-27b4-4d07-9a6f-e4221be401d0.png)
+![image](https://user-images.githubusercontent.com/79616834/184725245-61c6e37b-5d11-4c02-b042-988c83d53773.png)
 
 Selam !
 
@@ -10,7 +10,7 @@ Live : https://mertenercan-pokedex.netlify.app/
 
 Proje içerisindeki tüm datayı PokeAPIv2.0 üzerinden çektim. (https://github.com/PokeAPI/pokeapi). Projenin basitçe tanımı, API'den gelen Pokémon bilgilerini cardlara mapladim, cardlara tıklandığı zaman ise o Pokémonun detay sayfasına yönlendirdim. Detay sayfası içerisinde ilgili Pokémonun evrim bilgileri, base statları ve movesetleri gibi bilgiler mevcut. Aynı zamanda localstorage üzerinde favori Pokémonları tutuyor.
 
-![image](https://user-images.githubusercontent.com/79616834/183292123-977224b1-3a08-48c0-936f-a77e7ad71ba4.png)
+![image](https://user-images.githubusercontent.com/79616834/184725432-5c4cd907-14da-497e-875f-1d1ebf1faccb.png)
 
 
 Proje başlangıcında tasarıma Figma üzerinden bulduğum bir şablon ile devam ediyordum fakat daha sonra bir reddit postunda bu muhteşem tasarıma sahip app'i gördüm. Anında fikrimi değiştirip bu app'in clonunu yapmaya karar verdim. Projenin ilk hali şunun gibiydi ; 
