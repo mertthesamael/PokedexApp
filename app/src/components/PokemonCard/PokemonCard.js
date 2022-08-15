@@ -6,9 +6,9 @@ import PokemonTypeIcon from "../PokemonTypeIcon/PokemonTypeIcon";
 
 const PokemonCard = (props) => {
 
-     const { fetchPokemonData,pokemon } = useHttp(props.data)
-     let keygen = require("keygenerator")
-     const [isFavorite, setIsFavorite] = useState(false)
+    const { fetchPokemonData,pokemon } = useHttp(props.data)
+    let keygen = require("keygenerator")
+    const [isFavorite, setIsFavorite] = useState(false)
     let starIcon = ""
     isFavorite ? starIcon = star() : starIcon = starEmpty()
 
@@ -16,13 +16,13 @@ const PokemonCard = (props) => {
     if(Object.keys(localStorage).includes(props.name)){
         fetchPokemonData()
             return localStorage.removeItem(props.name)
-        
     }
     fetchPokemonData()
-
+    
         setIsFavorite(true)
         const favInfo = {
             name: props.name,
+            img: event.target.parentElement.parentElement.parentElement.querySelector(".iconn").src
         }
        return props.onGetFavorite(favInfo)    
     
@@ -42,14 +42,14 @@ const PokemonCard = (props) => {
 
                 <div className="cardwrapper__pokemoncard__header__pokemoninfo">
 
-                    <svg onClick={isFavoriteHandler}version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"  x="px" y="px"
+                    <svg onClick={isFavoriteHandler}version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"  
                      viewBox="0 0 512 512" style={{enableBackground:"new 0 0 512 512"}}>
                         {starIcon}
                     </svg>
-            <NavLink to={props.name} className="cardwrapper__link">
+                        <NavLink to={props.name} className="cardwrapper__link">
                     <h2 className="pokemon-number"style={{fontSize: '1.5rem'}}>{props.number}</h2>
                     <h2>{pokemon.name}</h2>
-            </NavLink>
+                        </NavLink>
 
                 </div>
 

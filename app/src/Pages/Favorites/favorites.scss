@@ -1,0 +1,50 @@
+.favoritespage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    &__favorite-cards{
+        display: flex;
+        width: 60%;
+        flex-wrap: wrap;
+        
+        &__item{
+            width: 12rem;
+            height: max-content;
+            margin: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            &:hover{
+                background-color: rgba(0, 0, 0, 0.137);
+        }
+        
+        img{
+            width: 128px;
+            height: 128px;
+        }
+        
+    }
+    
+}
+
+}
+.reset-btn{
+    
+    display: flex;
+    padding: 1rem;
+    border: 1px solid black;
+    &:hover{
+        background-color: rgba(0, 0, 0, 0.137);
+        color: white;
+    }
+
+    &__reset{
+        text-decoration: none;
+    color:inherit;
+    font-size: 2rem;
+    cursor: default;
+
+    }
+}

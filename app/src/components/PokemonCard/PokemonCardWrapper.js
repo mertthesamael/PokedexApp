@@ -24,10 +24,8 @@ const PokemonCardWrapper = (props) => {
     }
     
     const favoritesHandler = (item) => {
-
-        localStorage.setItem(item.name, item)
+        localStorage.setItem(item.name, JSON.stringify(item))
     }
-
 
 
     return(
@@ -36,7 +34,7 @@ const PokemonCardWrapper = (props) => {
 
             {
                 pokemons.filter((x)=> {
-                   return x.name.includes(ctx.text)               
+                return x.name.includes(ctx.text)               
                 }).slice(0,pokemonList).map( data => <PokemonCard onGetFavorite={favoritesHandler} data={data.url} key={keygen._()} name={data.name} number={pad((pokemons.indexOf(data)+1),3)}/>)
             }   
             <div className="cardwrapper__loadmore">

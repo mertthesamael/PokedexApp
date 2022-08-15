@@ -13,7 +13,6 @@ const Header = (props) => {
     let color = ""
     
     const ctx = useContext(PokemonsContext)
-    console.log(ctx.onChangeInfoState)
     
     location === "/" ? color = 'wht': color=ctx.color
    
@@ -27,7 +26,7 @@ const Header = (props) => {
 
                 <div className="header__menu">
 
-                    <input type="text" onChange={ctx.onChangeText}></input>
+                    <input type="text" placeHolder="Search Pokémon.." className="searchbar"onChange={ctx.onChangeText}></input>
 
 
                 <NavLink style={{textDecoration: 'none', color: 'inherit'}} to="/favorites">Favorites</NavLink>

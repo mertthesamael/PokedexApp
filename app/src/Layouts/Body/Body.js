@@ -12,7 +12,6 @@ const Body = (props) => {
     ctx.onChangeMoveState(false)
  }
 
- console.log(ctx.moves)
 
 
     return(

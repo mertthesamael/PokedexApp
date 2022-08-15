@@ -3,9 +3,9 @@ import "../PokemonTypeIcon/pokemon-type-icon.scss"
 import { useContext } from "react"
 import { PokemonsContext } from "../../store/context"
 const PokemonMoves = (props) => {
+  let keygen = require("keygenerator")
 
 const ctx = useContext(PokemonsContext)
-console.log(ctx.moves)
     let color = props.type
      
       return(
@@ -21,10 +21,10 @@ console.log(ctx.moves)
               <div className="pokemon-move-list__info">
                   
                   <div className="pokemon-move-list__info__required-level">
-                    {ctx.moves.map( move => <h3>{move.version_group_details[0].level_learned_at}</h3>)}
+                    {ctx.moves.map( move => <h3 key={keygen._()}>{move.version_group_details[0].level_learned_at}</h3>)}
                   </div>
                   <div className="pokemon-move-list__info__move-name">
-                    {ctx.moves.map( move => <h3>{move.move.name}</h3>)}
+                    {ctx.moves.map( move => <h3 key={keygen._()}>{move.move.name}</h3>)}
                   </div>
   
               </div>

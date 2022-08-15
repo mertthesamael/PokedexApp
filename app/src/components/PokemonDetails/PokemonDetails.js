@@ -1,7 +1,9 @@
 import "./pokemon-details.scss"
 import React from "react"
 const PokemonDetails = (props) => {
+    
     let keygen = require("keygenerator")
+
     return(
         <div className="pokemon-details-wrapper">
 
