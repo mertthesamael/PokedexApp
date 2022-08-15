@@ -1,0 +1,48 @@
+.pokemon-move-list {
+    display: flex;
+    flex-direction: column;
+    width: 25rem;
+    margin: 0 auto;
+    height: 25rem;
+
+    &__header {
+        display: flex;
+        width: 100%;
+        color: white;
+        height: 3rem;
+        border-top-left-radius: 9px;
+        border-top-right-radius: 9px;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: space-evenly;
+        overflow: auto;
+
+        &__required-level {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        &__move-name {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+    }
+
+    &__footer {
+        display: flex;
+        border-bottom-left-radius: 9px;
+        border-bottom-right-radius: 9px;
+        height: 3rem;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+    }
+}

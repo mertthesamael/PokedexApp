@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import PokemonCard from "./PokemonCard";
 import "./pokemon-card-wrapper.scss"
 import useHttp from "../../hooks/useHttp";
+import { PokemonsContext } from "../../store/context";
 const PokemonCardWrapper = (props) => {
     let keygen = require("keygenerator")
     const {pokemons, fetchPokemonData} = useHttp()
     const [pokemonList, setPokemonList] = useState(65)
-
+    const ctx = useContext(PokemonsContext)
     useEffect(()=>{
     fetchPokemonData()
     },[])
@@ -27,7 +28,7 @@ const PokemonCardWrapper = (props) => {
 
             {
                 pokemons.filter((x)=> {
-                   return x.name.includes(props.input)               
+                   return x.name.includes(ctx.text)               
                 }).slice(0,pokemonList).map( data => <PokemonCard data={data.url} key={keygen._()} name={data.name} number={pad((pokemons.indexOf(data)+1),3)}/>)
             }
                 <button onClick={()=> setPokemonList(offsetHandler())}>Test</button>

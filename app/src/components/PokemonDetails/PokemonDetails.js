@@ -20,7 +20,7 @@ const PokemonDetails = (props) => {
 
                         <div key={keygen._()}className={"pokemon-details-wrapper__details__values "+props.type} style={{background: 'none', boxShadow: 'none'}}>
 
-                        {Object.values(title).map(value=> <h2 key={keygen._()} style={{display: 'flex'}}>{value}</h2>)}
+                        {Object.values(title).map(value=> <h2 key={keygen._()} style={{display: 'flex', flexDirection:'column'}}>{value}</h2>)}
 
                     </div>
                     

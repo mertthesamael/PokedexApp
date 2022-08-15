@@ -1,8 +1,9 @@
 .pokemon-details-wrapper{
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width:max-content;
     height: 15rem;
+    align-items: center;
 
     &__details{
         display: flex;
@@ -12,6 +13,7 @@
             flex-direction: column;
             align-items: flex-end;
             line-height: 3rem;
+            width: max-content;
         }
         &__values{
             display: flex;

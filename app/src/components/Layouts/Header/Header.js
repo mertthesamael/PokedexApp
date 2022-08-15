@@ -1,7 +1,8 @@
 import { NavLink, useLocation } from "react-router-dom"
 import "./header.scss"
 import { back } from "../../../assets/icons/icons"
-import { useEffect, useState } from "react"
+import { useContext } from "react"
+import { PokemonsContext } from "../../../store/context"
 
 const Header = (props) => {
     const randomize = () =>{
@@ -10,10 +11,11 @@ const Header = (props) => {
     }
     let location = useLocation().pathname
     let color = ""
-    location === "/" ? color = 'white': color=props.color
-  
-
-
+    
+    const ctx = useContext(PokemonsContext)
+    console.log(ctx.onChangeInfoState)
+    
+    location === "/" ? color = 'wht': color=ctx.color
    
     return(
         <div className={"header "+color}>
@@ -25,7 +27,7 @@ const Header = (props) => {
 
                 <div className="header__searchbar">
 
-                    <input type="text" onChange={props.onSearch}></input>
+                    <input type="text" onChange={ctx.onChangeText}></input>
 
                 </div>
 
@@ -40,7 +42,7 @@ const Header = (props) => {
             </div>}
 
             <div className="header__heading" style={{color: 'black'}}>
-                <h1 onClick={()=> props.state(true)}>PokédexApp</h1>
+                <h1 style={{margin:'0 2rem 0 2rem'}}onClick={()=> ctx.onChangeInfoState(true)}>PokédexApp</h1>
             </div>
 
         </div>

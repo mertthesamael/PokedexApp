@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect} from "react";
 import { useLocation } from "react-router-dom";
 import { arrowRight } from "../../assets/icons/icons";
 import useHttp from "../../hooks/useHttp";
@@ -9,23 +9,24 @@ import PokemonEvolution from "../../components/PokemonEvolution/PokemonEvolution
 import PokemonBaseStats from "../../components/PokemonStats/PokemonBaseStats";
 import PokemonPhysicalStats from "../../components/PokemonStats/PokemonPhysicalStats";
 import "./pokemon-page.scss"
+import { PokemonsContext } from "../../store/context";
 
 const PokemonPage = (props) => {
 
     let name = useLocation().pathname.slice(1)
     let keygen = require("keygenerator")
-    const {fetchPokemonPageData,
-       pokemon
-    } = useHttp(name)
+    const {fetchPokemonPageData,pokemon} = useHttp(name)
 
-  
+    const ctx = useContext(PokemonsContext)
 
     useEffect(() =>{
     fetchPokemonPageData()
     },[name])
 
     useEffect(()=> {
-    props.onMainType(pokemon.mainType)
+        window.scrollTo(0, 0)
+        ctx.onGetMoves(pokemon.moves)
+        ctx.onGetType(pokemon.mainType)
 })
 
     return(
@@ -87,7 +88,8 @@ const PokemonPage = (props) => {
                         <PokemonDetails title={"Training"} type={pokemon.mainType} data={[{capture_rate: [pokemon.catchRate], growth_rate: [pokemon.growthRate], base_experience: [pokemon.baseExp], held_items: pokemon.heldItems.length!==0?pokemon.heldItems.map(x=><div key={keygen._()}>{x.item.name.split("-").join(" ")+" "+x.version_details[0].rarity+'%'}</div>):"None"}]}/>
                     
                         <PokemonDetails title={"Breeding"} type={pokemon.mainType} data={[{egg_groups: pokemon.eggGroups.map(x=><div key={keygen._()}>{x.name+" "}</div>), egg_cycles: pokemon.eggCycles}]}/>
-                        <div><PokemonMovesButton type={pokemon.mainType}></PokemonMovesButton></div>
+                        <div onClick={()=>ctx.onChangeMoveState(true)}><PokemonMovesButton type={pokemon.mainType}></PokemonMovesButton></div>
+                        
                     </div>
                 <div>
                 </div>
