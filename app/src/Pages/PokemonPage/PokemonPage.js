@@ -89,7 +89,7 @@ const PokemonPage = (props) => {
 
                             <PokemonDetails title={"Training"} type={pokemon.mainType} data={[{capture_rate: [pokemon.catchRate], growth_rate: [pokemon.growthRate], base_experience: [pokemon.baseExp], held_items: pokemon.heldItems.length!==0?pokemon.heldItems.map(x=><div key={keygen._()}>{x.item.name.split("-").join(" ")+" "+x.version_details[0].rarity+'%'}</div>):"None"}]}/>
                         
-                            <PokemonDetails title={"Breeding"} type={pokemon.mainType} data={[{egg_groups: pokemon.eggGroups.map(x=><div key={keygen._()}>{x.name+" "}</div>), egg_cycles: pokemon.eggCycles}]}/>
+                            <PokemonDetails title={"Breeding"} type={pokemon.mainType} data={[{egg_cycles: pokemon.eggCycles,egg_groups: pokemon.eggGroups.map(x=><div key={keygen._()}>{x.name+" "}</div>), }]}/>
                             <div onClick={()=>ctx.onChangeMoveState(true)}><PokemonMovesButton type={pokemon.mainType}></PokemonMovesButton></div>
                             
                         </div>
@@ -97,7 +97,7 @@ const PokemonPage = (props) => {
                     </div>
 
                 </div>
-    </>
+                </>
                     }
         </div>
 
