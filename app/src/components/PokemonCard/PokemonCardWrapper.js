@@ -6,20 +6,21 @@ import { PokemonsContext } from "../../store/context";
 import { down } from "../../assets/icons/icons";
 const PokemonCardWrapper = (props) => {
     let keygen = require("keygenerator")
-    const {pokemons, fetchPokemonData} = useHttp()
+    const {pokemons, fetchPokemonData, loading} = useHttp()
     const [pokemonList, setPokemonList] = useState(65)
     const ctx = useContext(PokemonsContext)
+
     useEffect(()=>{
     fetchPokemonData()
     },[])
-    
     const pad = (num, size) => {
         num = num.toString();
         while (num.length < size) num = "0" + num;
         return num;
     }
 
-    const offsetHandler = ()=>{
+    const offsetHandler = (event)=>{
+     
        return pokemonList+65
     }
     
@@ -28,15 +29,17 @@ const PokemonCardWrapper = (props) => {
     }
 
 
+
     return(
      
         <div className="cardwrapper">
-
-            {
+            {loading? <h1>Loading...</h1>:
+            
                 pokemons.filter((x)=> {
-                return x.name.includes(ctx.text)               
-                }).slice(0,pokemonList).map( data => <PokemonCard onGetFavorite={favoritesHandler} data={data.url} key={keygen._()} name={data.name} number={pad((pokemons.indexOf(data)+1),3)}/>)
-            }   
+                    return x.name.includes(ctx.text)               
+                }).slice(0, pokemonList).map( data => <PokemonCard onGetFavorite={favoritesHandler} data={data.url} key={keygen._()} name={data.name} number={pad((pokemons.indexOf(data)+1),3)}/>)
+            
+        }
             <div className="cardwrapper__loadmore">
                 <button onClick={()=> setPokemonList(offsetHandler())}>{down()}</button>
             </div>

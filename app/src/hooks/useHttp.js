@@ -7,14 +7,19 @@ const useHttp = (url)  => {
         name:"", pokemons: [],stats:"",physicalStats:"",heldItems: [],eggGroups: [],icon:"",types:"",mainType:"",abilities:"",category: "",firstEvoIcon: "",secondEvoIcon: "",baseFormIcon: "",firstEvolutionName: "",secondEvolutionName: "",firstEvolutionLevel: "",secondEvolutionLevel :"",baseFormName:""
     })
     const [pokemons, setPokemons] = useState([])
-    
+    const [loading, setLoading] = useState(true)
     
     
     
     const fetchPokemonData = async () => {
+        setLoading(true)
         const data = await axios("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=800").then(response=>response.data)
         setPokemons(data.results) 
+        setLoading(false)
+
+
         const data2 = await axios(url).then(response=>response.data)
+
         dispatch({
             type: "UPDATE",
             pokemons:data.results,
@@ -34,6 +39,7 @@ const useHttp = (url)  => {
         
         const data7 = await axios(data4.evolution_chain.url).then((response) => response.data.chain.evolves_to[0]?.evolves_to[0]?.species ? axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.evolves_to[0].evolves_to[0].species.name): "")
         const data8 = await axios(data4.evolution_chain.url).then((response) => axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.species.name))
+
         dispatch({
             type: "UPDATE",
             category:data4.genera[7].genus,
@@ -73,6 +79,7 @@ const useHttp = (url)  => {
     
     return{
         pokemon,
+        loading,
         fetchPokemonData,
         fetchPokemonPageData,
         pokemons,
