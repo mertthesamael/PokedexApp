@@ -30,6 +30,8 @@ const useHttp = (url)  => {
     }   
     
     const fetchPokemonPageData= async () =>{
+        setLoading(true)
+
         const data3 = await axios("https://pokeapi.co/api/v2/pokemon/"+url).then(response=>response.data)  
         
         const data4 = await axios("https://pokeapi.co/api/v2/pokemon-species/"+data3.id).then( (response) => response.data)
@@ -39,6 +41,7 @@ const useHttp = (url)  => {
         
         const data7 = await axios(data4.evolution_chain.url).then((response) => response.data.chain.evolves_to[0]?.evolves_to[0]?.species ? axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.evolves_to[0].evolves_to[0].species.name): "")
         const data8 = await axios(data4.evolution_chain.url).then((response) => axios("https://pokeapi.co/api/v2/pokemon/"+response.data.chain.species.name))
+        setLoading(false)
 
         dispatch({
             type: "UPDATE",
