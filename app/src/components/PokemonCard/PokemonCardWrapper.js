@@ -25,7 +25,7 @@ const PokemonCardWrapper = (props) => {
     }
     
     const favoritesHandler = (item) => {
-        localStorage.setItem(item.name, JSON.stringify(item))
+        localStorage.setItem(item.favpoke__name, JSON.stringify(item))
     }
     
 
