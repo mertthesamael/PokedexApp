@@ -11,7 +11,9 @@ function App() {
   const pokemon=require("pokemon").all()
   const pokemonNames = pokemon.map(names  => names.toLowerCase())
   const keygen = require("keygenerator")
+  console.log(pokemonNames)
 
+  console.log('Oh hello developer. Do not forget to drink water at least 2L a day ! :) Also my fav Pokémon is Snorlax !')
 
   return (
     <div className="App">
@@ -30,7 +32,7 @@ function App() {
 
           <Route path='/favorites' element={<Favorites></Favorites>}/>
 
-          <Route path="*" element={<NotFound />}/>
+          <Route path="/:name" element={<PokemonPage />}/>
 
         </Routes>
 

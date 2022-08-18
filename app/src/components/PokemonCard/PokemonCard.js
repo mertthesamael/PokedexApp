@@ -7,7 +7,7 @@ import PokemonTypeIcon from "../PokemonTypeIcon/PokemonTypeIcon";
 
 const PokemonCard = (props) => {
     const ctx  = useContext(PokemonsContext)
-    const { fetchPokemonData,pokemon } = useHttp(props.data)
+    const { fetchPokemonData, pokemon} = useHttp(props.data)
     let keygen = require("keygenerator")
     const [isFavorite, setIsFavorite] = useState(false)
     let starIcon = ""

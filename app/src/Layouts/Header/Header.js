@@ -26,7 +26,7 @@ const Header = (props) => {
 
                 <div className="header__menu">
 
-                    <input type="text" placeHolder="Search Pokémon.." className="searchbar"onChange={ctx.onChangeText}></input>
+                    <input type="text" placeholder="Search Pokémon.." className="searchbar"onChange={ctx.onChangeText}></input>
 
 
                 <NavLink style={{textDecoration: 'none', color: 'inherit'}} to="/favorites">Favorites</NavLink>

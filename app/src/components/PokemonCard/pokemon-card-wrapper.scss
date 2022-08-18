@@ -1,13 +1,11 @@
 .cardwrapper{
     display: flex;
     position: relative;
-    z-index: 1;
     flex-wrap: wrap;
     justify-content: center;
 
     &__link{
         position: relative;
-        z-index: 1;
         text-decoration: none;
         cursor:default;
         color: inherit;
@@ -42,7 +40,6 @@
                 width: 100%;
                 & svg{
                     max-width: 32px;
-                    z-index: 139;
                     max-height: 32px;
                     top: 1px;
                     pointer-events:fill;
@@ -61,10 +58,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
+            bottom: 10px;
             max-height: 100%;
             
             img{
-                height: 7rem;
+                height: 5.4rem;
+                z-index: 0;
                 
             }
         }
