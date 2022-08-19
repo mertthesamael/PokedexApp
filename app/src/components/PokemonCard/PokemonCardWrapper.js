@@ -4,6 +4,7 @@ import "./pokemon-card-wrapper.scss"
 import useHttp from "../../hooks/useHttp";
 import { PokemonsContext } from "../../store/context";
 import { down } from "../../assets/icons/icons";
+import LoadingSpin from "react-loading-spin";
 const PokemonCardWrapper = (props) => {
     let keygen = require("keygenerator")
     const {pokemons, fetchPokemonData, loading} = useHttp()
@@ -32,7 +33,7 @@ const PokemonCardWrapper = (props) => {
     return(
      
         <div className="cardwrapper">
-            {loading? <h1>Loading...</h1>:
+            {loading? <LoadingSpin></LoadingSpin>:
             
                 pokemons.filter((x)=> {
                     return x.name.includes(ctx.text)               

@@ -10,6 +10,7 @@ import PokemonBaseStats from "../../components/PokemonStats/PokemonBaseStats";
 import PokemonPhysicalStats from "../../components/PokemonStats/PokemonPhysicalStats";
 import "./pokemon-page.scss"
 import { PokemonsContext } from "../../store/context";
+import Loading from "../../Layouts/Loading/Loading";
 
 const PokemonPage = (props) => {
 
@@ -32,7 +33,7 @@ const PokemonPage = (props) => {
     return(
         <div className="pokemonpage" >
             
-            {loading ? <h1>Loading...</h1>:
+            {loading ? <Loading></Loading>:
                 <>
                 <div className="pokemonpage__header">
 

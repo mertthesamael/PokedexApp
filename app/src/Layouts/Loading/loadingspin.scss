@@ -1,0 +1,36 @@
+.loadingspin{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+   & svg{
+        position: relative;
+        animation-iteration-count: infinite;
+        animation-name: spin;
+        animation-timing-function:ease;
+        animation-duration:1.5s;
+    }
+    &__dot{
+        position: absolute;
+        border: 8px solid black;
+        background: none;
+        top: 127.5px;
+        left: 127px;
+        border-radius: 50%;
+        right: 0;
+        width: 24px;
+        height: 24px;
+    }
+}
+
+
+
+@keyframes spin {
+0% {
+transform: rotate(0deg);
+}
+    100% {
+transform: rotate(720deg);
+ }
+ }
+              
