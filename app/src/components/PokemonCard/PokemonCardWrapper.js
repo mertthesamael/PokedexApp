@@ -4,7 +4,7 @@ import "./pokemon-card-wrapper.scss"
 import useHttp from "../../hooks/useHttp";
 import { PokemonsContext } from "../../store/context";
 import { down } from "../../assets/icons/icons";
-import LoadingSpin from "react-loading-spin";
+import Loading from "../../Layouts/Loading/Loading";
 const PokemonCardWrapper = (props) => {
     let keygen = require("keygenerator")
     const {pokemons, fetchPokemonData, loading} = useHttp()
@@ -13,6 +13,7 @@ const PokemonCardWrapper = (props) => {
     useEffect(()=>{
         fetchPokemonData()
     },[])
+        
     const pad = (num, size) => {
         num = num.toString();
         while (num.length < size) num = "0" + num;
@@ -29,12 +30,11 @@ const PokemonCardWrapper = (props) => {
     }
     
 
-
     return(
      
         <div className="cardwrapper">
-            {loading? <LoadingSpin></LoadingSpin>:
-            
+            {loading? <Loading />:
+
                 pokemons.filter((x)=> {
                     return x.name.includes(ctx.text)               
                 }).slice(0, pokemonList).map( data => <PokemonCard onGetFavorite={favoritesHandler} data={data.url} key={keygen._()} name={data.name} number={pad((pokemons.indexOf(data)+1),3)}/>)
