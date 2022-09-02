@@ -5,6 +5,10 @@
     height: 15rem;
     align-items: center;
     margin-bottom: 5rem;
+    & h1 {
+        margin-bottom: 2rem;
+    }
+
 
     &__details{
         display: flex;
@@ -12,7 +16,7 @@
         &__titles{
             display: flex;
             flex-direction: column;
-            align-items: flex-end;
+            align-items: flex-start;
             line-height: 3rem;
             width: max-content;
         }

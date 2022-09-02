@@ -14,7 +14,6 @@ function App() {
   console.log('Oh hello developer. Do not forget to drink water at least 2L a day ! :) Also my fav Pokémon is Snorlax !')
     return(
     <div className="App">
-
     <PokemonsContextWrapper>
 
       <Header/>

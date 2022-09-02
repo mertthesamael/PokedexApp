@@ -30,22 +30,33 @@ const PokemonCardWrapper = (props) => {
     }
     
 
-    return(
-     
-        <div className="cardwrapper">
-            {loading? <Loading />:
-
-                pokemons.filter((x)=> {
-                    return x.name.includes(ctx.text)               
-                }).slice(0, pokemonList).map( data => <PokemonCard onGetFavorite={favoritesHandler} data={data.url} key={keygen._()} name={data.name} number={pad((pokemons.indexOf(data)+1),3)}/>)
-            
-        }
-            <div className="cardwrapper__loadmore">
-                <button onClick={()=> setPokemonList(offsetHandler())}>{down()}</button>
-            </div>
+    return (
+      <div className="cardwrapper">
+        {loading ? (
+          <Loading />
+        ) : (
+          pokemons
+            .filter((x) => {
+              return x.name.includes(ctx.text);
+            })
+            .slice(0, pokemonList)
+            .map((data) => (
+              <PokemonCard
+                onGetFavorite={favoritesHandler}
+                data={data.url}
+                key={keygen._()}
+                name={data.name}
+                number={pad(pokemons.indexOf(data) + 1, 3)}
+              />
+            ))
+        )}
+        <div className="cardwrapper__loadmore">
+          <button onClick={() => setPokemonList(offsetHandler())}>
+            {down()}
+          </button>
         </div>
-          
-    )
+      </div>
+    );
 
 }
 

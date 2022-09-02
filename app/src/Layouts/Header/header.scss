@@ -3,11 +3,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2em 1rem 2rem;
+    padding: 1rem 1rem ;
     box-shadow: 0 0 40px 8px rgb(0 0 0 / 18%);
     width: 100%;
     z-index: 102391;
     height: auto;
+    &__heading{
+
+    }
     &__menu{
         display: flex;
         flex-direction: column;
@@ -25,4 +28,43 @@ html {
 
 .wht {
     background-color: white;
+}
+
+@media only screen and (max-width: 700px){
+   
+    .header{
+        justify-content: flex-start;
+        &__heading {
+
+                & h1 {
+                    
+                    font-size: 150%;
+                }
+    
+            
+        }
+    
+  }
+
+
+}
+
+
+@media only screen and (max-width: 700px){
+   
+    .header{
+        justify-content: flex-start;
+        &__heading {
+
+                & h1 {
+                    
+                    font-size: 150%;
+                }
+    
+            
+        }
+    
+  }
+
+
 }

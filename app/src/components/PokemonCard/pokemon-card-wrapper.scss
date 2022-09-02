@@ -76,6 +76,8 @@
         bottom: 2rem;
         button{
             background-color: white;
+            border: 2px solid #6c757d;
+          
             transition: all 0.5s ease-in;
             &:hover{
                 background-color: #F94C66;

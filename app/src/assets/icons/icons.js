@@ -204,7 +204,7 @@ const starEmpty = () => {
 
 const arrowRight = () =>{
     return(
-        <svg width="24px" height="24px" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="arrowRightIconTitle" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" color="#000000"> <title id="arrowRightIconTitle">Arrow Right</title> <path d="M15 18l6-6-6-6"/> <path d="M3 12h17"/> <path strokeLinecap="round" d="M21 12h-1"/> </svg>
+        <svg width="24px"  height="24px" viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg" aria-labelledby="arrowRightIconTitle" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" color="#000000"> <title id="arrowRightIconTitle">Arrow Right</title> <path d="M15 18l6-6-6-6"/> <path d="M3 12h17"/> <path strokeLinecap="round" d="M21 12h-1"/> </svg>
     )
 }
 const down = () => {
