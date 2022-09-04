@@ -10,6 +10,7 @@ const PokemonCardWrapper = (props) => {
     const {pokemons, fetchPokemonData, loading} = useHttp()
     const [pokemonList, setPokemonList] = useState(65)
     const ctx = useContext(PokemonsContext)
+
     useEffect(()=>{
         fetchPokemonData()
     },[])
@@ -21,8 +22,7 @@ const PokemonCardWrapper = (props) => {
     }
     
     const offsetHandler = (event)=>{
-        
-        return pokemonList+65
+      return pokemonList+65
     }
     
     const favoritesHandler = (item) => {

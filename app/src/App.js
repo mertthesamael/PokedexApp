@@ -9,7 +9,7 @@ import Favorites from './Pages/Favorites/Favorites';
 import NotFound from "./Pages/NotFound/NotFound"
 function App() {
   const pokemon=require("pokemon").all()
-  const pokemonNames = pokemon.map(names  => names.toLowerCase().replaceAll('♀','-f').replaceAll('♂','-m')) 
+  const pokemonNames = pokemon.map(names  => names.toLowerCase().replaceAll('♀','-f',).replaceAll('♂','-m').replaceAll(" ", "-").replaceAll(".","")) 
   const keygen = require("keygenerator")
   console.log('Oh hello developer. Do not forget to drink water at least 2L a day ! :) Also my fav Pokémon is Snorlax !')
     return(
